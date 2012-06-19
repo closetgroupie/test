@@ -1,0 +1,47 @@
+body.favorites
+
+    #content
+
+        h2
+            font-weight: normal
+            padding: 0 0 0 25px
+            font-size: 30px
+            margin-bottom: 25px
+            background: image-url("favorites-title-icon.png") left no-repeat
+
+        div.add-to-cart
+            margin-bottom: 15px
+
+        div.manipulate
+            div.someone-purchasing, div.sold
+                margin-bottom: 15px
+
+            div.sold
+                width: 180px
+                height: 49px
+                background-repeat: no-repeat
+                background-image: image-url("item-alert-sold.png")
+
+            div.someone-purchasing
+                background-image: image-url("item-alert-someone-purchasing.png")
+
+        div.remove
+            margin-bottom: 15px
+            text-align: center
+
+            a
+                font-size: 14px
+                color: $light-gray  
+
+        div.user-purchasing
+            width: 180px
+            height: 49px
+            background-repeat: no-repeat
+            background-image: image-url("item-alert-user-purchasing.png")
+            margin-bottom: 5px
+
+            a
+                display: block
+                width: 180px
+                height: 49px
+                text-decoration: none

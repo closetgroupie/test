@@ -1,0 +1,50 @@
+<% body_class "item-detail" %>
+<% present @item do |item| %>
+    <p class="back">
+        &lt;&lt; <%= link_to "Back to #{item.closet.name}", closet_path(item.closet) %>
+    </p>
+    <ul id="thumbs">
+    <% @item.photos.each do |photo| %>
+        <%# TODO: Use preview/thumbnail image here instead of full image %>
+        <li>
+            <%= link_to image_tag(photo.image_url(:thumbnail), class: "img-shadow"),
+                photo.image_url, rel: "style-gallery" %>
+        </li>
+    <% end %>
+    </ul>
+    <section id="item_details">
+        <div class="left">
+            <div class="hero-img">
+                <%= image_tag item.hero_image, class: "img-shadow" %>
+            </div>
+            <h1><%= item.title %></h1>
+            <ul>
+                <li><strong>Size:</strong> <%= item.size %></li>
+                <li><strong>Condition:</strong> <%= item.condition %></li>
+                <li><strong>Brand:</strong> <%= item.brand %></li>
+            </ul>
+            <p><%= item.description.presence %></p>
+            <p><strong>Tags:</strong> </p>
+            <%# TODO: Add tags %>
+            <%# <?php if (!empty($item["Tag"])): ?><p><strong>Tags:</strong>&nbsp;&nbsp;<?php foreach ($item["Tag"] as $tag): echo $this->Html->link($tag["tag"], array("controller"=>"shop","action"=>"index","tag",$tag["tag"]))."&nbsp;&nbsp;&nbsp;"; endforeach; ?></p><?php endif; ?> %>
+        </div>
+        <div class="right">
+            <%= item.price %>
+            <%= render partial: "actions", locals: { item: item } %>
+        </div>
+        <%= item.shipping %>
+        <div id="comments">
+            <h4>Comments</h4>
+            <div class="fb-comments" data-href="<%= url_for(:only_path => false) %>" data-num-posts="5" data-width="460"></div>
+        </div>
+    </section>
+
+    <section id="closet">
+        <%= profile_for(item.user) %>
+        <%# TODO: Implement properly %>
+        <%# <%= related_items_for(item) %1> %>
+    </section>
+<% end %>
+<% content_for :javascripts do %>
+    <%= javascript_include_tag('item') %>
+<% end %>

@@ -1,0 +1,6 @@
+<div class="friends-nav clearfix">
+    <ul class="mode-toggle">
+        <li class="<%= active_if_current(friends_path) %>"><%= link_to_unless_current "Find Friends", friends_path %></li>
+        <li class="<%= active_if_current(new_friend_path) %>"><%= link_to_unless_current "Invite Friends", new_friend_path %></li>
+    </ul>
+</div>

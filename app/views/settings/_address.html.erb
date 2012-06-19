@@ -1,0 +1,7 @@
+<p>
+<%= address.full_name %><br />
+<%= address.street1 %> <%= address.street2 if address.street2 %><br />
+<%= address.city %>, <%= address.state_region %> <%= address.postal_code %><br />
+<%= address.country %>
+<%= link_to "Delete", settings_address_delete_path, :method => :delete %>
+</p>

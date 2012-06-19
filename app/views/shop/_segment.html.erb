@@ -1,0 +1,13 @@
+<li class="<%= segment.slug %>">
+    <%= link_to segment.name, "##{segment.slug}_categories",
+        :class => "top-level",
+        :data  => {toggle: "collapse", target: "##{segment.slug}_categories"} %>
+    <% if segment.categories.any? %>
+    <ul id="<%= segment.slug %>_categories" class="collapse <%= "in" if segment == @segment %>">
+        <% segment.categories.each do |category| %>
+        <%# TODO: Render "child" categories of the category %>
+        <li class="<%= active_if_current([segment, category]) %>"><%= link_to category.name, ([segment, category]) %></li>
+        <% end %>
+    </ul>
+    <% end %>
+</li>

@@ -1,0 +1,54 @@
+<div class="header">
+    <h1>Your Settings: Email Address</h1>
+</div>
+<div class="contents">
+    <%= render "shared/dashboard/settings_navigation" %>
+    <h3>Current Email</h3>
+    <p><%= current_user.email %></p>
+    <%# TODO: Trigger validateForm() on form submission %>
+    <%= form_for current_user, :url => settings_path, :method => :put do |f| %>
+        <%= f.error_messages %>
+        <h3>Change Email</h3>
+        <%= hidden_field_tag :action_view, params[:action] %>
+        <%= f.email_field :email %>
+        <p class="hint">New email address</p>
+        <%= f.email_field :email_confirmation %>
+        <p class="hint">Confirm new email</p>
+        <%= f.submit "Save New Email", :class => "btn", :id => "submit_btn" %>
+    <% end %>
+</div>
+<% content_for :javascripts do %>
+<script type="text/javascript">
+<!--//
+    $(document).ready(function (event) {
+        $("ul.email-notification-types input").bind("change", function (event) { 
+            var val = 0;
+            if ($(this).attr("checked")) val = 1;
+            $.get(
+                $("#toggle_email_notifications_url").val() + "/" + $(this).attr("id") + "/" + val,
+                function (response) {
+                    if (response.status == "ERROR") {
+                        alert(response.message);    
+                    } else {
+                        $('label[for="' + response.setting + '"]').toggleClass("active");
+                    }
+                },
+                "json"
+            ); 
+        });
+    });
+    
+    function validateForm() {
+        if ($("#UserEmail").val() != "") {
+            if ($("#UserEmail").val() == $("#UserConfirmEmail").val()) {
+                $('#UserEmailForm').submit()
+            } else {
+                alert("Your email addresses do not match - please try again");
+                $("#UserEmail").val("");
+                $("#UserConfirmEmail").val("");
+            }
+        }
+    }
+//-->
+</script>
+<% end %>

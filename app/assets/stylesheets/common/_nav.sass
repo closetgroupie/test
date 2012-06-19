@@ -1,0 +1,187 @@
+body.login, body.signup, body.connect, body.forgot_password
+    #top_nav, #main_nav
+        display: none
+
+#top_nav
+    background-image: image-url("shadow-h-up.png")
+    background-position: bottom
+    background-repeat: repeat-x
+    padding: 6px 0
+
+    p
+        float: left
+        color: #fff
+        line-height: 28px
+        font-size: 20px
+
+        a
+            color: #d2af2c
+
+            &:hover
+                color: #e5cd5b
+
+    ul
+        float: right
+        margin-right: 10px
+
+        li
+            float: left
+
+        &#guest
+            padding-bottom: 2px
+            line-height: 26px
+
+            li
+                margin: 0 5px
+                color: #fff
+                background-image: none
+
+                a
+                    width: 94px
+                    height: 24px
+                    background-repeat: no-repeat
+
+                    &:hover
+                        background-position: 0 -24px
+
+                &.signin
+                    padding: 2px 0 0 50px
+
+                    a
+                        background-image: image-url("home-unregistered-login.png")
+
+                &.join
+                    padding: 2px 0 0 0
+
+                    a
+                        background-image: image-url("home-unregistered-join.png")
+
+        &#registered
+            li
+                margin-left: 20px
+                padding: 2px 0 0 24px
+                height: 18px
+                background-image: image-url("top-nav-icons.png")
+                background-repeat: no-repeat
+                font-size: 13px
+
+                a
+                    text-decoration: none
+                    color: $white
+
+                    &:hover
+                        color: #e5cd5b
+
+                em
+                    padding-left: 4px
+                    color: $lighter-gray
+
+                &.closet
+                    background-position: 0px -22px
+
+                &.friends
+                    background-position: 0px -44px
+
+                &.messages
+                    background-position: 0px -66px
+
+                &.cart
+                    background-position: 0px -88px
+
+                &.admin
+                    background-position: 0px -110px
+
+                &.logout
+                    background-position: 0px -132px
+
+ul.top_subnav
+    display: none
+    background: image-url("subnav-bg.png") top left no-repeat
+    padding: 20px 0 10px 0
+    position: absolute
+    z-index: 9999
+    list-style: none
+
+    a
+        font-size: 13px
+        color: $heading-gray !important
+        text-decoration: none
+        display: block
+        padding: 3px 20px 3px 10px
+        text-shadow: 0px 1px 1px $bg-lightest-gray
+
+        &:hover
+            background-color: $bg-lightest-gray
+            color: $gray-three !important
+
+nav#main_nav
+    height: 66px
+    background: image-url("main-nav-bg.png") 0px 26px repeat-x
+
+    .contain
+        background: image-url("main-nav-nav-bg.png") top repeat-x
+        height: 66px
+
+    ul
+        float: left
+        height: 66px
+        padding-left: 5px
+
+        li
+            float: left
+            margin-left: 15px
+            height: 40px
+            text-shadow: $black 1px 1px 2px
+            font-size: 16px
+            letter-spacing: 1.2px
+
+            &:hover
+                background: image-url("nav-btn-bg-over.png")
+
+            &.active
+                background: image-url("nav-btn-bg-active.png")
+
+            a
+                color: $white !important
+                text-decoration: none
+                display: inline-block
+                height: 30px
+                padding: 10px 15px 0 15px
+
+                &:link, &:visited, &:active
+                    color: $white !important
+
+    span.count
+        font-size: 11px
+        color: #1c4257
+        background-color: #7ad2f4
+        padding: 1px 5px 1px 5px
+        position: relative
+        margin: -4px 0 0 5px
+        text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.7) !important
+        letter-spacing: normal
+
+    form#search_form
+        float: right
+
+        input
+            float: left
+            margin-top: 6px
+            border: 0 none
+
+        #search_query
+            width: 280px
+            height: 20px
+            padding: 4px
+            background: $white image-url("search-input-bg.png") top right repeat-x
+            font-size: 15px
+
+        #search_submit
+            width: 28px
+            height: 28px
+            padding: 0
+            margin: 6px 35px 0 0
+            background: image-url("search-go-btn.png") top left no-repeat
+
+            &:hover
+                background-position: 0px -28px

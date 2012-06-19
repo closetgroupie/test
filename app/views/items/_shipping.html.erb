@@ -1,0 +1,20 @@
+<div class="shipping">
+    <h4>Shipping</h4>
+    <div class="inner">
+        <table cellspacing="0">
+            <tr>
+                <th>Cost</th>
+                <th>with another item</th>
+                <th>Shipping from</th>
+                <th>Ship Internationally?</th>
+            </tr>
+            <tr>
+                <td><%= number_to_currency(@item.shipping_cost) %></td>
+                <td><%= @item.shipping_cost_bundled? ? number_to_currency(@item.shipping_cost_bundled) : "N/A" %></td>
+                <td><%= @item.shipping_from %></td>
+                <td><%= @item.shipping_abroad ? "Yes" : "No" %></td>
+            </tr>
+        </table>
+        <p><%= @item.shipping_notes %></p>
+    </div>
+</div>

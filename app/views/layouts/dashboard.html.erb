@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>ClosetGroupie</title>
+        <meta name="description" content="<%= yield :description %>" />
+        <meta name="keywords" content="<%= yield :keywords %>" />
+        <%= csrf_meta_tags %>
+        <%= render "shared/og_tags" %>
+        <link rel="shortcut icon" type="image/png" href="/favicon.png">
+        <%= stylesheet_link_tag    "application", :media => "all" %>
+        <script type="text/javascript" src="//use.typekit.com/ppu0ksu.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <%= render "shared/analytics/google" %>
+        <%= render "shared/analytics/kissmetrics" %>
+    </head>
+    <body class="dashboard <%= yield :body_class %>">
+        <div class="container">
+            <%= render "shared/layout/header" %>
+            <div id="content-wrapper">
+                <section id="content" role="main" class="contain clearfix">
+                    <div class="inner">
+                        <%= render :partial => "shared/layout/flash",
+                                   :object => flash unless flash.empty? %>
+                        <%= render "shared/dashboard/toggle" %>
+                        <%= render "shared/dashboard/navigation" %>
+                        <div class="dashboard-content right">
+                            <%= yield %>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        <%= render "shared/layout/footer" %>
+        </div>
+        <%= javascript_include_tag "application" %>
+        <%= yield :javascripts %>
+    </body>
+</html>

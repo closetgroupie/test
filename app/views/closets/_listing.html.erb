@@ -1,0 +1,7 @@
+<% if @closets.any? %>
+<ul id="closets">
+<% present @closets, ClosetListPresenter do |closets| %>
+    <%= render closets %>
+<% end %>
+</ul>
+<% end %>

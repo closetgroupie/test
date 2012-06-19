@@ -1,0 +1,9 @@
+<li class="person <%= cycle "first", "second", "third", "last", name: "row_class" %>">
+    <%= link_to image_tag(users.avatar), closet_path(users) %>
+    <div class="caption">
+        <h3 class="name">
+            <%= link_to users.name, closet_path(users) %>
+        </h3>
+        <p><strong><%= users.groupies %></strong> groupies &nbsp; following <strong><%= users.following %></strong></p>
+    </div>
+</li>

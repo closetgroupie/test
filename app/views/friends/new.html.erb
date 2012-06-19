@@ -1,0 +1,63 @@
+<% body_class "friends-list friends" %>
+<%= render "nav" %>
+
+<div class="header">
+    <h1>Invite Friends</h1>
+</div>
+<div class="contents">
+    <p>Please check back soon on this page.</p>
+<% if false %>
+    <%# <h3 id="remaining_invites_message"><?php if ($remaining_invites > 0): ?>You have <strong><?php echo $remaining_invites; ?></strong> invitation<span<?php if ($remaining_invites == 1): ?> style="display: none;"<?php endif; ?>>s</span> left, so keep it stylish!<?php else: ?>You have used all of your invitations! Thanks for spreading the word about ClosetGroupie!<?php endif; endif; ?></h3> %>
+    <?php if ($remaining_invites > 0): ?>
+    <ul id="invites_list">
+        <?php for ($i=1; $i<=$remaining_invites; $i++): ?>
+        <li><input type="text" id="invite_email_<?php echo $i; ?>" class="email" placeholder="Friend's email address" /><input type="button" id="invite_btn_<?php echo $i; ?>" value="send" class="btn" /></li>
+        <?php endfor; ?>
+    </ul>
+    <?php endif; ?>
+    <% end %>
+</div>
+<% content_for :javascripts do %>
+<script type="text/javascript">
+<!--//
+var last_clicked = 0;
+var num_remaining = 100;
+$(document).ready(function () {
+    $("#invites_list input.btn").bind("click", function () { sendInvite($(this).attr("id")); });
+    $("#invites_list input.email").bind("keydown",function (event) { if (event.which == '13') { sendInvite($(this).attr("id")); }});
+});
+function sendInvite (btnid) {
+    var btnida = btnid.split("_");
+    last_clicked = btnida[2];
+    var e = $("#invite_email_"+last_clicked).val();
+    if (e.length < 5) {
+        alert("Please enter a friend's email address first!");
+        $("#invite_email_"+last_clicked).focus();
+    } else {
+        var data = {email: e};
+        $.post(
+            "<?php echo $this->Html->url(array("controller"=>"friends","action"=>"send_invite")); ?>",
+            data,
+            function (response) { 
+                if (response.status == "ERROR") {
+                    $("#invite_email_"+last_clicked).val("");
+                    $("#invite_email_"+last_clicked).focus();
+                } else {
+                    $("#invite_email_"+last_clicked).attr("disabled","disabled");
+                    $("#invite_btn_"+last_clicked).attr("disabled","disabled");
+                    $("#invite_btn_"+last_clicked).unbind("click");
+                    $("#invite_btn_"+last_clicked).fadeOut();
+                    num_remaining -= 1;
+                    $("#remaining_invites_message strong").html(num_remaining);
+                    (num_remaining == 1) ? $("#remaining_invites_message span").hide() : $("#remaining_invites_message span").show();
+                    if (num_remaining == 0) $("#remaining_invites_message").html("You have used all of your invitations! Thanks for spreading the word about ClosetGroupie!");
+                }
+                alert(response.message);
+            },
+            "json"
+        );
+    }
+}
+//-->
+</script>
+<% end %>

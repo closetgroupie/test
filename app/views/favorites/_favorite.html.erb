@@ -1,0 +1,22 @@
+<li class="<%= cycle "first", "second", "third", "last" %>">
+    <div class="item-image img-shadow <%= "sold-item" if favorite.sold? %>">
+        <%= link_to image_tag(favorite.item.photos.first.image_url(:search)), item_path(favorite.item) %>
+        <% if favorite.sold? %>
+        <div class="sold" title="This item has been sold">
+            <%= visually_hidden "Sold" %>
+        </div>
+        <% elsif false %>
+        <%# <?php elseif ($current_user && in_array($item_id, $user_favorite_items)): ?> %>
+        <div class="favorite" title="This item is on your favorites list">
+            <%= visually_hidden "Favorite" %>
+        </div>
+        <% end %>
+    </div>
+    <%= favorite.linked_title %>
+    <div class="clearfix">
+        <h4>Size: <%= favorite.item_size %></h4>
+        <h5><%= favorite.item_price %></h5>
+    </div>
+    <p><%= toggle_favorite_button_for(favorite.item) %></p>
+    <%# TODO: <%= render partial: "items/add_to_cart", object: favorite.item, as: :item %1> %>
+</li>

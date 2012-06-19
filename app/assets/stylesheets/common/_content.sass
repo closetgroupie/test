@@ -1,0 +1,74 @@
+section#content
+    padding: 25px 0 40px
+
+.polaroid
+    +rotate(2deg)
+    +single-box-shadow($light-gray)
+    background: $white
+    margin: 0 auto 15px
+    display: block
+    width: 170px
+    padding: 4px
+
+    img
+        +inline-block
+
+section#owner
+    float: left
+    width: 210px
+
+    h1, h2, h3
+        text-align: center
+
+    ul
+        list-style-type: none
+        margin: 0 0 20px 0
+        text-align: center
+
+        li
+            display: inline
+            padding: 2px 10px
+            font-size: 14px
+
+            &.active
+                background: $bg-lightest
+                color: $mustard
+                box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.4)
+
+                a
+                    color: $mustard
+
+            a
+                text-decoration: none
+                color: #b8b7b7
+                font-size: 14px
+
+                &:hover
+                    color: $mustard
+
+    div.avatar
+        margin-bottom: 15px
+
+        // TODO: Refactor once this is done server-side
+        img
+            width: 200px
+
+    div.owner_details
+        text-align: center
+
+        p
+            margin-bottom: 8px
+            padding-right: 8px
+            font-size: 14px
+
+            &.location
+                padding-top: 15px
+                font-size: 13px
+                color: $light-gray  
+
+            a
+                text-align: left
+
+            strong
+                font-weight: normal
+                color: #9e7d00

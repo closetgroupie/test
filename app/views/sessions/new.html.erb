@@ -1,0 +1,39 @@
+<% body_class "default basic login unregistered" %>
+<table cellspacing="0">
+    <tr>
+        <td class="left">       
+            <h3>Returning members</h3>
+            <%= form_tag sessions_path do %>
+                <%= label_tag :email, "Email Address" %>
+                <%= text_field_tag :email, params[:email], :class => "shorter", :autofocus => true, :tabindex => 1 %>
+                <%= label_tag :password %>
+                <%= password_field_tag :password, "", :class => "shorter", :tabindex => 2 %>
+                <%# TODO: Make this trigger a modal #%>
+                <p id="forgot_link"><%= link_to "forgot password?", forgot_password_path %></p>
+                <div class="row clearfix">
+                    <div class="radio">
+                    <%= check_box_tag :remember_me, nil, true, :tabindex => 3 %>
+                    <%= label_tag :remember_me, "Remember me" %>
+                    </div>
+                    <%= submit_tag "Login", :class => "btn btn-login", :tabindex => 4 %>
+                    <%# <%= link_to "Login", "#", :class => "btn btn-login", :id => "submit_btn" %1> #%>
+                </div>
+            <% end %>
+        </td>
+        <td class="middle">
+            <span class="visuallyhidden">OR</span>
+        </td>
+        <td class="right">
+            <h3>Login with your friends</h3>
+            <p class="facebook" style="margin-top: 62px;">
+                <%= link_to image_tag("login-with-facebook.png", :alt => "Login with Facebook"), auth_at_provider_path(:provider => :facebook) %>
+            </p>
+            <%# TODO: Implement this once there's a wizard for capturing user's email after login %>
+            <%# <p class="twitter"> %>
+            <%#     <%= link_to image_tag("login-with-twitter.png", :alt => "Login with Twitter"), login_path %1> %>
+            <%# </p> %>
+        </td>
+    </tr>
+</table>
+<br />
+<h4>Not a member? <%= link_to "Join now.", signup_path %></h4>

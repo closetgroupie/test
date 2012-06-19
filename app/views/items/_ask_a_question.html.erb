@@ -1,0 +1,18 @@
+<%# TODO: Refactor... %>
+<% unless item.sold? || current_user == item.user %>
+    <% if current_user %>
+    <li>
+    <%= link_to "Ask #{item.owner} a question about this item",
+            question_item_path(@item),
+            :class => "btn btn-img btn-full btn-question-long", :id => "contact_link",
+            :title => "Question about this item?" %>
+    </li>
+    <% else %>
+    <li>
+        <%= link_to "Ask #{item.owner} a question about this item", "#",
+            :class => "btn btn-img btn-inactive btn-full btn-question-long",
+            :id => "contact_link_placeholder",
+            :title => "Please sign in or join now to ask a question about this item." %>
+    </li>
+    <% end %>
+<% end %>

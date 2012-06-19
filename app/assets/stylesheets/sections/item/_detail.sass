@@ -1,0 +1,394 @@
+body.item-detail
+    #content
+        p.back
+            font-size: 13px
+            margin-bottom: 15px
+            color: $light-gray
+            text-decoration: none
+
+            a
+                color: $light-gray   
+                text-decoration: none
+
+                &:hover
+                    text-decoration: underline
+
+        ul#thumbs
+            float: left
+            list-style: none
+            width: 80px
+            padding: 0
+            margin: 0 20px 0 0
+
+            li
+                margin-bottom: 15px
+
+            img
+                // TODO: This resizing should be done server-side, refactor
+                width: 80px
+                height: 80px
+
+
+    section#item_details
+        float: left
+        width: 545px
+
+
+        div#comments
+            padding-top: 10px
+            width: 460px
+            clear: both
+
+            h4
+                font-weight: normal
+                color: #2f2f2f
+                font-size: 16px
+                margin-bottom: 10px
+                padding-left: 21px
+                background: image-url("activity/icons/icon-comments.png") no-repeat center left
+
+        div.left
+            float: left
+            width: 345px
+
+            h1
+                color: #2f2f2f
+                font:
+                    size: 20px
+                    weight: normal
+                padding: 10px 0
+
+            img
+                // TODO: This resizing should be done server-side, refactor
+                width: 345px
+
+            ul
+                padding: 0
+                margin: 0
+                list-style: none
+                font-size: 14px
+
+                li
+                    padding-bottom: 3px
+
+                    strong
+                        font-weight: normal
+
+            p
+                padding: 15px 0
+                font-size: 13px
+                color: $text-dark
+
+                strong
+                    font-weight: normal
+
+        div.shipping
+            clear: left
+            padding-top: 10px
+            width: 460px
+
+            div.inner
+                background-color: $bg-white
+
+                p
+                    padding: 20px 15px 15px 15px
+                    font-size: 12px
+                    color: $text-dark
+
+                table
+                    width: 100%
+
+                    th
+                        border-bottom: 1px solid $border-light
+                        font-weight: normal
+                        color: #868686
+                        font-size: 13px
+                        padding: 6px 10px
+                        text-align: center
+
+                    td
+                        border-top: 1px solid $white    
+                        font-weight: normal
+                        color: #2f2f2f
+                        font-size: 14px
+                        padding: 6px 10px
+                        text-align: center
+
+            h4
+                font-weight: normal
+                color: 2f2f2f
+                font-size: 16px
+                padding-bottom: 10px
+
+        div.right
+            float: right
+            width: 180px
+
+            a.icon
+                display: inline-block
+                margin-right: 3px
+                margin-top: 3px
+
+            // TODO: Refactor
+            a.share-email
+                text-indent: -119988px
+                overflow: hidden
+                text-align: left
+                background-image: image-url("activity/icons/icon-mail.png?1325468116")
+                background-repeat: no-repeat
+                background-position: 50% 50%
+                width: 19px
+                height: 12px
+                margin-top: 6px
+
+                &:hover
+                    text-indent: -119988px
+                    overflow: hidden
+                    text-align: left
+                    background-image: image-url("activity/icons/icon-mail_hover.png?1325468095")
+                    background-repeat: no-repeat
+                    background-position: 50% 50%
+                    width: 19px
+                    height: 12px
+
+            // TODO: Refactor
+            a.share-facebook
+                text-indent: -119988px
+                overflow: hidden
+                text-align: left
+                background-image: image-url("activity/icons/icon-facebook.png?1325467825")
+                background-repeat: no-repeat
+                background-position: 50% 50%
+                width: 10px
+                height: 17px
+
+                &:hover
+                    text-indent: -119988px
+                    overflow: hidden
+                    text-align: left
+                    background-image: image-url("activity/icons/icon-facebook_hover.png?1325467855")
+                    background-repeat: no-repeat
+                    background-position: 50% 50%
+                    width: 10px
+                    height: 17px
+
+            // TODO: Refactor
+            a.share-twitter
+                text-indent: -119988px
+                overflow: hidden
+                text-align: left
+                background-image: image-url("activity/icons/icon-twitter.png?1325467998")
+                background-repeat: no-repeat
+                background-position: 50% 50%
+                width: 19px
+                height: 15px
+                margin-top: 4px
+
+                &:hover
+                    text-indent: -119988px
+                    overflow: hidden
+                    text-align: left
+                    background-image: image-url("activity/icons/icon-twitter_hover.png?1325467928")
+                    background-repeat: no-repeat
+                    background-position: 50% 50%
+                    width: 19px
+                    height: 15px
+
+            h2
+                font:
+                    size: 22px
+                    weight: normal
+                margin: -5px 0 10px 0
+
+                em
+                    font-size: 14px
+
+            hr
+                background: image-url("activity/stitching.png") repeat-x bottom left
+                margin: 1em 0
+                height: 3px
+                border: 0
+
+            .facebook
+                div
+                    float: none !important
+
+            #share_this
+                font-size: 16px
+                font-weight: normal
+                margin-bottom: 8px
+
+            #share
+                div, iframe
+                    float: left !important
+                    margin-right: 4px !important
+                    margin-bottom: 1px
+
+                iframe
+                    &:first-child
+                        width: 43px !important
+
+                div
+                    margin-top: 2px !important
+
+                    &.fb-like
+                        clear: left
+                        float: none
+
+                        iframe
+                            float: left
+                            width: 100% !important
+
+                #icons
+                    clear: both
+                    display: block
+                    margin-bottom: -2px
+
+            ul
+                list-style: none
+                margin: 0
+                padding: 0
+
+                li
+                    margin-bottom: 7px
+
+                    &.add-to-cart, &.sold, &.someone-purchasing
+                        margin-bottom: 15px
+
+                    &.user-purchasing, &.sold, &.someone-purchasing
+                        width: 180px
+                        height: 49px
+                        background-repeat: no-repeat
+
+                    &.remove
+                        margin-bottom: 15px
+                        text-align: center
+
+                        a
+                            font-size: 14px
+                            color: $light-gray   
+
+                    &.user-purchasing
+                        background-image: image-url("item-alert-user-purchasing.png")
+                        margin-bottom: 5px
+
+                        a
+                            display: block
+                            width: 180px
+                            height: 49px
+                            text-decoration: none
+
+                    &.sold
+                        background-image: image-url("item-alert-sold.png")
+
+                    &.someone-purchasing
+                        background-image: image-url("item-alert-someone-purchasing.png")
+
+    section#closet
+        float: right
+        width: 205px
+        border-left: 1px solid #ccc
+        padding-left: 20px
+            
+        h2, h3
+            font-weight: normal
+            text-align: center
+            padding-right: 15px
+
+        h2
+            font-size: 26px
+            padding-top: 0
+            margin-top: -6px
+
+        h3
+            font-size: 16px
+            margin-bottom: 15px
+            color: $gold
+    
+            text-decoration: none
+
+            a
+                color: $gold
+    
+                text-decoration: none
+
+                &:hover
+                    text-decoration: underline
+
+        div.avatar
+            margin-bottom: 15px
+
+            // TODO: Refactor this once it's done server-side
+            img
+                width: 200px
+                height: 200px
+
+        div.owner_details
+            text-align: center
+
+            p
+                margin-bottom: 8px
+                padding-right: 8px
+                font-size: 14px
+
+                strong
+                    font-weight: normal
+                    color: #9e7d00
+
+                a
+                    text-align: left
+
+        p.location
+            padding-top: 15px
+            padding-left: 12px
+            font-size: 13px
+            color: $light-gray    
+
+        ul.other-closet-items
+            clear: both
+            list-style: none
+            margin: 0
+            padding: 15px 0 0 12px
+
+            li
+                float: left
+                margin-right: 10px
+
+                &.total a
+                    width: 50px
+                    height: 38px
+                    padding-top: 12px
+                    font-size: 12px
+                    color: $white    
+                    text-decoration: none
+                    display: block
+                    background-color: $gold
+                    line-height: 1em
+                    text-align: center
+
+    #item_added_to_cart_wrapper
+        .intro
+            .left
+                float: left
+                width: 160px
+
+            .right
+                float: left
+                width: 400px
+
+                h3
+                    font-weight: normal
+                    font-size: 18px
+                    margin-bottom: 5px
+
+                p
+                    font-size: 13px
+                    font-style: italic
+                    color: $text-dark
+
+                span
+                    display: inline-block
+                    padding: 5px 0 0 5px
+
+    #message_input
+        height: 100px

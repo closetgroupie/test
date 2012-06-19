@@ -1,0 +1,173 @@
+<% body_class "shopping-cart" %>
+<div class="intro clearfix">
+    <%# TODO: Use @items.size or something %>
+    <h2><%= pluralize(@items_count, "Item") %> in your cart</h2>
+    <p class="back"><%= link_to "Back to shopping", closets_path %></p>
+    <p class="help">
+        <%= link_to "How Checkout Works",
+            "http://closetgroupie.tumblr.com/post/12923933186/how-checkout-works",
+            :class => "btn btn-how-checkout-works", target: "_blank" %>
+    </p>
+</div>
+<% if @orders.present? and @orders.any? %>
+<div id="items_wrapper">
+<% @orders.each do |order| %>
+<section class="closet">
+    <div class="top">
+        <%# TODO: Use closet instead of seller here %>
+        <h3>From <%= link_to order.seller.name, closet_path(order.seller) %></h3>
+    </div>
+    <div class="inner">
+        <table class="items" cellspacing="0">
+            <tr>
+                <th class="thumb">Item</th>
+                <th class="description">Description</th>
+                <th class="size">Size</th>
+                <th class="price">Price</th>
+                <th class="shipping">Shipping</th>
+                <th class="remove">Remove?</th>
+            </tr>
+            <% order.items.each do |item| %>
+            <tr>
+                <td class="thumb">
+                <%# TODO: Proper size %>
+                <%= link_to item_path(item) do %>
+                    <%= image_tag(item.photos.first.image_url,
+                        :class => "img-shadow", width: 70, height: 70) %>
+                <% end %>
+                </td>
+                <td class="description">
+                    <h5><%= item.title %></h5>
+                    <p><%= item.shipping_notes %></p>
+                </td>
+                <td class="size">
+                    TODO: Sizes
+                    <%# <?php if ($item["ItemSize"]["id"] == null): ?>N/A<?php else: echo $item["ItemSize"]["name"]; endif; ?> %>
+                </td>
+                <td class="price">
+                    <%= number_to_currency item.price %> <em>USD</em>
+                </td>
+                <td class="shipping">
+                    <%# TODO: Take in to account whether item is bundled or not? %>
+                    <%= number_to_currency item.shipping_cost %> <em>USD</em>
+                </td>
+                <td class="remove">
+                    <%= link_to "Remove", 
+                        order_item_delete_path(item.active_order, item.id),
+                        :class => "btn btn-small btn-remove-from-cart",
+                        method: :delete %>
+                </td>
+            </tr>
+            <% end %>
+        </table>
+    </div>    
+</section>
+<% end %>
+</div>
+
+<section class="total clearfix">
+    <div class="inner">
+        <p class="total">Total: <strong><%= number_to_currency @total %></strong> <em>USD</em></p>
+        <p class="btn" id="checkout_btn">
+            <%= link_to "Checkout", shipping_orders_path,
+                :class => "btn btn-checkout" %>
+        </p>
+    </div>
+</section>
+
+<a name="shipping"></a>
+
+
+<div style="display: none;">
+    <div id="pay">
+        <table cellspacing="0" class="pay">
+            <tr>
+                <td><?php echo $this->Html->image("logo-connecting.png"); ?></td>
+                <td class="connecting"><?php echo $this->Html->image("paypal-connecting.gif"); ?></td>
+                <td><?php echo $this->Html->image("paypal-logo.png"); ?></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<% end %>
+<% content_for :javascripts do %>
+<script type="text/javascript">
+<!--//
+    $(document).ready(function () {
+        $("#checkout_btn a").bind("click", function (event) {
+            $("#checkout_btn").fadeOut();
+            $("#items_wrapper").css("opacity",.5);
+            $("#shipping_wrapper").slideDown();
+        });
+        $("#shipping_wrapper input.preset-address").bind("change", function (event) {
+            if ($(this).attr("checked")) {
+                var ids = $(this).attr("id");
+                var ida = ids.split("_");
+                var id = ida[2];
+                $("#shipping_address_form input#full_name").val($("#preset_address_wrapper_"+id+ " span.ship_name").text());
+                $("#shipping_address_form input#street1").val($("#preset_address_wrapper_"+id+ " span.ship_street1").text());
+                $("#shipping_address_form input#street2").val($("#preset_address_wrapper_"+id+ " span.ship_street2").text());
+                $("#shipping_address_form input#city").val($("#preset_address_wrapper_"+id+ " span.ship_city").text());
+                $("#shipping_address_form input#state_region").val($("#preset_address_wrapper_"+id+ " span.ship_state_region").text());
+                $("#shipping_address_form input#postal_code").val($("#preset_address_wrapper_"+id+ " span.ship_postal_code").text());
+                $("#shipping_address_form select#country").val($("#preset_address_wrapper_"+id+ " span.ship_country").text());
+                $("#shipping_address_form input#save_address").attr("checked",false);
+                $("#shipping_address_form input#save_address").attr("disabled",true);
+                $("#shipping_address_form div#save_address_wrapper").css("opacity",.2);
+            }
+        });
+        $("#shipping_address_form input").bind("keydown", function (event) { clearPresetAddresses(); });
+        $("#btn_pay_now").bind("click", function (event) { validateShippingForm(); });
+    });
+    function clearPresetAddresses () {
+        $("#shipping_wrapper input.preset-address").attr("checked", false); 
+        $("#shipping_address_form input#save_address").attr("disabled",false);
+        $("#shipping_address_form div#save_address_wrapper").css("opacity",1);
+    }
+    function validateShippingForm () {
+        var errors = [];
+        if ($("#shipping_address_form input#full_name").val() == "") errors.push([$("#shipping_address_form input#full_name"), "Please enter the full name of the person to ship to"]); 
+        if ($("#shipping_address_form input#street1").val() == "") errors.push([$("#shipping_address_form input#street1"), "Please enter your shipping street address"]);
+        if ($("#shipping_address_form input#city").val() == "") errors.push([$("#shipping_address_form input#city"), "Please enter your shipping city"]);
+        if ($("#shipping_address_form input#state_region").val() == "") errors.push([$("#shipping_address_form input#state_region"), "Please enter your shipping state or region"]);
+        if ($("#shipping_address_form input#postal_code").val() == "") errors.push([$("#shipping_address_form input#postal_code"), "Please enter your shipping zip/postal code"]);
+        if (errors.length == 0) {
+            $("#btn_pay_now").unbind("click");
+            $("#btn_pay_now").fancybox({overlayColor:"#fff", overlayOpacity: .8, modal: true});
+            $("#btn_pay_now").trigger("click");
+            var data = {};
+            data.name = $("#shipping_address_form input#full_name").val();
+            data.street1 = $("#shipping_address_form input#street1").val();
+            data.street2 = $("#shipping_address_form input#street2").val();
+            data.city = $("#shipping_address_form input#city").val();
+            data.state = $("#shipping_address_form input#state_region").val();
+            data.zip = $("#shipping_address_form input#postal_code").val();
+            data.country = $("#shipping_address_form select#country").val();
+            $("#save_address").attr("checked") == true ? data.save_address = 1 : data.save_address = 0;
+            //
+            $.post(
+                $("#post_order_url").val(),
+                data,
+                function (response) {
+                    if (response.status == "SUCCESS") {
+                        window.top.location.href = response.redirect_url;
+                    } else {
+                        alert(response.message);    
+                    }
+                },
+                "json"
+            );
+        } else {
+            $.fancybox.close();
+            var message = "";
+            for (var i=0; i<errors.length; i++) {
+                message += "- " + errors[i][1]+"\n";
+            }
+            alert(message);
+            errors[0][0].focus();
+            return false;
+        }
+    }
+//-->
+</script>
+<% end %>

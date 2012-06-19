@@ -1,0 +1,76 @@
+body.messages
+    #content
+        span.m, span.d, span.y
+            display: block
+            text-transform: uppercase
+            text-align: center
+            margin: 0
+            line-height: 1
+            padding: 0 20px 0 10px
+
+        span.m
+            font-size: 14px
+
+        span.d
+            font-size: 24px
+
+        span.y
+            font-size: 13px
+
+        table
+            width: 100%
+
+            td, th
+                padding: 10px 0
+                border-bottom: 1px solid $bg-lightest-gray
+
+            td
+                &.date
+                    width: 50px
+
+                &.key
+                    background: image-url("key-icon-large.png") 0px 5px no-repeat
+                    padding-top: 5px
+                    padding-left: 30px
+
+                &.pic
+                    width: 80px
+
+                h5
+                    font-weight: normal
+                    color: $mustard
+
+                p
+                    margin: 0 !important
+                    padding: 0 !important
+                    line-height: 1.1em
+
+                textarea, input
+                    float: left
+
+                #message_submit
+                    margin-left: 0
+
+                textarea
+                    width: 480px
+                    font-size: 13px
+                    padding: 5px
+                    margin: 0 5px 0 0
+                    height: 21px
+
+            th
+                font-size: 12px
+                color: #555
+                text-align: left
+
+            thead
+                td
+                    padding-bottom: 20px
+
+
+            tr.new
+                td
+                    background-color: #f7f3e4
+
+        div.avatar
+            margin-right: 20px

@@ -1,0 +1,11 @@
+<section id="owner">
+    <%= user.name %>
+    <%= user.closet_name %>
+    <%= render 'shared/closet_profile_nav', user: user_model, closet: user.closet %>
+    <%= user.profile_picture %>
+    <div class="owner_details">
+        <%= render :partial => "shared/groupie_counts", :locals => { user: user } %>
+        <p><%= toggle_follow_button_for user_model %></p>
+    </div>
+    <p class="location"><em>Location:</em> <%= user.location %></p>
+</section>

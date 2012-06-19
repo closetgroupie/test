@@ -1,0 +1,91 @@
+.sliderkit
+    display: none
+    position: relative
+    overflow: hidden
+    text-align: left
+
+    a
+        text-decoration: none
+
+        &:hover
+            text-decoration: none
+
+        &:focus
+            outline: 1px dotted $black
+
+    img
+        border: 0
+
+    .sliderkit-count
+        position: absolute
+        top: 5px
+        right: 5px
+        z-index: 10
+        padding: 5px
+        color: $white
+        background: $black
+
+    .sliderkit-nav
+        z-index: 10
+        text-align: center
+        width: 48px
+
+    .sliderkit-nav-clip
+        position: relative
+        overflow: hidden
+        margin: 0 auto
+
+        ul
+            position: relative
+            left: 0
+            top: 0
+            list-style: none
+            margin: 0
+            padding: 0
+
+            li
+                float: left
+
+                a
+                    display: block
+                    overflow: hidden
+
+    .sliderkit-btn
+        z-index: 10
+
+    .sliderkit-panel
+        z-index: 1
+        position: absolute
+        overflow: hidden
+
+        .sliderkit-panel-textbox
+            position: absolute
+            z-index: 1
+
+        .sliderkit-panel-text
+            position: absolute
+            z-index: 3
+            top: 0
+            left: 0
+
+        .sliderkit-panel-overlay
+            position: absolute
+            z-index: 2
+            top: 0
+            left: 0
+
+
+    .sliderkit-panel-active
+        z-index: 5
+
+    .sliderkit-panel-old
+        z-index: 4
+
+    
+    .sliderkit-timer
+        position: absolute
+        top: 0
+        left: 0
+        z-index: 10
+        height: 3px
+        background: $lighter-gray

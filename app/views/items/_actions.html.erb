@@ -1,0 +1,23 @@
+<ul>
+    <% if item.show_buttons? %>
+        <%= render partial: "items/add_to_cart", object: item, as: :item %>
+        <li><%= toggle_favorite_button_for item %></li>
+        <%= render partial: "items/ask_a_question", object: item, as: :item %>
+    <% end %>
+    <%= item.edit_action %>
+    <%= item.delete_action %>
+    <hr class="stitched">
+    <li>
+        <h3 id="share_this">Share this item</h3>
+        <div id="share">
+            <%= pinterest_button(current_url, item.hero_image, item.description) %>
+            <%= google_plus_button(current_url) %>
+            <%= facebook_like_button(current_url) %>
+            <span id="icons">
+                <%# <%= email_button %1> %>
+                <%= facebook_share_button(current_url) %>
+                <%= tweet_button(current_url) %>
+            </span>
+        </div>
+    </li>
+</ul>

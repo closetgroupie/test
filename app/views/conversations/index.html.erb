@@ -1,0 +1,50 @@
+<% body_class "messages" %>
+<% present @conversations, ConversationListPresenter do |conversations| %>
+<div class="header">
+    <h1>Your Messages</h1>
+</div>
+<div class="contents">
+    <%# TODO: Move this in to a presenter method %>
+    <% if conversations.any? %>
+    <table>
+        <tr>
+            <th>Updated</th>
+            <th>With</th>
+            <th>Regarding</th>
+            <th>Last Message</th>
+            <th>&nbsp;</th>
+        </tr>
+        <% conversations.each do |conversation| %>
+        <tr class="<%= "new" if conversation.has_unread_messages? %>">
+            <td class="date">
+                <span class="m">
+                    <%= conversation.month %>
+                </span>
+                <span class="d">
+                    <%= conversation.day %>
+                </span>
+                <span class="y">
+                    <%= conversation.year %>
+                </span>
+            </td>
+            <td class="pic">
+                <%= conversation.user_avatar %>
+            </td>
+            <td class="pic">
+                <%= conversation.hero_image %>
+            </td>
+            <td>
+                <%= conversation.latest_from %>
+                <%= conversation.latest_message %>
+            </td>
+            <td>
+                <%= conversation.linked_message_count %>
+            </td>
+        </tr>
+        <% end %>
+    </table>
+    <% else %>
+    <h3>You don't currently have any messages</h3>
+    <% end %>
+</div>
+<% end %>

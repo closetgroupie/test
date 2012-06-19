@@ -1,0 +1,14 @@
+<%= content_tag :tr, :class => message.status_for(current_user) do %>
+    <td class="date">
+        <span class="m"><%= message.month %></span>
+        <span class="d"><%= message.day %></span>
+        <span class="y"><%= message.year %></span>
+    </td>
+    <td class="pic">
+        <%= message.author_avatar %>
+    </td>
+    <td>
+        <h5><%= message.author %></h5>
+        <p><%= message.content %></p>
+    </td>
+<% end %>

@@ -1,0 +1,31 @@
+<ul id="subnav_1" class="top_subnav">
+    <li><%= link_to "Your Groupies", groupies_path %></li>
+    <li><%= link_to "Who You Follow", following_path %></li>
+    <li><%= link_to "Edit Profile", settings_profile_path %></li>
+    <li><%= link_to "Edit Settings", settings_email_path %></li>
+    <li><%= link_to "Your Purchases",purchases_path %></li>
+    <li><%= link_to "Logout", logout_path %></li>
+</ul>
+
+<ul id="subnav_2" class="top_subnav">
+    <li><%= link_to "Add Item", new_item_path %></li>
+    <li><%= link_to "Currently Selling", selling_items_path %></li>
+    <li><%= link_to "Items You Sold", sold_items_path %></li>
+    <li><%= link_to "Your Sales", sales_path %></li>
+    <li><%= link_to "Customize", settings_closet_path %></li>
+</ul>
+
+<ul id="subnav_3" class="top_subnav">
+    <li><%= link_to "Find Friends", friends_path %></li>
+    <li><%= link_to "Invite Friends", new_friend_path %></li>
+</ul>
+<% if current_user and current_user.admin? %>
+<ul id="subnav_6" class="top_subnav">
+    <li><%= link_to "Manage Brands", item_brands_path %></li>
+    <li><%= link_to "Manage Categories", item_categories_path %></li>
+    <li><%= link_to "Manage Sizes", item_sizes_path %></li>
+    <li><%= link_to "Basic Report", reports_path %></li>
+    <li><%= link_to "Beta Signups", beta_signups_admin_path %></li>
+    <li><%= link_to "Find User", admin_find_user_path %></li>
+</ul>
+<% end %>

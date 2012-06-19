@@ -1,0 +1,46 @@
+<% present @order do |order| %>
+<h3>You made a sale on ClosetGroupie!</h3>
+<table>
+        <tr>
+        <td><strong>Order #:</strong></td>
+        <td><%= order.unique_id %></td>
+    </tr>
+    <tr>
+        <td><strong>Placed on:</strong></td>
+        <td><%= order.placed_at %></td>
+    </tr>
+    <tr>
+        <td><strong>You Made:</strong></td>
+        <td><%= number_to_currency order.total_earned %> <em style="color: #666; font-size: smaller;">(not including PayPal fees)</em></td>
+    </tr>
+    <tr>
+        <td><strong># Items Sold:</strong></td>
+        <td><%= order.item_count %></td>
+    </tr>
+    <tr>
+        <td><strong>Sold to:</strong></td>
+        <td><%= link_to order.buyer.name, profile_url(order.buyer) %></td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top"><strong>Ship to:</strong></td>
+        <td>
+            <%= order.shipping.recipient %><br />
+            <%= order.shipping.primary %> <%= order.shipping.secondary %><br />
+            <%= order.shipping.city %>, <%= order.shipping.state %> <%= order.shipping.zip %><br />
+            <%= order.shipping.country %>
+        </td>
+    </tr>
+</table>
+
+<p>To view the complete order details, including the items purchased as well a link to communicate with the buyer, click the button below:</p>
+<p><%= link_to "Click to view full order details", sale_url(order.id), style: "
+    color: #274c61; display: inline-block; padding: 5px 15px;
+    text-decoration: none; font-size: 15px; text-shadow: rgba(255,255,255,.55) 0px 1px 1px;
+    background: #82afc9; background: -webkit-gradient(linear, left top, left bottom, from(#b9e0f5), to(#82afc9));
+    background: -moz-linear-gradient(top, #b9e0f5, #82afc9); background: -o-linear-gradient(top, #b9e0f5, #82afc9);
+    border: 1px solid #6f95ab;" %></p>
+<p>Or open to the following url in your browser:<br />
+<strong><%= link_to sale_url(order.id), sale_url(order.id) %></strong></p>
+
+<h4>It is highly recommended that you post the tracking # for your shipment to the buyer as a courtesy!</h4>
+<% end %>

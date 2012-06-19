@@ -1,0 +1,86 @@
+body.login
+
+    p.facebook, p.twitter
+        margin-top: 10px
+
+    #content
+
+        div.row
+            padding-top: 15px
+
+        div.radio
+            float: left
+            margin-top: 5px
+
+        h4
+            text-align: center
+            padding: 30px
+            font-size: 22px
+            font-weight: normal
+            color: $heading-gray
+
+        input
+            margin-left: 0
+
+        label
+            padding-bottom: 2px
+
+        table
+            margin: 0 auto
+
+            td
+                vertical-align: top
+
+                h3
+                    font-weight: normal
+                    font-size: 30px
+                    letter-spacing: 1px
+                    white-space: nowrap
+                    margin-bottom: 20px
+                    color: $heading-gray
+
+                p.hint
+                    width: auto
+                    margin-left: 0
+
+                &.left, &.right
+                    width: 250px
+
+                &.middle
+                    vertical-align: middle
+                    width: 120px
+                    background: image-url("login-or.png") top center no-repeat
+
+                &.left
+                    #UserPassword
+                        margin-bottom: 2px
+
+                    p.help
+                        margin-bottom: 10px
+
+                    p#response_message, p#error_message
+                        font-size: 14px
+                        padding: 10px 0
+
+                        strong
+                            font-weight: normal
+
+                    p#forgot_link
+                        font-size: 12px
+                        margin: 0
+                        padding: 0
+
+                    div.checkbox
+                        float: left
+
+                    .btn-login
+                        float: right
+                        display: block
+                        width: 98px
+                        height: 38px
+                        background-image: image-url("btn-login.png")
+                        text-indent: -1000em
+                        border: 0
+
+                        &:hover
+                            background-position: 0px -38px

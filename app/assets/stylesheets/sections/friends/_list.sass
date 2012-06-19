@@ -1,0 +1,90 @@
+body.friends-list
+    #content
+        div.left
+            width: 200px
+            float: left
+
+            a.btn:hover
+                background-position: 0px -30px
+
+            a.btn-reconnect
+                background-image: image-url("friends-button-reconnect.png")
+
+            a.btn-connect
+                background-image: image-url("friends-button-connect.png")
+
+            h3
+                font-weight: normal
+                font-size: 17px
+                color: $mustard
+
+            h5
+                font-size: 13px
+
+            p
+                font-size: 13px
+                color: $gray-six
+                margin-bottom: 5px
+
+            .facebook, .twitter
+                background-position: 0px 2px
+                background-repeat: no-repeat
+                padding-left: 24px
+                margin-bottom: 15px
+
+            .facebook-on
+                background-image: image-url("friends-facebook-on.png")
+
+            .facebook-off
+                background-image: image-url("friends-facebook-off.png")
+
+            .twitter-on
+                background-image: image-url("friends-twitter-on.png")
+
+            .twitter-off
+                background-image: image-url("friends-twitter-off.png")
+
+        .right
+            float: right
+            border-left: 1px solid $lighter-gray
+            width: 650px
+
+            .header
+                background: image-url("page-headers-left.png") top left no-repeat
+                margin-left: -9px
+                height: 93px
+
+                h1
+                    color: $white    
+                    font-weight: normal
+                    font-size: 18px
+                    background: image-url("page-headers-xtile.png") top repeat-x
+                    margin-left: 9px
+                    height: 41px
+                    padding: 6px 0 0 15px
+                    text-shadow: 0px 1px 2px $black
+
+            .contents
+                margin: -30px 10px 0 15px
+
+                table
+                    width: 100%
+                    border-top: 1px solid $lighter-gray
+
+                    td
+                        border-bottom: 1px solid $lighter-gray
+                        padding: 7px 0
+                        vertical-align: middle
+
+                        &.avatar
+                            width: 50px
+
+                        &.follow
+                            text-align: right
+
+                            a
+                                text-align: left
+
+                        &.since
+                            font-size: 13px
+                            color: $light-gray

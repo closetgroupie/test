@@ -1,0 +1,25 @@
+<%# TODO: Check if we are in signup, login or connect action and in that case do not show this #%>
+<div id="top_nav">
+    <nav class="contain clearfix">
+        <% if current_user %>
+        <ul id="registered">
+            <li class="dashboard" id="topnav_1"><%= link_to current_user.name, settings_profile_path %></li>
+            <li class="closet" id="topnav_2"><%= link_to "Your Closet", closet_path(current_user.closet) %></li>
+            <li class="friends" id="topnav_3"><%= link_to "Friends", friends_path %></li>
+            <li class="messages" id="topnav_4"><%= link_to "Messages", conversations_path %></li>
+            <li class="cart" id="topnav_5"><%= link_to "Cart", cart_path %></li>
+            <% if current_user.admin? %>
+            <li class="admin" id="topnav_6"><%= link_to "Admin", "#" %></li>
+            <% end %>
+        </ul>
+        <% else %>
+        <p>Turn your closet into a boutique. <a target="_blank" href="http://closetgroupie.tumblr.com/post/14817936131/how-closet-groupie-works">See how it works.</a></p>
+        <ul id="guest">
+            <li class="signin"><%= link_to "Sign In", login_path, :class => "btn btn-signin" %></li>
+            <li> or </li>
+            <li class="join"><%= link_to "Join now", signup_path, :class => "btn btn-join" %></li>
+        </ul>
+        <% end %>
+    </nav>
+</div>
+

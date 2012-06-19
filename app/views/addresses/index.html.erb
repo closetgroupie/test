@@ -1,0 +1,29 @@
+<% body_class "dashboard edit-address" %>
+<div class="header">
+    <h1>Your Settings: Shipping Address</h1>
+</div>
+<div class="contents">
+    <%= render "shared/dashboard/settings_navigation" %>
+    <h3>Current Addresses</h3>
+    <% if @addresses.present? %>
+        <%= render @addresses %> 
+        <%# <% current_user.shipping_addresses.each do |address| %1> %>
+        <%#     <%= address.recipient %1> %>
+        <%# <% end %1> %>
+    <% else %>
+        <p>You haven't added any shipping addresses yet - please enter one below:</p>
+    <% end %>
+    <h3>Add New Address</h3>
+    <% if false %>
+    <%# TODO: Handle errors %>
+    <div class="error_list">
+        <h4>Opps, the following errors occurred. Please correct them and try submitting the form again.</h4>
+        <ul>
+        <?php foreach ($errors as $error): ?>
+            <li><?php echo $error; ?></li>
+        <?php endforeach; ?>
+        </ul>
+    </div>
+    <% end %>
+    <%= render "form" %>
+</div>

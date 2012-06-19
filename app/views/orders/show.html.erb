@@ -1,0 +1,115 @@
+<% body_class "shopping-cart" %>
+<% present @order do |order| %>
+<div class="header">
+    <h1>Sale Details</h1>
+</div>
+<div class="contents">
+    <table class="purchase-sale-details img-shadow" cellspacing="0">
+        <tr>
+            <td>
+                <h6>Order #</h6><p><%= order.unique_id %></p>
+                <%# TODO: Make this User's timezone, or something? %>
+                <h6>Placed on</h6><p><%= order.placed_at %> PST</p>
+                <h6>Sold to:</h6><p><%= link_to order.buyer.name, profile_path(order.buyer_id) %></p>
+            </td>
+            <td>
+                <h6>Ship to:</h6>
+                <p><%= order.shipping.recipient %><br />
+                <%= order.shipping.primary %> <%= order.shipping.secondary.presence %><br />
+                <%= order.shipping.city %>, <%= order.shipping.state %> <%= order.shipping.zip %><br />
+                <%# TODO: Instead of ISO-3166 2 letter, do full country name translation based on it %>
+                <%= order.shipping.country %></p>
+            </td>
+        </tr>
+    </table>
+
+
+    <section class="closet">
+        <div class="top clearfix">
+            <h3 style="float: left; font-size: 18px;">Items Sold:</h3>
+            <p style="float:right; margin-bottom: 0;">
+                <%= link_to "Contact Buyer", contact_buyer_path(order.id),
+                    :class => "btn btn-full btn-contact-buyer", :id => "contact" %>
+            </p>
+        </div>
+        <div class="inner">
+            <table class="items" cellspacing="0">
+                <tr>
+                    <th class="thumb">Item</th>
+                    <th class="description">Description</th>
+                    <th>&nbsp;</th>
+                </tr>
+                <% order.items.each do |item| %>
+                <tr>
+                    <td class="thumb">
+                        <%# TODO: use "preview" size image %>
+                        <%= link_to image_tag(item.photos.first.image_url(:thumbnail), width: 70, height: 70, :class => "img-shadow"),
+                            item_path(item)  %>
+                    <td>
+                        <%# TODO: Make sure sizes show up once they have been migrated over %>
+                        <h5><%= item.title %></h5><h6>Size: <%= item.size.presence || "N/A" %></h6></td>
+                    <td>
+                        <table class="purchase-sale-total">
+                            <tr>
+                                <td class="a">Original Price:</td>
+                                <td><%= number_to_currency item.price %> <em>USD</em></td>
+                            </tr>
+                            <tr>
+                                <td class="a">ClosetGroupie Fee:</td>
+                                <td>- <%= number_to_currency item.fees_for_price %> <em>USD</em></td>
+                            </tr>
+                            <tr>
+                                <td class="a">Shipping Price:</td>
+                                <td>+ <%= number_to_currency item.shipping_price %> <em>USD</em></td>
+                            </tr>
+                            <tr>
+                                <td class="a">Total Earned:</td>
+                                <td>= <strong><%= number_to_currency item.price_with_shipping %> <em>USD</em></strong></td></tr>
+                        </table>
+                    </td>
+                </tr>
+                <% end %>
+            </table>
+        </div>
+    </section>
+
+    <section class="total">
+        <div class="inner">
+            <table class="purchase-sale-total" align="right">
+                <tr>
+                    <td class="a">Total:</td>
+                    <td><%= number_to_currency order.total %> <em>USD</em></td>
+                </tr>
+                <tr>
+                    <td class="a">ClosetGroupie Fee:</td>
+                    <td>- <%= number_to_currency order.closetgroupie_fee %> <em>USD</em></td>
+                </tr>
+                <tr>
+                    <td class="a">Total Earned:</td>
+                    <td>= <strong style="color: #9d8221;"><%= number_to_currency order.total_earned %> <em>USD</em></strong></td>
+                </tr>
+            </table>
+            <p class="note" style="text-align: right; float: none; clear: both; font-size: 11px;">Note that the total earned amount above does NOT reflect PayPal's fee, so the actual amount in your PayPal account may be different.</p>
+        </div>
+    </section>
+</div>
+<div style="display: none;">
+    <div id="send_message_wrapper">
+        <div class="intro clearfix">
+            <div class="left"><?php echo $this->Html->image("avatars/".$suborder["Buyer"]["User"]["avatar_filename"], array("class"=>"img-shadow", "width"=>60, "height"=>60)); ?></div>
+            <div class="right">
+                <h3>Contact <?php echo $suborder["Buyer"]["User"]["name"]; ?></h3>
+                <p>Type your message to <?php echo $suborder["Buyer"]["User"]["name"]; ?> about this order</p>
+            </div>
+        </div>
+        <form>
+            <div class="input"><textarea style="height: 100px" id="message_input"></textarea></div>
+            <input type="button" class="btn dark-btn" value="Send Message" id="message_btn" />
+        </form>
+        <h4 style="display: none;">Your message has been sent. Watch your "Messages" tab on your dashboard for <?php echo $suborder["Buyer"]["User"]["name"]; ?> to respond!</h4>
+    </div>
+</div>
+<% end %>
+<% content_for :javascripts do %>
+    <%= javascript_include_tag 'contact' %>
+<% end %>

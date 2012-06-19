@@ -1,0 +1,164 @@
+<% body_class "add-item edit-item" %>
+<% content_for :javascripts do %>
+    <%= javascript_include_tag "add-item" %>
+    <%= javascript_include_tag "add-utils" if current_user.admin? %>
+    <%= javascript_include_tag "items" %>
+<% end %>
+<div class="header">
+    <h1>Add an item below or <a href="http://closetgroupie.tumblr.com/post/20416202553/use-your-iphone-to-upload-items" target="_blank">email us</a> and we'll do it for you!</h1>
+</div>
+<div class="contents add-item">
+<%= form_for @item, html: { multipart: true } do |f| %>
+    <% if current_user.admin? %>
+        <input type="text" name="item_owner_override" id="admin_item_owner" placeholder="Find user by e-mail" style="margin: 0 0 1em 0;">
+        <input type="hidden" name="user_id_override" value="<%= current_user.id %>">
+    <% end %>
+    <fieldset>
+    <section class="category">
+        <h2>Category <em>*</em></h2>
+        <div class="inner">
+            <div class="inline">
+                <%= f.collection_select :segment_id, @segments, :id, :name, prompt: "Choose..." %>
+                <%= f.grouped_collection_select :category_id, @segments, :categories, :name, :id, :name, prompt: "Choose..." %>
+            </div>
+        </div>
+    </section>
+    
+    <section class="size">
+        <h2>Size, Brand &amp; Condition</h2>
+        <div class="inner">
+            <table cellspacing="0">
+                <tr>
+                    <td>
+                        <%= f.label :size_id %>
+                        <%= f.grouped_collection_select :size_id, @categories, :sizes, :name, :id, :name  %>
+                    </td>
+                    <td class="required">
+                        <%=raw f.label :condition, "Condition of item<em>*</em>".html_safe %>
+                        <%= f.select :condition, Item::CONDITIONS, prompt: "Choose..." %>
+                    </td>
+                    <td>
+                        <%= f.label :brand_id, "Brand" %>
+                        <%= f.grouped_collection_select :brand_id, @segments, :brands, :name, :id, :name, { :include_blank => true } %>
+                        <%= f.text_field :brand_suggestion, :class => "shorter", :placeholder => "or, type in a brand name" %>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+    
+    <section class="item-details">
+        <h2>Item Details</h2>
+        <div class="inner">
+            <div class="input text required">
+                <%=raw f.label :title, "Item name/title <em>*</em>".html_safe %>
+                <%= f.text_field :title %>
+            </div>
+            <div class="input textarea">
+                <%= f.label :description %>
+                <%= f.text_area :description, placeholder: "Write a short description about why this is awesome!", rows: 6 %>
+            </div>
+            <!--
+            <div class="input text">
+                <%# TODO: Add tagging %>
+                <%= f.label :item_tag %>
+            </div>
+            -->
+        </div>
+        <br />
+    </section>
+    
+    <section class="price">
+        <h2>Price and Shipping</h2>
+        <div class="inner">
+            <table cellspacing="0">
+                <tr>
+                    <td class="required">
+                        <div class="input text required">
+                            <%= f.label :price, "Price $ <em>*</em>".html_safe %>
+                            <%= f.text_field :price, :class => "numeric short" %>
+                            <p class="hint" style="width: auto">No dollar sign</p>
+                        </div>
+                    </td>
+                    <td class="required">
+                        <div class="input text required">
+                            <%= f.label :shipping_cost, "Shipping Cost $ <em>*</em>".html_safe %>
+                            <%= f.text_field :shipping_cost, :class => "numeric short" %>
+                            <p class="hint" style="width: auto">Example: 3.50</p>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="input text">
+                            <%= f.label :shipping_cost_bundled, "If shipped with another item $" %>
+                            <%= f.text_field :shipping_cost_bundled, :class => "numeric short" %>
+                            <p class="hint" style="width: auto">In US dollars</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <%= f.label :shipping_from, "Shipping From" %>
+                        <%= f.country_code_select :shipping_from, [[ 'United States', 'US' ], [ 'Canada', 'CA' ]] %>
+                    </td>
+                    <td colspan="2">
+                        <%= f.label :shipping_abroad, "Will you ship internationally?" %>
+                        <div class="radio">
+                            <%= f.radio_button :shipping_abroad, "yes" %>
+                            <%= f.label :shipping_abroad_yes, "Yes" %>
+                            <%= f.radio_button :shipping_abroad, "no" %>
+                            <%= f.label :shipping_abroad_no, "No" %>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <%= f.label :shipping_notes %>
+            <%= f.text_area :shipping_notes, :placeholder => "international fees, carrier used, etc.", :rows => 3 %>
+        </div>
+        <br />
+    </section>
+    
+    <section class="photos">
+        <h2>Photos <em>*</em></h2>
+        <div class="inner" id="upload_photos_wrapper">
+            <p class="hint" id="pre_upload_photos_hint" style="width: auto; margin-left: 0;">Use JPG &amp; PNG files under 3MB to show off your clothes.  You can upload up to 5 photos, but at least one image is required.</p>
+            <p class="hint" id="post_upload_photos_hint" style="display: none; margin-left: 0px; width: auto;">If you have multiple images, drag and drop them in the order you'd like them to appear. The left-most image will be the "main" image for this item.</p>
+            <% if @item.errors and @item.errors.has_key?(:photos) %>
+                <% @item.errors[:photos].each do |error| %>
+                <strong><%= error %></strong><br><br>
+                <% end %>
+            <% end %>
+            <%= f.fields_for :photos do |photo| %>
+                <% if photo.object.persisted? %>
+                    <div class="existing">
+                        <%= image_tag photo.object.image_url(:thumbnail), width: 30 %>
+                        <%= photo.file_field :image %>
+                        <%= photo.check_box :_destroy %>
+                        <%= photo.label :_destroy, "Remove?" %>
+                    </div>
+                <% else %>
+                    <div class="new">
+                        <%= photo.label :image, "New" %>
+                        <%= photo.file_field :image %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+        <br />
+    </section>
+    <br />
+    <%= f.submit "Save Changes", :class => "btn", :id => "submit_btn" %>
+    <%# <input type="button" class="btn" id="submit_btn" onclick="validateForm();" value="Upload This Item" /> %>
+    <section class="complete" style="display: none;">
+        <h2>Your item has been posted!</h2>
+        <div class="inner">
+            <p>What would you like to do next?</p>
+            <ul>
+                <li><?php echo $this->Html->link("Post another item", array("controller"=>"items","action"=>"add")); ?></li>
+                <li><a id="item_details_link" href="#">View and share my item</a></li>
+            </ul>
+            <br />
+        </div>
+    </section>
+</fieldset>
+<% end %>
+</div>

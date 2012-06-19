@@ -1,0 +1,22 @@
+<div class="header">
+    <h1>Your Purchases</h1>
+</div>
+<div class="contents">
+    <% if @purchases.any? %> 
+    <table cellspacing="0" class="purchase-sale-list">
+        <% @purchases.each do |purchase| %>
+        <tr>    
+            <%# TODO: Headers %>
+            <td><%= purchase.unique_id %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><%= purchase.created_at.to_date.to_s(:long) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><%= pluralize(purchase.items.size, "Item") %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><%= number_to_currency purchase.total %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td><%= link_to "Details", purchase_path(purchase) %></td>
+        </tr>
+        <% end %>
+    </table>
+    <% else %>
+    <h3>You haven't purchased anything yet</h3>
+    <p><%= link_to "Click here", closets_path %> to find a closet to shop in!</p>
+    <% end %>
+</div>

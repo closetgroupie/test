@@ -1,0 +1,182 @@
+body.shopping-cart
+    #content
+        dl
+            padding-bottom: 10px
+
+            dt
+                width: 150px
+                float: left
+                clear: left
+                font-size: 13px
+                font-style: italic
+                padding-bottom: 10px
+
+            dd
+                float: left
+                font-size: 13px
+
+        h2
+            background: image-url("icon-cart.png") left no-repeat
+            font-weight: normal
+            font-size: 22px
+            padding: 0 30px
+            display: inline
+
+        p.back
+            display: inline
+
+            a
+                color: #939393
+                font-size: 14px
+                vertical-align: baseline
+
+        p.help
+            float: right
+
+            a.btn-how-checkout-works
+                display: block
+                width: 166px
+                height: 24px
+                background: image-url("btn-how-checkout-works.png") top left no-repeat
+                text-indent: -200px
+
+                &:hover
+                    background-position: 0px -24px
+
+        section.closet
+            background-color: $bg-white
+            width: 100%
+            margin-top: 20px
+
+            div.top
+                padding: 10px
+                border-bottom: 1px solid $border-light
+
+                h3
+                    font-weight: normal
+                    font-size: 16px
+                    color: $gold
+    
+
+                    a
+                        color: $gold
+    
+                        text-decoration: none
+
+                        &:hover
+                            text-decoration: underline
+
+            div.inner
+                padding: 10px 10px 0 10px
+                border-top: 1px solid $white    
+
+                table
+                    width: 100%
+
+                    th
+                        text-align: left
+                        font-size: 12px
+                        font-weight: normal
+                        padding-bottom: 12px
+                        color: $light-gray  
+
+                    td
+                        padding-bottom: 15px
+                        font-size: 14px
+
+                        em
+                            font-size: 10px
+
+                    td.thumb, th.thumb
+                        width: 90px
+
+                    td.remove, th.remove
+                        text-align: right
+                        width: 80px
+
+                    td.remove a
+                        text-align: left
+
+                    td.size,th.size
+                        width: 100px
+
+                    td.price, th.price
+                        width: 120px
+
+                    td.shipping, th.shipping
+                        width: 120px
+
+        section.total
+            padding-top: 15px
+
+            div.inner
+                float: right
+
+                p
+                    float: left
+
+                    &.total
+                        font-size: 20px
+                        padding: 8px 20px 0 0
+
+                        strong
+                            color: $gold
+    
+
+        section#shipping_wrapper
+            h4
+                margin-bottom: 10px
+
+            p
+                width: auto
+
+            td.current
+                border-right: 1px solid $border-light
+                padding-right: 20px
+                width: 370px
+
+                form
+                    margin: 1em 0
+
+                input.btn
+                    float: right
+
+                .shipping_address
+                    clear: both
+                    padding-top: 15px
+
+                    .left
+                        float: left
+                        width: 25px
+
+                    .right
+                        float: left
+
+            td.new
+                border-left: 1px solid $white    
+                padding-left: 20px
+
+                label
+                    padding-bottom: 4px
+
+                div.input
+                    margin-bottom: 8px
+
+                input#city, input#state_region
+                    width: 200px
+
+                input#postal_code
+                    width: 100px
+
+    #pay
+        padding: 25px
+        background-color: $white    
+
+        td
+            vertical-align: middle
+
+            &.connecting
+                padding: 0 10px
+
+                img
+                    margin-top: 5px

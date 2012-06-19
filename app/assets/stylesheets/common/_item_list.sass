@@ -1,0 +1,87 @@
+div.item-row
+    margin-bottom: 30px
+
+ul.item-list
+    margin: 0
+    padding: 0
+    list-style: none
+    letter-spacing: normal
+
+    li
+        float: left
+        margin-right: 25px
+        margin-bottom: 30px
+        width: 180px
+
+        &.last
+            margin-right: 0px
+
+        div.item-image
+            width: 180px
+            height: 180px
+            overflow: hidden
+            margin-bottom: 5px
+            position: relative
+
+            img
+                width: 180px
+                vertical-align: middle
+
+    h3, h4, h5
+        font-weight: normal
+
+    h3
+        width: 180px
+        height: 22px
+        overflow: hidden
+        font-size: 15px
+        color: $gray-three
+        line-height: 19px
+
+        a
+            color: $gray-six
+            text-decoration: none
+
+    h4, h5
+        font-size: 13px
+        float: left
+
+    h4
+        color: $text-dark
+        padding-right: 10px
+
+    h5
+        color: $gold
+    
+
+    p
+        padding-top: 10px
+
+    .favorite
+        width: 38px
+        height: 38px
+        background: image-url("item-favorite-corner.png") top right no-repeat
+        position: relative
+        margin-top: -180px
+        margin-left: 142px
+
+    .item-actions
+        padding-top: 10px
+        height: 26px
+
+    .sold
+        position: absolute
+        height: 180px
+        width: 180px
+        top: 0
+        background: image-url("white-bg.png") top
+
+        span
+            +replace-text-with-dimensions("sold-banner.png")
+            position: absolute
+            top: 60px
+            left: 1px
+            z-index: 100
+            display: block
+            width: 180px
+            clip: auto

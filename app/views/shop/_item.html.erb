@@ -1,0 +1,20 @@
+<%= content_tag_for :li, item, :class => classes_for_item(item) do %>
+    <%= link_to item_path(item), :class => "img-shadow" do %>
+        <%# TODO: Once we have "square" images, we can remove the width/height %>
+        <%= image_tag(item.photos.first.image_url(:medium), width: 200, height: 200) if item.photos.any? %>
+        <% if item.sold? %>
+        <div class="sold" title="This item has been sold">
+            <span class="visuallyhidden">Sold</span>
+        </div>
+        <% elsif current_user.presence.try(:favorite?, item) %>
+        <div class="favorite" title="This item is on your favorites list">
+            <span class="visuallyhidden">Favorite</span>
+        </div>
+        <% end %>
+    <% end %>
+    <h3><%= link_to truncate(item.title, :length => 30), item_path(item) %></h3>
+    <div class="clearfix">
+        <h4>Size: <%= item.size.presence || "N/A" %></h4>
+        <h5><%= number_to_currency item.price %></h5>
+    </div>
+<% end %>

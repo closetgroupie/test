@@ -1,0 +1,11 @@
+<li>
+    <div class="closet img-shadow">
+        <%= closet.linked_avatar %>
+        <div class="caption clearfix">
+            <h3><%= link_to closet.user.name, closet.url %>
+                <%= toggle_follow_link_for(closet) %>
+            </h3>
+            <%= render :partial => "shared/groupie_counts", :locals => { user: closet.user } %>
+        </div>
+    </div>
+</li>

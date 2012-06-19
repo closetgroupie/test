@@ -1,0 +1,7 @@
+<li class="item <%= cycle "first", "second", "third", "last" %>">
+    <%= link_to image_tag(items.image), items %>
+    <h3 class="name">
+        <%= link_to truncate(items.title, length: 23), items %>
+    </h3>
+    <p>Size: <%= items.size || "N/A" %><span class="price"><%= number_to_currency items.price %></span></p>
+</li>

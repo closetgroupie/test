@@ -1,0 +1,5 @@
+<%= form_tag search_path, :method => :get, :id => :search_form do %>
+    <%= text_field_tag :query, '', :id => "search_query", :class => "",
+        :name => "q", :placeholder => "Search for people, items, closets, brands" %>
+    <%= submit_tag '', :id => "search_submit", :type => "button" %>
+<% end %>

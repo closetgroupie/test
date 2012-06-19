@@ -1,0 +1,62 @@
+<% body_class "shopping-cart" %>
+<section class="closet" id="shipping_wrapper">
+    <div class="top">
+        <h3>Where would you like these items shipped?</h3>
+    </div>
+    <div class="inner">
+        <table cellspacing="0">
+            <tr>
+                <td class="current">
+                    <h4>Saved shipping addresses</h4>
+                    <% if @addresses.any? %>
+                    <p>Select a saved address below, or enter a new address to the right:</p>
+                        <% @addresses.each do |address| %>
+                        <%= form_for wizard_path, :method => :put do |f| %>
+                            <%= f.hidden_field :existing_id, :value => address.id %>
+                            <%= f.submit "Ship to this address", :class => "btn" %>
+                            <%= content_tag :span, address.recipient %><br />
+                            <%= content_tag :span, address.primary %>
+                            <%= content_tag :span, address.secondary %><br />
+                            <%= content_tag :span, address.city %>,
+                            <%= content_tag :span, address.state %>
+                            <%= content_tag :span, address.zip %><br />
+                            <%= content_tag :span, address.country %>
+                        <% end %>
+                    <% end %>
+                    <% else %>
+                    <p>You don't have any addresses saved yet - please enter one to the right</p>
+                    <% end %>
+                </td>
+                <td class="new">
+                    <h4>Enter your shipping address</h4>
+                    <%= form_for @address, url: wizard_path, method: :put do |f| %>
+                        <%= f.label :recipient, "Full name of the person to ship to" %>
+                        <%= f.text_field :recipient %>
+                        <%= f.label :primary, "Street address" %>
+                        <%= f.text_field :primary %>
+                        <%= f.label :secondary, "Apartment, Building, Suite, etc." %>
+                        <%= f.text_field :secondary %>
+                        <%= f.label :city %>
+                        <%= f.text_field :city %>
+                        <%= f.label :state, "State or Region" %>
+                        <%= f.text_field :state %>
+                        <%= f.label :zip, "Zip/Postal Code" %>
+                        <%= f.text_field :zip %>
+                        <div class="input">
+                            <%= f.label :country %>
+                            <%= f.country_code_select :country, [[ 'United States', 'US' ], [ 'Canada', 'CA' ]] %>
+                            <%# TODO: Add a dropdown for countries, maybe using country-select? %>
+                        </div>
+                        <p style="padding-top: 15px;">
+                            <%= f.submit "Pay Now", :class => "btn btn-pay-now",
+                                :id => "btn_pay_now" %>
+                            <%# <a href="#pay" id="btn_pay_now" class="btn btn-pay-now">Pay Now</a> %>
+                        </p>
+                    <% end %>
+                    </div>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>    
+</section>

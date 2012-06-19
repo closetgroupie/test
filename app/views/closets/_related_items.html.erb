@@ -1,0 +1,11 @@
+<ul class="other-closet-items clearfix">
+    <% items.each do |item| %>
+    <li>
+        <%= link_to item_path(item) do %>
+            <%# TODO: Preview images %>
+            <%# <%= image_tag item.preview_image, class: "img-shadow %1> %>
+        <% end %>
+    </li>
+    <% end %>
+    <li class="total"><%= linked_item_total(closet) %></li>
+</ul>

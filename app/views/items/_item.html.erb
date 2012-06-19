@@ -1,0 +1,31 @@
+<%= content_tag_for(:li, item, :class => cycle("first", "second", "last")) do %>
+    <div class="item-image img-shadow <%= "sold-item" if item.sold? %>">
+        <%= link_to(image_tag(item.photos.first.image_url(:search)), item_path(item)) if item.has_photos? %>
+        <% if item.sold? %>
+        <div class="sold" title="This item has been sold">
+            <span class="visuallyhidden">Sold</span>
+        </div>
+        <% elsif current_user and current_user.favorites.include?(item) %>
+        <div class="favorite" title="This item is on your favorites list">
+            <span class="visuallyhidden">Favorite</span>
+        </div>
+        <% end %>
+    </div>
+    <h3><%= link_to truncate(item.title, :length => 30), item_path(item) %></h3>
+    <div class="clearfix">
+        <h4>Size: <%= item.size.presence || "N/A" %></h4>
+        <h5><%= number_to_currency item.price %></h5>
+    </div>
+    <p><%= toggle_favorite_button_for(item) %></p>
+    <% if current_user == item.user %>
+    <div class="item-actions">
+        <% if not item.sold? %>
+        <%= link_to "Edit This Item", edit_item_path(item),
+            :class => "btn btn-edit-item-small" %>
+        <%= link_to "Delete", item_path(item),
+            :class => "btn btn-delete-item-small", :method => :delete,
+            :confirm => "Are you sure you want to delete this item?" %>
+        <% end %>
+    </div>
+    <% end %>
+<% end %>

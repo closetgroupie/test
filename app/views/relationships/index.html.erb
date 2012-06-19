@@ -1,0 +1,11 @@
+<% body_class "closets groupies" %>
+<div class="clearfix intro">
+    <div class="avatar">
+        <%= image_tag @user.avatar_url(:thumb), :class => "img-shadow" %>
+    </div>
+    <h2><%= linked_relationship_heading_for(@user, @relationship_type) %></h2>
+</div>
+<%= render 'closets/listing', closets: @closets %>
+<% content_for :javascripts do %>
+    <%= javascript_include_tag 'closets' %>
+<% end %>

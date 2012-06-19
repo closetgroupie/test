@@ -1,0 +1,18 @@
+<nav id="main_nav" class="clearfix">
+    <div class="contain">
+        <ul>
+            <li class="first <%= active_if_current(closets_path) %>">
+                <%= link_to "Shop by closet", closets_path %>
+            </li>
+            <li class="<%= active_if_current(shop_path) %>">
+                <%= link_to "Shop by category", shop_path %>
+            </li>
+            <% if current_user %>
+            <li class="<%= active_if_current(favorites_path) %>">
+                <%= user_favorites_link %>
+            </li>
+            <% end %>
+        </ul>
+        <%= render "shared/search_form" %>
+    </div>
+</nav>

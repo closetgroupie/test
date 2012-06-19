@@ -1,0 +1,12 @@
+<div class="header">
+    <h1>Your Closet Settings</h1>
+</div>
+<div class="contents">
+    <%= form_for @closet, :url => settings_path do |f| %>
+        <div class="input text required">
+            <%= f.label :name, "Name Your Closet" %>
+            <%= f.text_field :name %>
+        </div>
+        <%= f.submit "Save Changes", :class => "btn", :id => "submit_btn"  %>
+    <% end %>
+</div>

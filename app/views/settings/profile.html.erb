@@ -1,0 +1,117 @@
+<% body_class "edit-profile" %>
+<div class="header">
+    <h1>Edit Your Profile</h1>
+</div>
+<div class="contents">
+    <!-- <h3>Your profile link is</h3>
+    <p class="hint">Share this link with your friends and start growing your groupie list!</p>
+    -->
+    <%= form_for @user, :url => settings_path, :html => { :multipart => true } do |f| %>
+        <%= f.error_messages %>
+        <div class="input image">
+            <%= f.label :avatar, "Your Photo" %>
+            <%= image_tag current_user.avatar_url(:preview), :id => 'avatar_preview' %>
+            <%= f.file_field :avatar %>
+        </div>
+        <div class="input text required">
+            <%= f.label :name, "Full Name or Brand Name" %>
+            <%= f.text_field :name %>
+            <p class="hint">Use your real name so the community knows who you are. If you are creating an account for a brand, enter the brand name here.</p>
+        </div>
+        <div class="input text">
+            <%= f.label :location, "Your Location" %>
+            <%= f.text_field :location %>
+            <p class="hint">i.e. Brooklyn, NY</p>
+        </div>
+        <h3 class="social">Social</h3>
+        <table cellspacing="0" class="social">
+            <tr class="facebook">
+                <td class="lbl">
+                    <%= image_tag "social-link-icon-facebook.png" %> <strong>Facebook</strong>
+                </td>
+                <td>
+                    <div>
+                        <ul>
+                            <% if true %>
+                            <li class="link"><a href="#facebook_connect_url">link</a></li>
+                            <li class="unlink unlinked">unlinked</li>
+                            <% else %>
+                            <li class="link linked">linked</li>
+                            <li class="unlink"><a href="#unlink_social_facebook">unlink</a></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr class="twitter">
+                <td class="lbl">
+                    <%= image_tag "social-link-icon-twitter.png" %> <strong>Twitter</strong>
+                </td>
+                <td>
+                    <div>
+                        <ul>
+                            <% if true %>
+                            <li class="link"><a href="#twitter_connect_url">link</a></li>
+                            <li class="unlink unlinked">unlinked</li>
+                            <% else %>
+                            <li class="link linked">linked</li>
+                            <li class="unlink"><a href="#unlink_social_twitter">unlink</a></li>
+                            <% end %>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="input text">
+            <%= f.label :website %>
+            <%= f.text_field :website, :placeholder => "http://" %>
+            <p class="hint">Help people discover your blog or website.<br /> Don't forget to start with http://</p>
+        <div class="input textarea">
+            <%= f.label :biography %>
+            <%= f.text_area :biography, :rows => 6, :maxlength => 160, :cols => 30 %>
+            <p class="hint">Tell us about yourself, your closet, or your style in 160 characters or less.</p>
+        </div>
+        <%= f.submit "Save Changes", :class => "btn", :id => "submit_btn" %>
+    <% end %>
+</div>
+
+<% content_for :javascripts do %>
+<%= javascript_include_tag "uploadify" %>
+<%= javascript_include_tag "json2" %>
+<%# TODO: Get rid of this, by either putting it in a file, or replacing uploadify %>
+<script type="text/javascript">
+<!--//
+var swfu;
+
+$(document).ready(function () {
+    $('#avatar_up').uploadify({
+        'langFile' : '/js/uploadifyLang_en.js',
+        'swf'  : '/flash/uploadify3.swf',
+        'uploader' : $("#upload_avatar_url").val(),
+        'checkExisting' : false,
+        'buttonCursor'    : 'pointer',
+        'buttonText' : '',
+        'fileSizeLimit' : 3*1024,
+        'fileTypeExts' : '*.jpg;*.png',
+        'multi' : true,
+        'queueSizeLimit' : 1,
+        'width': 80,
+        'height': 80,
+        'cancelImage' : '/img/uploadify-cancel.png',
+        'auto'      : true,
+        'debug'           : false,
+        onUploadSuccess : function(file,data,response) { 
+                                var d = JSON.parse(data);
+                                if (d.status == "ERROR") {
+                                    alert(d.message);
+                                } else {
+                                    var t = new Date();
+                                    $("img#avatar_small").attr("src",d.thumbnail+"?t="+t.getTime());
+                                    $("div.dashboard-nav div.avatar img").attr("src",d.thumbnail+"?t="+t.getTime());
+                                }
+                            }
+      });
+});
+//-->
+</script>
+<% end %>

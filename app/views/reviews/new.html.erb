@@ -1,0 +1,20 @@
+<% body_class "closet-details closet-reviews" %>
+<section id="owner">
+    <%= profile_for @closet.user %>
+</section>
+
+<section class="main">
+    <div id="reviews_wrapper">
+        <div class="header">
+            <h1>Write a review for <%= @closet.user.name %></h1>
+        </div>
+        <div class="contents">
+            <%= form_for @review, url: closet_reviews_path(@closet) do |f| %>
+                <div class="input">
+                    <%= f.text_area :content, :id => "review_input" %>
+                </div>
+                <%= f.submit "Submit Review", :class => "btn dark-btn" %>
+            <% end %>
+        </div>
+    </div>
+</section>

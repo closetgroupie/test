@@ -1,0 +1,7 @@
+<div style="width: 100px; float: left;">
+    <%= image_tag @follower.avatar_url(:preview), border: 0,
+        style: "padding: 1px; background: #fff; border: 1px solid #ccc;" %>
+<div style="width: 400px; float: left;">
+    <h3><%= link_to @follower.name, profile_url(@follower) %></h3>
+    <p>Has started following you on ClosetGroupie!</p>
+</div>

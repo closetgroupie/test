@@ -1,0 +1,78 @@
+$keep-shopping-path: image-path("new/keep-shopping.png")
+
+body.payment
+    #pay
+        text-align: center
+
+        input[type='submit']
+            width: 100px
+            margin: 10px auto 0
+
+    #paypal-logo
+        width: 80px
+
+body.completed
+    h1, h3
+        margin: 1em 0
+
+    h1
+        font-size: 20px
+        float: left
+
+    hr
+        clear: both
+
+    h3
+        font:
+            size: 18px
+            weight: normal
+
+    p
+        font-size: 14px
+        
+        &.strong
+            font-weight: bold
+
+        a
+            text-decoration: none
+
+    #keep-shopping
+        +float-right
+        line-height: 66px
+        text-decoration: none
+        font-weight: bold
+        // +replace-text-with-dimensions($keep-shopping-path)
+
+    a
+        color: #9d8221
+
+    ul
+        list-style: none
+        margin: 0
+
+        li
+            +clearfix
+            padding: 12px 20px
+            border-top: 1px dotted #cac9c8
+            
+            &:first-child
+                border-top: none
+
+            img
+                border: 1px solid #a8a8a8
+                width: 60px
+                margin-right: 50px
+                float: left
+
+            em
+                font-weight: bold
+
+            strong
+                display: block
+
+            .details
+                float: left
+
+            p
+                // display: inline-block
+                line-height: 1.5em

@@ -1,0 +1,20 @@
+<% present @conversation do |conversation| %>
+<div id="send_message_wrapper">
+    <div class="intro clearfix">
+        <div class="left">
+            <%# TODO: Use first image %>
+            <%= conversation.subject_image %>
+        </div>
+        <div class="right">
+            <h3>Contact <%= conversation.sender %> about "<%= conversation.subject_name %>"</h3>
+        </div>
+    </div>
+    <%= form_tag conversation.submit_path(@object), method: "post", id: "question_form" do %>
+        <div class="input">
+            <%= text_area_tag :content, "", id: "message_input" %>
+        </div>
+        <%= submit_tag "Send Message", id: "message_btn", :class => "btn dark-btn" %>
+    <% end %>
+    <h4 style="display: none;">Mail Sent.</h4>
+</div>
+<% end %>

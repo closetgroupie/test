@@ -1,0 +1,38 @@
+<% body_class "default basic signup unregistered" %>
+<div class="intro">
+<h3 id="create_header">Create your account</h3>
+</div>
+<%= form_for @user, :url => signup_path do |f| %>
+    <div class="input required text">
+        <%= f.label :name, "Full Name or Brand Name" %>
+        <%= f.text_field :name %>
+    </div>
+    <div class="input required text">
+        <%= f.label :email, "Your Email Address" %>
+        <%= f.text_field :email %>
+    </div>
+    <div class="input password required">
+        <%= f.label :password, "Create a Password" %>
+        <%= f.password_field :password %>
+    </div>
+    <div class="radio">
+        <%= f.radio_button :gender, :female %>
+        <%= f.label :gender_female, "Female" %>
+        <%= f.radio_button :gender, :male %>
+        <%= f.label :gender_male, "Male" %>
+        <%= f.radio_button :gender, :not_sharing %>
+        <%= f.label :gender_not_sharing, "Not sharing" %>
+    </div>
+    <p>
+        <%= f.submit "Submit", :id => "submit_btn" %>
+    </p>
+<% end %>
+<div id="connect">
+    <div class="intro">
+        <h3 id="connect_header">Connect your account</h3>
+        <p>We designed the site so you can have a fun shopping experience with your friends. We NEVER post to your wall without your permission.</p>
+    </div>
+    <ul class="connect">
+        <li class="facebook">Connect my Facebook Account</li>
+    </ul>
+</div>

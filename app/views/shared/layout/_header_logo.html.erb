@@ -1,0 +1,41 @@
+<header class="contain clearfix">
+    <%# TODO: Reimplement in Ruby #%>
+    <% if false %>
+    <input type="hidden" id="cart_expiration_url" value="<?php echo $this->Html->url(array("controller"=>"cart", "action"=>"expired")); ?>" />
+    <input type="hidden" id="cart_expires_in_seconds" value="<?php echo $cart_expires_in_seconds; ?>" />
+    <div id="cart_alert"><a href="<?php echo $this->Html->url(array("controller"=>"cart","action"=>"index")); ?>"><strong><?php echo $cart_expires_in_pretty; ?></strong> left to purchase <em><?php echo $num_cart_items; ?></em> item<?php if ($num_cart_items != 1): ?>s<?php endif; ?></a></div>
+    <script type="text/javascript">
+   <!--//
+   var checkout_time = 0;
+   var countdown_interval = 0;
+   $(document).ready(function () {
+      checkout_time = parseInt($("#cart_expires_in_seconds").val());
+      countdown_interval = setInterval("handleShoppingCartTimer()",1000);
+   });
+
+   function handleShoppingCartTimer () {
+      checkout_time -= 1;
+      var fragments = spliceTime(checkout_time);
+      $("#cart_alert a strong").html(two(fragments.min) + ":" + two(fragments.sec));
+      if (checkout_time == 0) {
+         clearInterval(countdown_interval);
+         window.top.location.href = $("#cart_expiration_url").val();
+      }
+   }
+   function two(x) {return ((x>9)?"":"0")+x}
+   function three(x) {return ((x>99)?"":"0")+((x>9)?"":"0")+x}
+   function spliceTime (sec) {
+      var obj = {};
+      var min = Math.floor(sec/60);
+      sec = sec % 60;
+      obj.sec = sec;
+      var hr = Math.floor(min/60);
+      min = min % 60;
+      obj.min = min;
+      return obj;
+   }
+   //-->
+   </script>
+    <% end %>
+    <h1 id="logo"><%= link_to "Closet Groupie", root_path %></h1>
+</header>

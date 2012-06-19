@@ -1,0 +1,62 @@
+<% body_class "friends-list friends" %>
+<%= render "nav" %>
+<div class="left">
+    <div class="facebook <%= current_user.has_facebook? ? "facebook-on" : "facebook-off" %>">
+        <h3>Facebook:</h3>        
+        <% if current_user.has_facebook? and current_user.current_on_facebook? %>
+            <h5><?php echo $num_facebook_friends; ?> Facebook friend<?php if ($num_facebook_friends != 1): ?>s<?php endif; ?> found!</h5>
+        <% elsif current_user.has_facebook? %>
+            <p>Your Facebook connection to ClosetGroupie.com has expired - click the "re-connect" link below to re-authorize Facebook to list your friends.</p>
+            <h5><a href="<?php echo $facebook_connect_url; ?>" class="btn btn-reconnect">Re-connect</a></h5>
+        <% else %>
+            <p>Find your Facebook friends!</p>
+            <h5><a href="<?php echo $facebook_connect_url; ?>" class="btn btn-connect">connect</a></h5>
+        <% end %>
+    </div>
+    
+    <%# TODO: Enable twitter connections %>
+    <% if false %>
+    <div class="twitter <%= current_user.has_twitter? ? "twitter-on" : "twitter-off" %>">
+        <h3>Twitter:</h3>
+        <?php switch ($twitter_status) {
+            case "GOOD": ?>
+            <h5><?php echo $num_twitter_friends; ?> Twitter friend<?php if ($num_twitter_friends != 1): ?>s<?php endif; ?> found!</h5>
+        <?php break;
+            case "REFRESH": ?>
+            <p>Your Twitter connection to ClosetGroupie.com has expired - click the "re-connect" link below to re-authorize Twitter to list your friends.</p>
+            <h5><a href="<?php echo $twitter_connect_url; ?>" class="btn btn-reconnect">Re-connect</a></h5>
+        <?php break;
+            case "NOT_CONNECTED":
+            default: ?>
+            <p>Find your Twitter followers!</p>
+            <h5><a href="<?php echo $twitter_connect_url; ?>" class="btn btn-connect">Re-connect</a></h5>
+        <?php break;
+        } ?>
+    </div>
+<% end %>
+    
+</div>
+
+<div class="right">
+    <%# TODO: FIX %>
+    <div class="header">
+        <h1>0 of your friends are using ClosetGroupie</h1>
+    </div>
+    <% if false %> 
+    <div class="contents clearfix">        
+        <table cellspacing="0">
+        <?php foreach ($all_friends as $friend): ?>
+            <tr>
+                <td class="avatar"><a href="<?php echo $this->Html->url(array("controller"=>"closets","action"=>"view",$friend["Closet"]["id"])); ?>" target="_blank"><?php echo $this->Html->image("avatars/".$friend["User"]["avatar_filename"], array("width"=>40,"height"=>40,"class"=>"img-shadow")); ?></a></td>
+                <td class="name"><?php echo $this->Html->link($friend["User"]["name"], array("controller"=>"closets","action"=>"view",$friend["Closet"]["id"]), array("target"=>"_blank")); ?></td>
+                <td class="since"><strong>Member Since:</strong> <?php echo $this->Time->format("F j, Y", $friend["Closet"]["created"]); ?></td>
+                <td class="follow">
+                    <div class="btn"><?php echo $this->element("follow_button",array("target_id"=>$friend["User"]["id"])); ?></div>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        </table>
+    </div>
+    <% end %>
+        
+</div>

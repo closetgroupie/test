@@ -1,0 +1,7 @@
+<div class="filterset-wrapper">
+  <ul>
+    <% _.each(filterset, function(filter) { %>
+      <li data-filter="<%= filter %>" class="<%= filter %>"><%= filter %></li>
+    <% }); %>
+  </ul>
+</div>

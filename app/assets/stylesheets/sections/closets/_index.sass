@@ -1,0 +1,222 @@
+body.closets
+
+    #content
+
+        div.closets-nav
+            padding-left: 15px
+
+            p
+                color: $light-gray
+                padding: 3px 0
+                float: left
+                font-size: 14px
+
+            ul
+                float: left
+                font-size: 14px
+                list-style-type: none
+                margin-left: 10px
+                padding: 0
+
+                li
+                    float: left
+                    padding: 3px 5px
+                    font-size: 14px
+                    margin-right: 10px
+
+                    &.active
+                        background: $bg-lightest
+                        color: $mustard
+                        box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.4)
+
+                        a
+                            color: $mustard !important
+
+                    a
+                        text-decoration: none
+                        color: $link-dark-gray
+                        font-size: 14px
+
+                        &:hover
+                            color: $mustard !important
+
+        h2
+            font-weight: normal
+            padding: 15px 0 25px 15px
+            font-size: 30px
+
+            strong
+                font-weight: normal
+                color: $mustard
+
+        .closet
+            float: left
+            margin-right: 25px
+            width: 270px
+            height: 270px
+            overflow: hidden
+            position: relative
+
+            &.first
+                margin-left: 15px
+
+            &.last
+                margin-right: 0px
+
+            .image-wrapper
+                background-color: $white
+                height: 270px
+                width: 270px
+                display: table-cell
+                vertical-align: middle
+                text-align: center
+
+            // TODO: Refactor once resizing is done server-side
+            img.profile
+                width: 270px
+
+            // TODO: Refactor once resizing is done server-side
+            img.preview
+                max-width: 270px
+                max-height: 270px
+                display: inline-block
+                vertical-align: middle
+
+            .locked
+                width: 38px
+                height: 38px
+                background: image-url("closet-locked-corner.png") top right no-repeat
+                position: absolute
+                margin-top: -270px
+                margin-left: 232px
+
+            .caption
+                background-color: rgba(255, 255, 255, 0.9)
+                background: image-url("white-pixel.png")
+                width: 250px
+                padding: 10px
+                position: absolute
+                margin-top: 0px
+                bottom: 0
+                z-index: 100
+
+                a
+                    text-decoration: none
+
+                a.following
+                    .follow
+                        &.action
+                            display: none !important
+
+                    .follow-icon
+                        &.icon
+                            display: none !important
+
+                    .unfollow
+                        display: none
+
+                    .unfollow-icon
+                        display: block
+
+
+
+                a.not-following
+                    .follow
+                        display: none
+
+                    .unfollow
+                        &.action
+                            display: none !important
+
+                    .unfollow-icon
+                        &.icon
+                            display: none !important
+
+
+                a.follow-button
+                    background: #ededed
+                    background: -moz-linear-gradient(top, #ededed 0%, #c4c4c4 100%)
+                    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ededed), color-stop(100%, #c4c4c4))
+                    background: -webkit-linear-gradient(top, #ededed 0%, #c4c4c4 100%)
+                    background: -o-linear-gradient(top, #ededed 0%, #c4c4c4 100%)
+                    background: -ms-linear-gradient(top, #ededed 0%, #c4c4c4 100%)
+                    background: linear-gradient(top, #ededed 0%, #c4c4c4 100%)
+                    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed',endColorstr='#c4c4c4',GradientType=0 )
+                    display: -moz-inline-box
+                    -moz-box-orient: vertical
+                    display: inline-block
+                    vertical-align: middle
+                    padding: 3px 8px
+                    font-size: 12px
+                    text-decoration: none
+                    text-shadow: #ddf0fb 0 1px 0
+                    color: #4f4f4f
+                    margin-left: 5px
+                    box-shadow: 0 0 3px #4f4f4f
+                    font-weight: bold
+                    border: 1px solid #9b9b9b
+
+                div.btn
+                    float: right
+                    margin-top: 10px
+
+                h3
+                    float: left
+                    font-size: 18px
+                    font-weight: normal
+                    padding: 0
+                    text-align: left
+                    letter-spacing: normal
+
+                    a
+                        color: $heading-gray
+
+                        &:hover
+                            color: $mustard
+
+                p
+                    float: left
+                    clear: left
+                    font-size: 14px
+                    letter-spacing: 1px !important
+
+                    strong
+                        font-weight: normal
+                        color: #9e7d00
+
+                .sliderkit-nav
+                    position: absolute
+                    bottom: 5px
+                    right: 5px
+
+                    a
+                        width: 19px
+                        height: 30px
+                        float: left
+                        text-indent: -1000em
+
+                        &.previous
+                            background: image-url("hangers.png") no-repeat 0 0
+                            margin-right: 3px
+
+                            &:hover
+                                background-position: 0 -30px
+
+                        &.next
+                            background: image-url("hangers.png") no-repeat -19px 0
+                            margin-left: 3px
+
+                            &:hover
+                                background-position: -19px -30px
+
+        .row
+            margin-bottom: 20px
+
+        #closets
+            // +clearfix()
+            margin: 0
+            list-style: none
+
+            li
+                float: left
+                margin-bottom: 25px

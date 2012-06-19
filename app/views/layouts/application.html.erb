@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>ClosetGroupie</title>
+        <meta name="description" content="<%= yield :description %>" />
+        <meta name="keywords" content="<%= yield :keywords %>" />
+        <%= csrf_meta_tags %>
+        <%= render "shared/og_tags" %>
+        <link rel="shortcut icon" type="image/png" href="/favicon.png">
+        <%= stylesheet_link_tag    "application" %>
+        <script type="text/javascript" src="//use.typekit.com/ppu0ksu.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <%= render "shared/analytics/google" %>
+        <%= render "shared/analytics/kissmetrics" %>
+    </head>
+    <body class="<%= yield :body_class %>">
+        <div class="container">
+            <%= render "shared/layout/header" %>
+            <div id="content-wrapper">
+                <section id="content" role="main" class="contain clearfix">
+                    <%# render "shared/layout/flash", :object => flash %>
+                    <%= render :partial => "shared/layout/flash",
+                               :object => flash unless flash.empty? %>
+                    <%= yield %>
+                </section>
+            </div>
+        <%= render "shared/layout/footer" %>
+        </div>
+        <a id="back-to-top" href="#top" class="off-the-screen">Scroll to top</a>
+        <%= javascript_include_tag "application" %>
+        <script type="text/javascript">
+            (function(d){
+                var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+                js = d.createElement('script'); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                js.async = true;
+                d.getElementsByTagName('head')[0].appendChild(js);
+            }(document));
+        </script>
+        <script type="text/javascript">
+        (function() {
+            window.PinIt = window.PinIt || { loaded:false };
+            if (window.PinIt.loaded) return;
+            window.PinIt.loaded = true;
+            function async_load(){
+                var s = document.createElement("script");
+                s.type = "text/javascript";
+                s.async = true;
+                s.src = "https://assets.pinterest.com/js/pinit.js";
+                var x = document.getElementsByTagName("script")[0];
+                x.parentNode.insertBefore(s, x);
+            }
+            if (window.attachEvent)
+                window.attachEvent("onload", async_load);
+            else
+                window.addEventListener("load", async_load, false);
+        })();
+        </script>
+        <script type="text/javascript">
+          window.___gcfg = {
+            lang: 'en-US',
+            parsetags: '<%= current_page?(root_path) ? "explicit" : "onload" %>'
+          };
+          (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+        <%= yield :javascripts %>
+    </body>
+</html>

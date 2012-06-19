@@ -1,0 +1,15 @@
+<% body_class "activity" %>
+<h3 id="refresh" class="inactive">
+    <a href="#" class="btn btn-refresh">refresh activity</a>
+</h3>
+<ul id="activity_list">
+<% if @activities.try(:any?) %>
+    <% present @activities, ActivityListPresenter do |activities| %>
+    <%= render activities %>
+    <% end %>
+<% end %>
+</ul>
+<div id="loading"></div>
+<% content_for :javascripts do %>
+    <%= javascript_include_tag "activity" %>
+<% end %>

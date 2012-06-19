@@ -1,0 +1,16 @@
+<% body_class "closets" %>
+<div class="closets-nav clearfix">
+    <p>Filter by:</p>
+    <ul>
+        <%= filter_link "Featured", closets_path, { action: :index } %>
+        <% if current_user %>
+        <%= filter_link "Following", following_closets_path, { action: :following } %>
+        <%= filter_link "Friends", friends_closets_path, { action: :friends } %>
+        <% end %>
+    </ul>
+</div>
+<h2>Browse <strong>Closets</strong></h2>
+<%= render 'closets/listing', closets: @closets %>
+<% content_for :javascripts do %>
+    <%= javascript_include_tag 'closets' %>
+<% end %>

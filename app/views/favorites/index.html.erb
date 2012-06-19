@@ -1,0 +1,12 @@
+<% body_class "favorites" %>
+<h2>Your Favorite Items (<%= @favorites.size %>)</h2>
+<% unless @favorites.empty? %>
+<div class="item-row clearfix">
+    <ul class="item-list">
+    <%# TODO: pagination %>
+    <% present @favorites do |favorites| %>
+        <%= render :partial => "favorite", collection: favorites %>
+    <% end %>
+    </ul>
+</div>
+<% end %>

@@ -1,0 +1,31 @@
+<% if item.sold? %>
+    <li class="sold">
+        <%= visually_hidden "This item has been sold!" %>
+    </li>
+<% elsif current_cart.present? and current_cart.contains?(item) %>
+    <li class="user-purchasing">
+        <%= link_to visually_hidden("This item is currently in your shopping cart"),
+                cart_path, title: "View your cart" %>
+    </li>
+    <li class="remove">
+        <%= link_to "Remove from Cart", cart_line_item_path(item.line_item.id), method: :delete %>
+    </li>
+<% elsif item.belongs_to_any_cart? %>
+    <li class="someone-purchasing">
+        <%= visually_hidden "Someone is currently purchasing this item" %>
+    </li>
+<% else %>
+    <li class="add-to-cart">
+    <% if current_user %>
+        <%= form_tag cart_line_items_path do %>
+            <%= hidden_field_tag "item_id", item.id %>
+            <%= submit_tag "Add to Cart", id: "add_to_cart_btn",
+                :class => "btn btn-full btn-add-to-cart" %>
+        <% end %>
+    <% else %>
+      <%= link_to "Add to Cart", "#", id: "add_to_cart_placeholder",
+        :class => "btn btn-inactive btn-full btn-add-to-cart-placeholder",
+        title: "Please sign in or join now to add this item to your cart" %>
+    <% end %>
+    </li>
+<% end %>

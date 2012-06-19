@@ -1,0 +1,17 @@
+<div class="header">
+    <h1>Your Settings: Email Notifications</h1>
+</div>
+<div class="contents">
+    <%= render "shared/dashboard/settings_navigation" %>
+    <p class="hint" style="width: auto; margin-bottom: 10px;">Select what types of emails you would like to receive from ClosetGroupie</p>
+    <%= form_tag settings_notifications_path do %>
+    <%# TODO: Ajaxify %>
+    <ul class="email-notification-types">
+        <li><%= check_box_tag :messages %><%= label_tag :messages, nil, :class => "inline" %></li>
+        <li><%= check_box_tag :new_groupies %><%= label_tag :new_groupies, nil, :class => "inline"%></li>
+        <li><%= check_box_tag :new_items %><%= label_tag :new_items, nil, :class => "inline" %></li>
+        <li><%= check_box_tag :news %><%= label_tag :news, nil, :class => "inline" %></li>
+    </ul>
+    <%= submit_tag "Save Notifications", :class => "btn", :id => "submit_btn" %>
+    <% end %>
+</div>

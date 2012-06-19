@@ -1,0 +1,67 @@
++font-face("FoundationIconsSocial", font-files("/assets/foundation-icons-social.woff", "/assets/foundation-icons-social.ttf", "/assets/foundation-icons-social.svg"), "/assets/foundation-icons-social.eot", "normal", "normal")
+
+footer
+    background: #767575 url(image-path('footer-bg.png')) repeat-x top left
+    position: fixed
+    width: 100%
+    bottom: 0
+    left: 0
+    height: 36px
+    +single-box-shadow(rgba(0, 0, 0, 0.15), 0, -2px, 3px)
+    +single-text-shadow(rgba(0, 0, 0, 0.75), 0, 1px, 2px)
+    line-height: 32px
+    z-index: 9999
+
+    #footer-inner
+        width: 960px
+        margin: 0 auto
+
+        .links
+            float: left
+            margin: 0
+            list-style: none
+
+            li
+                +inline-block
+                margin: 0 20px
+
+                &:first-child
+                    margin-left: 5px
+
+                a
+                    color: $white
+                    text-decoration: none
+                    
+                    &:hover
+                        color: $mustard
+
+        #social-icons
+            float: right
+            margin-right: 20px
+
+            a
+                +inline-block
+                background: url(image-path('social-icons-footer.png')) no-repeat top left
+                width: 18px
+                height: 18px
+                text-indent: -100em
+
+            .twitter:hover
+                background-position: 0 -18px
+
+            .facebook
+                background-position: -18px 0px
+                
+                &:hover
+                    background-position: -18px -18px
+
+            .tumblr
+                background-position: -36px 0px
+
+                &:hover
+                    background-position: -36px -18px
+
+        #copyright
+            float: right
+            color: #ccc
+            line-height: 36px

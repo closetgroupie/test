@@ -1,0 +1,40 @@
+body.shop
+    #content
+        width: 960px
+
+        .item-list
+            margin-left: 10px
+
+            .item
+                width: 200px
+                margin-bottom: 20px
+                position: relative
+
+                .sold
+                    width: 200px
+                    height: 200px
+
+                    span
+                        top: 70px
+                        width: 200px
+
+                .img-shadow
+                    margin-bottom: 10px
+                    display: block
+
+                    &:hover
+                        +single-box-shadow($gold, 0, 0, 4px)
+
+        .pagination
+            clear: both
+            text-align: center
+            color: $white
+
+            a
+                color: $white
+
+        #loading
+            clear: both
+            height: 42px
+            margin: 1em 0
+            overflow: hidden

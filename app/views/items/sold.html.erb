@@ -1,0 +1,15 @@
+<div class="header">
+    <h1>Items You Have Sold</h1>
+</div>
+<div class="contents">
+    <h3 style="margin-bottom: 15px;">
+        <%= link_to "Add New Item", new_item_path, :class => "btn btn-add-new-item" %>
+    </h3>
+    <div class="item-row clearfix">
+    <% if @items.any? %>
+        <ul class="item-list">
+        <%= render @items %>
+        </ul>
+    <% end %>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+<% body_class "checkout payment" %>
+<div id="pay">
+    <%= image_tag "paypal-logo.png", id: "paypal-logo" %>
+    <p>Please note that you don't need an account with PayPal in order to pay with a credit or debit card through them.</p>
+    <%= form_tag "", method: :put do %>
+        <%= submit_tag "Pay with PayPal" %>
+    <% end %>
+</div>

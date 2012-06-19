@@ -1,0 +1,13 @@
+<div class="header">
+    <h1>Items You Are Currently Selling</h1>
+</div>
+<div class="contents">
+    <h3 style="margin-bottom: 15px;">
+        <%= link_to "Add New Item", new_item_path, :class => "btn btn-add-new-item" %>
+    </h3>
+    <div class="item-row clearfix">
+        <ul class="item-list">
+        <%= render @items %>
+        </ul>
+    </div>
+</div>

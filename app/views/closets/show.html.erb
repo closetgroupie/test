@@ -1,0 +1,28 @@
+<% body_class "closet-details" %>
+<section id="owner">
+    <%= profile_for(@closet.user) %>
+</section>
+
+<section class="main">
+    <div id="items_wrapper">
+        <div class="header">
+            <h1><%= @closet.name %> Items</h1>
+        </div>
+        <div class="contents">
+            <% if @closet.items.any? %>
+            <ul class="item-list">
+                <%= render @closet.items %>
+            </ul>
+            <% elsif @closet.user == current_user %>
+            <h4>You haven't posted any items yet!</h4> 
+            <h3><%= link_to "Add New Item", new_item_path, :class => "btn btn-add-new-item" %></h3>
+            <% else %>
+            <h4><%= @closet.name %> is currently empty.</h4>
+            <p><%= link_to "Follow #{@closet.user.name}",
+              follow_profile_path(@closet.user),
+              :class => "follow-user",
+              :data => { :user_id => @closet.user.id } %> to know when items are added.</p>
+            <% end %>
+        </div>
+    </div> <!-- end items_wrapper -->
+</section>

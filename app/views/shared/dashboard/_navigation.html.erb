@@ -1,0 +1,66 @@
+<div class="dashboard-nav left">
+    <section>
+        <div class="header">
+            <h2 style="padding-left: 0; background: none;"><%= current_user.name %></h2>
+            <h4><%= current_user.closet.name %></h4>
+        </div>
+        <div class="contents">
+            <div class="avatar">
+                <%= image_tag(current_user.avatar_url(:medium)) %>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="header">
+            <h3>Your Account</h3> 
+        </div>
+        <div class="contents">
+            <ul>
+                <% if :action == "profile" %>
+                <li class="active">Public Profile</li>
+                <% else %>
+                <li><%= link_to "Edit Profile", settings_profile_path %></li>
+                <% end %>
+                <li><%= link_to "Account Settings", settings_email_path %></li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <div class="header">
+            <h3>Your Orders</h3> 
+        </div>
+        <div class="contents">
+            <ul>
+                <li><%= link_to "Your Purchases", purchases_path %></li>
+                <li><%= link_to "Your Sales", sales_path %></li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <div class="header">
+            <h3>Your Closet</h3>
+        </div>
+        <div class="contents">
+            <ul>
+                <li><%= link_to "Customize", settings_closet_path %></li>
+                <li><%= link_to "Add An Item", new_item_path %></li>
+                <li><%= link_to "Currently Selling", selling_items_path %></li>
+                <li><%= link_to "Items You Sold", sold_items_path %></li>
+                <li><%= link_to "Your Closet Reviews", closet_reviews_path(current_user) %></li>
+            </ul>
+        </div>
+    </section>
+    
+    <section>
+        <div class="header">
+            <h3>Closet Stats</h3>
+        </div>
+        <div class="contents">
+            <ul>
+                <li># of Groupies: <%= current_user.groupies.size %></li>
+                <li>Total Earned:  <%= number_to_currency total_earnings %></li>
+            </ul>
+        </div>
+    </section>       
+    
+</div> <!-- end left -->

@@ -1,0 +1,86 @@
+footer
+    padding-bottom: 10px
+    padding-top: 25px
+    font-size: 14px
+    background-image: image-url("shadow-h-down.png")
+    background-position: top
+    background-repeat: repeat-x
+    text-shadow: rgba(0, 0, 0, 0.75) 0px 1px 2px
+
+    .contain
+        background: image-url("logo-footer-star.png") top left no-repeat
+        height: 60px
+        padding: 14px 0 0 80px
+        width: 810px
+
+    ul
+        list-style: none
+        float: left
+
+        &.links
+            margin: 0
+            padding: 0
+            border-right: 1px solid rgba(0, 0, 0, 0.35)
+            letter-spacing: 1.25px
+
+            li
+                float: left
+                padding: 10px 15px
+                border-left: 1px solid rgba(0, 0, 0, 0.35)
+                border-right: 1px solid rgba(255, 255, 255, 0.25)
+
+                &.first
+                    padding-left: 0
+                    border-left: 0 none
+
+                a
+                    color: $white    
+                    text-decoration: none
+                    
+                    &:hover
+                        color: $mustard
+
+        &.social
+            margin: 5px 0 0 15px
+
+            li
+                float: left
+                margin-right: 10px
+
+                a
+                    display: block
+                    height: 30px
+                    width: 30px
+                    background-repeat: no-repeat
+                    background-image: image-url("footer-social-icons-v2.png")
+                    color: $white    
+                    text-decoration: none
+
+                    &:hover
+                        color: $mustard
+
+                &.twitter
+                    a
+                        background-position: 0px 0px
+
+                        &:hover
+                            background-position: 0px -90px
+
+                &.facebook
+                    a
+                        background-position: 0px -30px
+
+                        &:hover
+                            background-position: 0px -120px
+
+                &.blog
+                    a
+                        background-position: 0px -60px
+
+                        &:hover
+                            background-position: 0px -150px
+
+    p
+        float: right
+        color: #939393
+        padding-top: 10px

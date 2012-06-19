@@ -1,0 +1,42 @@
+$(document).ready(function() {
+    if ($('body.login').size > 0) {
+        $("#UserEmail").focus();
+
+        function showForgotPassword () {
+            $("#forgot_wrapper").fadeIn();
+            $("#forgot_link").hide();
+            $("#bottom_area").hide();
+            $("#error_message").hide();
+        }
+
+        function submitForgotPassword () {
+            var e = $("#UserEmail").val();
+            if (e.length == 0) {
+                alert("You need to enter your email address first!");
+            } else {
+                var data = {};
+                data.email = e;
+                $.post("<%= Rails.application.routes.url_helpers.forgot_password_path %>", data, function (response) { handleForgotPasswordResponse(response); }, "json");
+            }
+        }
+
+        function handleForgotPasswordResponse (response) {
+            if (response.response == "ERROR") {
+                $("#UserEmail").val("");
+            } else {
+                $("#reset_btn").hide();
+                $("#forgot_wrapper p.help").hide();
+                $("#bottom_area").fadeIn();
+                $("#UserPassword").val("");
+                $("#UserPassword").focus();
+            }
+            $("#response_message").fadeIn();
+            $("#response_message strong").html(response.message);
+        }
+
+        $("#submit_btn").bind("click",function () { $("#UserLoginForm").submit(); });
+        $("#UserPassword").bind("keypress", function (e) { if (e.keyCode == 13) $("#UserLoginForm").submit(); });
+        $("#forgot_link a").bind("click",function () { showForgotPassword(); });
+        $("#reset_btn").bind("click", function () { submitForgotPassword(); });
+    }
+});

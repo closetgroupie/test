@@ -1,0 +1,137 @@
+body.signup
+
+    #content
+        width: 600px
+
+        #connect
+            opacity: .25
+
+        .connect
+            list-style: none
+            margin-left: 180px   
+
+            li
+                margin-bottom: 10px
+
+                &.connected
+                    padding-left: 25px
+                    background-repeat: no-repeat
+
+                &.facebook,
+                &.twitter
+                    height: 40px
+                    width: 284px
+                    text-indent: -500px
+                    overflow: hidden
+
+                &.facebook
+                    background-image: image-url("btn-connect-facebook.png")
+
+                &.facebook-on
+                    background-image: image-url("friends-facebook-on.png")
+
+                &.twitter
+                    background-image: image-url("btn-connect-twitter.png")
+
+                &.twitter-on
+                    background-image: image-url("friends-twitter-on.png")
+
+                a
+                    display: block
+                    width: 284px
+                    height: 40px
+                    text-indent: -500px
+                    overflow: hidden
+                    background-repeat: no-repeat
+
+                    &:hover
+                        background-position: 0px -40px
+
+                    &.facebook
+                        background-image: image-url("btn-connect-facebook.png")
+
+                    &.twitter
+                        background-image: image-url("btn-connect-twitter.png")
+
+        div.input
+            clear: both
+
+            input
+                width: 320px
+
+            label
+                float: left
+                width: 150px
+                text-align: right
+                margin-right: 10px
+                padding-top: 7px
+
+        div.radio
+            margin-bottom: 15px
+            padding-left: 150px
+
+        form
+            margin-left: 20px
+            margin-bottom: 40px
+
+            #submit_btn
+                +box-shadow(none)
+                border: 0
+                margin-left: 0
+                cursor: pointer
+                width: 100px
+                height: 40px
+                display: block
+                overflow: hidden
+                text-indent: -200px
+                background-image: image-url("btn-signup-submit.png")
+                background-repeat: no-repeat
+
+                &:hover
+                    background-position: 0px -40px
+            
+            p
+                margin-left: 160px
+
+        .intro
+            margin-bottom: 20px
+
+            h3
+                font-size: 32px
+                font-weight: normal
+                padding-bottom: 10px
+                padding-left: 180px
+
+                &.header-ok
+                    background: image-url("signup-ok.png") 145px 5px no-repeat
+
+            p
+                font-size: 13px
+                color: $light-gray   
+                margin-left: 180px
+
+        p.skip
+            margin: 20px 0 0 180px
+            font-size: 14px
+
+            a
+                display: block
+                width: 100px
+                height: 30px
+                overflow: hidden
+                text-indent: -200px
+                background-repeat: no-repeat
+
+                &:hover
+                    background-position: 0px -30px
+
+                &.skip
+                    background-image: image-url("btn-signup-skip.png")
+
+                &.continue
+                    background-image: image-url("btn-signup-continue.png")
+
+        table
+
+            td
+                vertical-align: top

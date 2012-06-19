@@ -1,0 +1,39 @@
+<% body_class "messages" %>
+<% present @conversation do |conversation| %>
+<div class="header">
+    <h1>Message Thread</h1>
+</div>
+<div class="contents">
+    <table cellspacing="0" id="messages">
+        <thead>
+            <tr>
+                <td>&nbsp;</td>
+                <td><%= conversation.subject_image %></td>
+                <td><%= conversation.subject %></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td colspan="2">
+                    <%= form_for @message, :url => reply_conversation_path(@conversation) do |f| %>
+                        <%= f.text_area :content, id: "message",
+                                placeholder: "Leave a reply" %>
+                        <%= f.submit id: "message_submit", value: "Send", :class => "btn" %>
+                    <% end %>
+                    <%# <input type="button" id="message_submit" value="Send" class="btn" /> %>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+        <%= render partial: "conversations/message", collection: conversation.messages %>
+        <%# TODO: Implement %>
+        <%#
+        <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td><input type="button" class="btn" value="Delete thread" id="delete_thread_btn" /></td>
+        </tr>
+        %>
+        </tbody>
+    </table>    
+</div>
+<% end %>

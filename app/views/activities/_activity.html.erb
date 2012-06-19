@@ -1,0 +1,56 @@
+<li class="activity_item" data-aid="<%= activity.id %>">
+    <div class="activity_wrap">
+        <div class="action">
+            <div class="icon <%= activity.classification %>"></div>
+            <?php if ($current_user): ?>
+            <%# <div class="share" id="sh<?php echo $activity["id"]; ?>"> %>
+            <%#     <?php echo $this->Social->plusone($activity["object_url"], $activity["id"]); ?> %>
+            <%#     <?php echo $this->Social->like($activity["object_url"], $activity["id"]); ?> %>
+            <%#     <span> %>
+            <%#         <?php echo $this->Social->tweet($activity['object_url']); ?> %>
+            <%#         <?php echo $this->Social->share($activity['object_url']); ?> %>
+            <%#         <?php echo $this->Social->email(''); ?> %>
+            <%#     </span> %>
+            <%# </div> %>
+            <?php endif; ?>
+        </div>
+        <hr>
+        <div class="content">
+            <div class="imagery">
+                <%= activity.linked_hero_image %>
+            </div>
+            <p class="blurb">
+                <%= activity.linked_user %>
+                <%= activity.action_verb %>
+                <%= activity.linked_entity %>
+            </p>
+            <%# <div class="meta"> %>
+            <%#     <p class="time"> %>
+            <%#         <%= activity.time_ago %1> %>
+            <%#         <% if activity.can_be_favorited? %1> %>
+            <%#         <span class="separator">&bull;</span> %>
+            <%#             <% if activity.favorite? %1> %>
+            <%#             <span class="favorite">Favorite</span> %>
+            <%#             <% else %1> %>
+            <%#                 <a class="add_favorite" href="" title="Add Favorite" data-item_id="<%= activity.entity_id %1>">Add Favorite</a> %>
+            <%#             <% end %1> %>
+            <%#         <% end %1> %>
+            <%#     </p> %>
+            <%# </div> %>
+        </div>
+        <% if activity.has_comments? %>
+        <div class="comments">
+        <?php foreach($trimmed_comments[$activity['object_id']] as $comment_id => $comment): ?>
+        <p><a href="/user-profile/<?php echo $comment['user_id']; ?>"><img src="/img/avatars/<?php echo $comment['user_id']; ?>.jpg" width="30" height="30"></a><?php echo $comment['text']; ?></p>
+        <?php endforeach; ?>
+        </div>        
+        <% else %>
+        <hr>
+        <% end %>
+        <div class="comment">
+            <%= link_to "Add comment", activity.comment_path, :class => "comment_add" %>
+            <%= link_to activity.comment_count, activity.comment_path, :class => "comment_count" %>
+        </div>
+    </div>
+    <div class="activity_top"></div>
+</li>

@@ -1,0 +1,222 @@
+body.dashboard
+    #content
+        .add-item
+            div.input
+                margin-bottom: 15px
+
+            em
+                color: #C30
+
+            input#submit_btn
+                margin-left: 0
+
+            section
+                background-color: $bg-white
+                margin-bottom: 15px
+
+                h2
+                    font-weight: normal
+                    font-size: 15px
+                    color: $gold
+                    text-shadow: 0px 1px 1px $white
+                    padding: 10px
+                    border-bottom: 1px solid $border-light
+
+                .inner
+                    padding: 10px 10px 0 10px
+                    border-top: 1px solid $bg-lightest
+
+        .contents
+            h3
+                display: block
+                font-size: 18px
+                font-weight: normal
+                padding-bottom: 5px
+                color: $text-dark
+
+            .item-list p
+                margin-left: 0
+
+            p
+                margin: 0 0 20px 15px
+                color: $light-gray  
+
+        .dashboard-nav
+            float: left
+            width: 200px
+
+            section
+                background-color: $bg-white
+                margin-bottom: 15px
+
+                div.avatar
+                    text-align: center
+
+                    img
+                        border: 5px solid $white
+                        box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.5)
+
+                div.contents
+                    border-top: 1px solid $bg-lightest
+                    padding: 10px
+
+                    ul
+                        list-style-type: none
+                        margin-left: 0
+                        padding: 0
+
+                        li
+                            padding: 2px 10px
+                            margin-bottom: 3px
+
+                            &:last-child
+                                margin-bottom: 0
+
+                div.header
+                    border-bottom: 1px solid $border-light
+                    padding: 10px
+
+                    h2, h3, h4
+                        color: $link-dark-gray
+                        font-weight: normal
+                        text-shadow: 0px 1px 1px $white   
+
+                    h2
+                        font-size: 20px
+                    
+                    h3
+                        font-size: 18px
+
+                    h4
+                        color: $gold
+                        font-size: 15px
+
+        ul
+            list-style-type: none
+
+            li
+                a
+                    text-decoration: none
+                    color: $link-dark-gray
+                    font-size: 14px
+
+                    &:hover
+                        color: $mustard !important
+
+                &.active
+                    background: $bg-lightest
+                    color: $mustard
+                    box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.4)
+                    font-size: 14px
+
+                    a
+                        color: $mustard !important
+
+            &.dashboard-mode-toggle
+                margin: 0 0 30px 240px
+                padding: 0
+
+                li
+                    display: inline
+                    padding: 2px 10px
+
+            &.email-notification-types
+                li
+                    padding-bottom: 5px
+
+                    label
+                        font-size: 13px
+                        padding-left: 5px
+                        vertical-align: middle
+
+                        &.active
+                            color: $mustard
+
+        .dashboard-content
+            float: right
+            border-left: 1px solid $lighter-gray
+            width: 650px
+
+            .contents
+                margin: -30px 10px 0 15px
+
+                .subnav
+                    margin: 0 0 25px 0
+                    padding: 0
+
+            .header
+                background: image-url("page-headers-left.png") top left no-repeat
+                margin-left: -9px
+                height: 93px
+                margin-top: 15px
+
+                h1
+                    color: $white
+                    font-weight: normal
+                    font-size: 18px
+                    background: image-url("page-headers-xtile.png") top repeat-x
+                    margin-left: 9px
+                    height: 41px
+                    padding: 6px 0 0 15px
+                    text-shadow: 0px 1px 2px $black
+
+            ul.subnav li
+                display: inline
+                padding: 2px 10px
+
+        div.paypal-alert, div.password-alert
+            padding: 10px
+            border: 2px solid #896c00
+            background-color: #c5a631
+            margin-bottom: 15px
+
+            h3
+                font-size: 20px
+                padding-bottom: 0
+                color: #604c01
+
+            p
+                margin: 10px 0 0 0
+                color: $white
+
+    div.paypal-error
+        border: 1px solid $lighter-gray
+        background-color: $bg-lightest-gray
+        padding: 10px
+
+        h4
+            margin-bottom: 10px
+
+        p
+            margin: 0 0 10px 0 !important
+            padding: 0
+
+        ul
+            margin-bottom: 10px
+            list-style-type: disc
+
+            li
+                list-style-type: disc
+
+    section.photos
+        input[type="file"]
+            margin-left: 50px
+
+        .new
+            label
+                position: absolute
+
+        .existing
+            line-height: 30px
+            margin-bottom: 10px
+            position: relative
+
+            img
+                position: absolute
+
+            input[type="file"], input[type="checkbox"], label
+                +inline-block
+
+            input[type="checkbox"], label
+                margin: 0
+                padding: 0

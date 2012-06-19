@@ -1,0 +1,161 @@
+input.btn
+    font-family: inherit
+    width: auto
+    box-shadow: none
+    -o-box-shadow: none
+    -webkit-box-shadow: none
+    -moz-box-shadow: none
+
+a.btn
+    display: inline-block
+    overflow: hidden
+    width: 75px
+    height: 30px
+    text-indent: -100px
+    background-repeat: no-repeat
+    background-position: 0px 0px
+
+.btn-inactive
+    +opacity(0.5)
+    cursor: default
+
+a.dark-btn
+    color: #dbb62b !important
+    display: inline-block
+    padding: 5px 15px
+    text-decoration: none
+    font-size: 13px
+    text-shadow: rgba(0, 0, 0, 0.55) 0px 1px 1px
+    background: $bg-dark-gray
+    background: -webkit-gradient(linear, left top, left bottom, from($bg-dark-gray), to($bg-darker-gray))
+    background: -moz-linear-gradient(top, $bg-dark-gray, $bg-darker-gray)
+    background: -o-linear-gradient(top, $bg-dark-gray, $bg-darker-gray)
+    border: 1px solid $gray-six
+
+    &:hover
+        background: -webkit-gradient(linear, left top, left bottom, from($bg-darker-gray), to($bg-dark-gray))
+        background: -moz-linear-gradient(top, $bg-darker-gray, $bg-dark-gray)
+        background: -o-linear-gradient(top, $bg-darker-gray, $bg-dark-gray)
+
+a.blue-btn, input.btn
+    color: #274c61 !important
+    display: inline-block
+    padding: 7px 15px
+    text-decoration: none
+    font-size: 13px
+    text-shadow: rgba(255, 255, 255, 0.55) 0px 1px 1px
+    background: #82afc9
+    background: -webkit-gradient(linear, left top, left bottom, from(#b9e0f5), to(#82afc9))
+    background: -moz-linear-gradient(top, #b9e0f5, #82afc9)
+    background: -o-linear-gradient(top, #b9e0f5, #82afc9)
+    border: 1px solid #6f95ab
+
+    &:hover
+        background: -webkit-gradient(linear, left top, left bottom, from(#82afc9), to(#b9e0f5))
+        background: -moz-linear-gradient(top, #82afc9, #b9e0f5)
+        background: -o-linear-gradient(top, #82afc9, #b9e0f5)
+
+a.btn-full, input.btn-full
+    display: block !important
+    text-index: -400px
+    width: 180px
+
+input.btn-full
+    margin: 0
+    text-indent: -100em
+    border: 0 !important
+
+a.btn-img, input.btn-img
+    text-indent: -1000em
+
+a.btn-small
+    width: 67px
+    height: 26px
+
+    &:hover
+        background-position: 0px -26px
+
+a.btn-add-to-cart, a.btn-add-to-cart-placeholder, input.btn-add-to-cart
+    background-image: image-url("btn-add-to-cart-long.png") !important
+    height: 40px
+
+    &:hover
+        background-position: 0px -40px !important
+
+a.btn-share
+    background-image: image-url("btn-share.png")
+
+a.btn-favorite
+    background-image: image-url("btn-favorite.png")
+
+a.btn-unfavorite
+    background-image: image-url("btn-unfavorite.png")
+
+a.btn-share-long
+    background-image: image-url("btn-share-long.png")
+
+a.btn-favorite-long
+    background-image: image-url("btn-favorite-long.png")
+
+a.btn-unfavorite-long
+    background-image: image-url("btn-unfavorite-long.png")
+
+a.btn-question-long
+    height: 29px
+    background-image: image-url("btn-question-long.png")
+
+a.btn-follow
+    background-image: image-url("btn-follow.png")
+
+a.btn-unfollow
+    background-image: image-url("btn-unfollow.png")
+
+a.btn-edit-item
+    background-image: image-url("btn-edit-item.png")
+
+a.btn-remove-from-cart
+    background-image: image-url("btn-remove-from-cart.png")
+
+a.btn-contact-seller
+    background-image: image-url("btn-contact-seller.png")
+
+a.btn-contact-buyer
+    background-image: image-url("btn-contact-buyer.png")
+
+a.btn-checkout, a.btn-pay-now
+    width: 110px
+    height: 40px
+
+a.btn-checkout
+    background-image: image-url("btn-checkout.png")
+
+a.btn-pay-now
+    background-image: image-url("btn-pay-now.png")
+
+a.btn-add-new-item
+    background-image: image-url("btn-add-new-item.png")
+    width: 200px
+    height: 40px
+    text-indent: -300px
+
+a.btn-checkout:hover, a.btn-pay-now:hover, a.btn-add-new-item:hover
+    background-position: 0px -40px
+
+a.btn-share:hover, a.btn-favorite:hover, a.btn-unfavorite:hover, a.btn-follow:hover, a.btn-unfollow:hover, a.btn-edit-item:hover, a.btn-contact-seller:hover, a.btn-contact-buyer:hover
+    background-position: 0px -30px
+
+a.btn-edit-item-small, a.btn-delete-item-small, input.btn-delete-item-small
+    height: 26px !important
+
+    &:hover
+        background-position: 0px -26px
+
+a.btn-edit-item-small
+    background-image: image-url("btn-edit-item-small.png")
+    width: 67px
+
+a.btn-delete-item-small, input.btn-delete-item-small
+    border: 0
+    margin: 0
+    background-image: image-url("btn-delete-item-small.png")
+    width: 37px

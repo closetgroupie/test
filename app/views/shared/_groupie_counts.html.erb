@@ -1,0 +1,12 @@
+<p class="groupies">
+    <span class="groupie_count">
+        <%= link_to groupies_path(user.id), :class => "groupies-count" do %>
+            <strong><%= user.number_of_groupies %></strong>
+            <span>groupies</span>
+        <% end %>
+        <%= link_to following_path(user.id) do %>
+            <span>following</span>
+            <strong><%= user.number_of_followings %></strong>
+        <% end %>
+    </span>
+</p>

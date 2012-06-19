@@ -1,0 +1,19 @@
+<% body_class "search" %>
+<% if @query.present? %>
+<h1>Search results for "<%= @query %>"</h1>
+<% end %>
+<% if not @results.empty? %>
+<div id="results" class="clearfix">
+<% @results.each do |category, results| %>
+<h2><%= category == "users" ? "Members" : category.capitalize %></h2>
+<ul class="item-list clearfix">
+    <%= render :partial => "search/#{category}", collection: results %>
+    <% reset_cycle("row_class") %>
+</ul>
+<% end %>
+</div>
+<% elsif @results.try(:empty?) %>
+<p class="no_results">No results found.</p>
+<% else %>
+<p class="no_query">No query entered.</p>
+<% end %>

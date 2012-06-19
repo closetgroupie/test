@@ -1,0 +1,13 @@
+<% body_class "login" %>
+<table cellspacing="0">
+    <tr>
+        <td class="left">
+            <h3>Forgot Password?</h3>
+            <%= form_tag forgot_password_path, :method => :post do %>
+                <%= label_tag :email, "Email Address" %>
+                <%= text_field_tag :email, params[:email], :class => "shorter" %>
+                <%= submit_tag("Reset", :class => "btn") %>
+            <% end %>
+        </td>
+    </tr>
+</table>

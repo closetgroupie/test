@@ -1,0 +1,9 @@
+<p>
+<%= address.recipient %><br />
+<%= address.primary %> <%= address.secondary if address.secondary %><br />
+<%= address.city %>, <%= address.state %> <%= address.zip %><br />
+<%= address.country %>
+<%# TODO: Add confirm? %>
+<%= button_to "Delete", settings_address_path(address), :class => "btn", :method => :delete %>
+<%# <%= link_to 'Remove', settings_address_path(address), :confirm => 'Are you sure?', :method => :delete %1> %>
+</p>

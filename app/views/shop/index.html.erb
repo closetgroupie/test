@@ -1,0 +1,31 @@
+<% body_class "shop" %>
+<div class="left-nav">    
+    <%= render 'sidebar' %>
+</div> <!-- end left-nav -->
+<div class="right">
+    <div class="header">
+        <h1>
+            <%# TODO: Sizes + Brands %>
+            <% if @segment.present? and @category.present? %>
+            <%= @segment.name %> > <%= @category.name %>
+            <% elsif @segment.present? %>
+            <%= @segment.name %>
+            <% else %>
+            Featured Items
+            <% end %>
+        </h1>
+    </div>
+    
+    <div class="contents">
+        <% if @items.any? %>
+        <ul class="item-list">
+            <%= render @items %>
+        </ul>
+        <% else %>
+        <h3>Sorry, but no items matched that criteria. Please select a different category or search term, or try <%= link_to "shopping by closet", closets_path %></h3>
+        <% end %>
+    </div>
+
+</div> <!-- end right -->
+<% content_for :javascripts do %>
+<% end %>

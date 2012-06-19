@@ -1,0 +1,19 @@
+<% body_class "checkout completed" %>
+<h1>Thank you from ClosetGroupie! Your order has been submitted.</h1>
+<%= link_to "Keep Shopping", root_path, id: "keep-shopping" %>
+<hr />
+<h3>Your wallet, the environment and your closet also say thanks!</h3>
+<p class="strong">Your order number is <%= link_to @cart.unique_id, purchase_url(@cart) %>.</p>
+<ul>
+<% @cart.items_grouped_by(:closet).each do |closet, items| %>
+    <% items.each do |item| %>
+    <li>
+        <%= link_to image_tag(item.photos.first.image_url(:thumbnail)), item_path(item) %>
+        <div class="details">
+            <p><strong><%= item.title %></strong> from <%= link_to closet.user.name, closet_path(closet) %></p>
+            <p>Size: <em><%= item.size.presence || "N/A" %></em></p>
+        </div>
+    </li>
+    <% end %>
+<% end %>
+</ul>
