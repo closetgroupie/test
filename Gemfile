@@ -42,6 +42,9 @@ gem 'ejs'
 gem 'tire'
 gem 'kaminari'
 
+gem 'hiredis'
+gem 'redis'
+
 gem 'sorcery'
 gem 'dynamic_form'
 gem 'wicked'
