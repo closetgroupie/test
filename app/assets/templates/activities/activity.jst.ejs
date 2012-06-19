@@ -1,0 +1,28 @@
+<div class="activity_wrap">
+    <div class="action">
+        <div class="icon <%= activity.get('classification') %>"></div>
+    </div>
+    <hr>
+    <div class="content">
+        <div class="imagery">
+            <a href="<%= activity.get('entity_url') %>">
+                <img src="<%= activity.hero_image %>">
+            </a>
+        </div>
+        <p class="blurb">
+            <a href="<%= activity.user_profile_url %>">
+                <%= activity.escape('user_name') %>
+            </a>
+            <%= activity.escape('verb') %>
+            <a href="<%= activity.get('entity_url') %>">
+                <%= activity.escape('entity_name') %>
+            </a>
+        </p>
+    </div>
+    <hr>
+    <div class="comment">
+        <a href="<%= activity.comments_url() %>" class="comment_add">Add comment</a>
+        <a href="<%= activity.comments_url() %>" class="comment_count">0</a>
+    </div>
+</div>
+<div class="activity_top"></div>

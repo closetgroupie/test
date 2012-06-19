@@ -1,6 +1,6 @@
 class ActivitiesController < ApplicationController
   def index
-    @activities = Activity.latest
+    @activities = Activity.includes(:user, :entity).latest
   end
 
   def previous

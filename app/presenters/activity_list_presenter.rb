@@ -1,6 +1,6 @@
 class ActivityListPresenter < BasePresenter
   presents :activity
-  delegate :id, to: :activity
+  delegate :id, :classification, to: :activity
 
   def action_verb
     case activity.action_type
@@ -16,18 +16,6 @@ class ActivityListPresenter < BasePresenter
 
   def can_be_favorited?
     activity.entity_type == "Item" ? true : false
-  end
-
-  def classification
-    case activity.action_type
-    when "Item" then "added"
-    when "Favorite" then "favorited"
-    when "Relationship" then "followed"
-    when "Order" then "purchased"
-    when "Cart" then "purchased"
-    else
-      "undefined"
-    end
   end
 
   def comment_path
