@@ -15,4 +15,16 @@ class Activity < ActiveRecord::Base
   def self.since(since_id)
     where("id < ?", since_id).order("created_at DESC").limit(20)
   end
+
+  def classification
+    case action_type
+    when "Item" then "added"
+    when "Favorite" then "favorited"
+    when "Relationship" then "followed"
+    when "Order" then "purchased"
+    when "Cart" then "purchased"
+    else
+      "undefined"
+    end
+  end
 end

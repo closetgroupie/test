@@ -38,6 +38,7 @@ end
 
 gem 'jquery-rails'
 gem 'ejs'
+gem 'rabl'
 
 gem 'tire'
 gem 'kaminari'
