@@ -4,7 +4,7 @@
     <div class="facebook <%= current_user.has_facebook? ? "facebook-on" : "facebook-off" %>">
         <h3>Facebook:</h3>        
         <% if current_user.has_facebook? and current_user.current_on_facebook? %>
-          <h5>You have absolutely NO Friends! That, or we haven't figured out the Facebook API yet....</h5>
+          <h5>You have <%= @friends.count %> friends! This website is SUPER helpful!</h5>
         <% elsif current_user.has_facebook? %>
             <p>Your Facebook connection to ClosetGroupie.com has expired - click the "re-connect" link below to re-authorize Facebook to list your friends.</p>
             <h5><a href="<?php echo $facebook_connect_url; ?>" class="btn btn-reconnect">Re-connect</a></h5>
@@ -17,10 +17,17 @@
 </div>
 
 <div class="right">
-    <%# TODO: FIX %>
     <div class="header">
-        <h1>0 of your friends are using ClosetGroupie</h1>
+      <h1>Here are your <%= @friends.count %> friends</h1>
     </div>
+    <table>
+    <% @friends.each do |friend| %>
+      <tr>
+        <td class="avatar"><%= image_tag(friend['picture'], :alt => friend['name']) %></td>
+        <td class="name"><%= friend['name'] %></td>
+      </tr>
+    <% end %>
+    </table>
     <% if false %> 
     <div class="contents clearfix">        
         <table cellspacing="0">
