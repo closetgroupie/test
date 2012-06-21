@@ -27,11 +27,11 @@ gem 'therubyracer'
 
 # group :development do
 #  gem 'sqlite3'
-#  gem 'pry'
+  # gem 'pry'
 #  gem 'pry-remote'
 #  gem 'letter_opener'
 #  gem 'acts-as-importable', github: "kweightman/acts-as-importable"
-#end
+# end
 
 group :test do
 end

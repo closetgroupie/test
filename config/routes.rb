@@ -110,5 +110,6 @@ Closetgroupie::Application.routes.draw do
   get ":segment"           => "shop#show", constraints: SegmentsRestriction, as: "shop"
   get ":segment/:category" => "shop#show", constraints: SegmentsRestriction, as: "shop_by_category"
   get "/activity/previous/:id" => "activities#previous"
+  get "activities" => "activities#feed"
   root to: "activities#index"
 end

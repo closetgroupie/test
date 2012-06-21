@@ -17,7 +17,9 @@ class Item < ActiveRecord::Base
 
   has_many :conversations, :as => :conversable
   has_many :favorites
+
   has_many :photos
+  has_one :hero_image, :class_name => "Photo", :order => "ordering DESC, id ASC"
 
   has_one :line_item, :include => :order
   has_one :active_order, :through => :line_item, :source => :order

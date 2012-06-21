@@ -6,13 +6,17 @@
     <div class="content">
         <div class="imagery">
             <a href="<%= activity.get('entity_url') %>">
-                <img src="<%= activity.hero_image %>">
+                <img src="<%= activity.get('hero_image') %>" class="target">
             </a>
         </div>
         <p class="blurb">
-            <a href="<%= activity.user_profile_url %>">
+            <% if (activity.get('is_purchase')) { %>
+            <%= activity.escape('user_name') %>
+            <% } else { %>
+            <a href="<%= activity.get('user_profile_url') %>">
                 <%= activity.escape('user_name') %>
             </a>
+            <% } %>
             <%= activity.escape('verb') %>
             <a href="<%= activity.get('entity_url') %>">
                 <%= activity.escape('entity_name') %>
