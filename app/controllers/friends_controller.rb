@@ -3,11 +3,10 @@ class FriendsController < ApplicationController
 
   def index
     if current_user.has_facebook?
-      #@friends = get_friends_for_current_user
-      cache_current_user_friends
-      cache_facebook_members
-      #cache_facebook_profile(current_user.facebook_authentication.uid)
-      #binding.pry
+
+      #3. Expose those to view.
+      @friends = get_friends_using_site(current_user.facebook_authentication.uid)
+
     end
   end
 
