@@ -2,29 +2,34 @@ ClosetGroupie.Collections.ActivityChanges = Backbone.Collection.extend({
     model: ClosetGroupie.Models.Activity,
     url: "/activities",
     initialize: function(options) {
-        _.bindAll(this, 'latest', 'processLatest', 'processNew', 'sinceLatest');
+        _.bindAll(this, 'latest', 'processLatest', 'processNew', 'sinceLatest', 'fetchMore');
         this.collection = options.collection;
         this.bind('reset', this.processLatest);
         // TODO: This should be inside the refresh button view, it should trigger this
-        setInterval(this.latest, 30*1000);
+        // setInterval(this.latest, 30*1000);
     },
 
     sinceLatest: function() {
         // TODO: Add "caching" here that circumvents this iteration if there
         // have been no updates since last fetch
         return this.collection.max(function(activity) {
-            return activity.get('updated_at');
+            return activity.timestamp();
         });
     },
 
     sinceOldest: function() {
-        return this.collection.min(function(activity) {
-            return activity.get('updated_at');
+        var oldest = this.collection.min(function(activity) {
+            return activity.timestamp();
         });
+        return oldest.timestamp();
     },
 
     latest: function() {
         this.fetch({ data: { since: this.sinceLatest() } });
+    },
+
+    fetchMore: function() {
+        this.fetch({ data: { since: this.sinceOldest() } });
     },
 
     oldest: function() {

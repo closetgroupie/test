@@ -4,6 +4,10 @@
 //= require json2
 //= require backbone-min
 // require backbone-support
+//= require jquery.imagesloaded
+//= require jquery.masonry
+//= require waypoints.min
+//= require spin.min
 //
 //= require_self
 //

@@ -11,5 +11,6 @@ ClosetGroupie.Routers.Activities = Backbone.Router.extend({
     index: function() {
         var view = new ClosetGroupie.Views.ActivitiesIndex({ collection: this.collection });
         $(this.el).empty().append(view.render().el);
+        view.addWaypoint();
     }
 });

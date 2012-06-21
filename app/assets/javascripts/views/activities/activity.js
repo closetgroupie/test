@@ -11,5 +11,5 @@ ClosetGroupie.Views.Activity = Backbone.View.extend({
     render: function() {
         this.$el.append(this.template({ activity: this.model }));
         return this;
-    }
+    },
 });

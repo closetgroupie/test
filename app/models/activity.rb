@@ -5,15 +5,17 @@ class Activity < ActiveRecord::Base
 
   attr_accessible :user, :action, :entity
 
-  # Exclude follows from the listing
-  default_scope where("NOT action_type = 'Relationship'")
+  paginates_per 40
 
-  def self.latest
-    order("created_at DESC").limit(40)
+  # Exclude follows from the listing
+  default_scope where("NOT action_type = 'Relationship'").order("created_at DESC")
+
+  def self.since(timestamp)
+    where("updated_at < ?", Time.at(timestamp).utc)
   end
 
-  def self.since(since_id)
-    where("id < ?", since_id).order("created_at DESC").limit(20)
+  def self.since_id(since_id)
+    where("id < ?", since_id).limit(20)
   end
 
   def classification
@@ -25,6 +27,14 @@ class Activity < ActiveRecord::Base
     when "Cart" then "purchased"
     else
       "undefined"
+    end
+  end
+
+  def is_purchase?
+    if action_type == "Cart" or action_type == "Order"
+      true
+    else
+      false
     end
   end
 end
