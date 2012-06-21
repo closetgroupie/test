@@ -23,6 +23,8 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
+    puts "done1"
     redirect_to root_url#, :notice => "Logged out!"
+    puts "done2"
   end
 end

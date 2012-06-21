@@ -4,44 +4,38 @@
     <div class="facebook <%= current_user.has_facebook? ? "facebook-on" : "facebook-off" %>">
         <h3>Facebook:</h3>        
         <% if current_user.has_facebook? and current_user.current_on_facebook? %>
-          <h5>You have <%= @friends.count %> friends! This website is SUPER helpful!</h5>
+          <h5>You have <%= @friends.count %> <%= @friends.count > 1 ? "friends" : "friend" %> using ClosetGroupie!</h5>
         <% elsif current_user.has_facebook? %>
-            <p>Your Facebook connection to ClosetGroupie.com has expired - click the "re-connect" link below to re-authorize Facebook to list your friends.</p>
-            <h5><a href="<?php echo $facebook_connect_url; ?>" class="btn btn-reconnect">Re-connect</a></h5>
+          <h4>Sorry, your Facebook session has expired. Please login again to find your friends.</h4>
+          <%= link_to image_tag("login-with-facebook.png", :alt => "Login with Facebook"), auth_at_provider_path(:provider => :facebook) %>
         <% else %>
-            <p>Find your Facebook friends!</p>
-            <h5><a href="<?php echo $facebook_connect_url; ?>" class="btn btn-connect">connect</a></h5>
+          <h4>Link with your Facebook account to discover which of your friends are already loving ClosetGroupie!</h4>
         <% end %>
     </div>
 </div>
 
 <div class="right">
     <div class="header">
-      <h1>Here are your <%= @friends.count %> friends</h1>
+      <h1>These friends use ClosetGroupie</h1>
     </div>
-    <table>
-    <% @friends.each do |friend| %>
-      <tr>
-        <td class="avatar"><%= image_tag(friend['picture'], :alt => friend['name']) %></td>
-        <td class="name"><%= friend['name'] %></td>
-      </tr>
-    <% end %>
+    <div class="contents">
+      <table>
+      <% @friends.each do |friend| %>
+        <tr>
+          <td class="avatar">
+            <%= image_tag(friend.avatar_url(:mini), :alt => friend.name) %>
+          </td>
+          <td class="name">
+            <%= link_to friend.name, friend.closet %>
+          </td>
+          <td class="since">
+            <strong>Member since</strong> <%= friend.created_at.strftime('%B %d, %Y') %>
+          </td>
+          <td class="follow">
+            <%= toggle_follow_button_for friend %>
+          </td>
+        </tr>
+      <% end %>
     </table>
-    <% if false %> 
-    <div class="contents clearfix">        
-        <table cellspacing="0">
-        <?php foreach ($all_friends as $friend): ?>
-            <tr>
-                <td class="avatar"><a href="<?php echo $this->Html->url(array("controller"=>"closets","action"=>"view",$friend["Closet"]["id"])); ?>" target="_blank"><?php echo $this->Html->image("avatars/".$friend["User"]["avatar_filename"], array("width"=>40,"height"=>40,"class"=>"img-shadow")); ?></a></td>
-                <td class="name"><?php echo $this->Html->link($friend["User"]["name"], array("controller"=>"closets","action"=>"view",$friend["Closet"]["id"]), array("target"=>"_blank")); ?></td>
-                <td class="since"><strong>Member Since:</strong> <?php echo $this->Time->format("F j, Y", $friend["Closet"]["created"]); ?></td>
-                <td class="follow">
-                    <div class="btn"><?php echo $this->element("follow_button",array("target_id"=>$friend["User"]["id"])); ?></div>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-        </table>
-    </div>
-    <% end %>
-        
+  </div>
 </div>
