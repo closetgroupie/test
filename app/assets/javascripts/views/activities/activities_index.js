@@ -9,15 +9,15 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
         this.changes = new ClosetGroupie.Collections.ActivityChanges({ collection: this.collection });
         // Handle a fetch, may need to bind to something else to determine between scroll and "refresh"
         this.changes.on('reset', this.addActivity);
+        this._fetching = false;
     },
 
     render: function() {
         this.renderLayout();
-        this.$list = this.$el.find('#activity_list');
         this.renderActivities();
         this.addWaypoint();
         // Trigger masonry
-        // this.initializeMasonry();
+        this.initializeMasonry();
         return this;
     },
 
@@ -36,22 +36,27 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
 
     renderActivity: function(model) {
         var view = new ClosetGroupie.Views.Activity({ model: model });
-        // TODO: Signal new items to be prepended, not appended
         this.$el.find('#activity_list').append(view.render().el);
-        // model.bind('remove', view.remove/leave);
     },
 
     addActivity: function() {
-        var $activity = this.$el.find('#activity_list').detach();
+        var $activity = this.$el.find('#activity_list'),
+            activities = "",
+            self = this;
         this.changes.each(function(activity) {
             var view = new ClosetGroupie.Views.Activity({ model: activity });
-            $activity.append(view.render().el);
+            // $activity.append(view.render().el);
+            // TODO: Replace this with something Firefox friendly
+            activities += view.render().el.outerHTML;
         });
-        this.$el.find('#refresh').after($activity);
-        // $(el).append($activities).masonry('appended', $activities, false, function() {
-        // Disable spinner, add waypoint, etc.
-        // });
-        this.addWaypoint();
+        var $activities = $(activities);
+        // this.$el.find('#refresh').after($activity);
+        $activities.imagesLoaded(function() {
+            $activity.append($activities).masonry('appended', $activities, false, function() {
+                self._fetching = false;
+                self.addWaypoint();
+            });
+        });
     },
 
     addWaypoint: function() {
@@ -82,8 +87,11 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
 
     waypointReached: function(e, direction) {
         this.removeWaypoint();
-        // Fetch content
-        this.changes.fetchMore();
+        if (!this._fetching) {
+            // Fetch content
+            this.changes.fetchMore();
+            this._fetching = true;
+        }
     },
 
     initializeMasonry: function() {

@@ -8,6 +8,7 @@
 //= require jquery.masonry
 //= require waypoints.min
 //= require spin.min
+//= require scroll-to-top
 //
 //= require_self
 //
