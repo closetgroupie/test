@@ -4,7 +4,7 @@
     <div class="facebook <%= current_user.has_facebook? ? "facebook-on" : "facebook-off" %>">
         <h3>Facebook:</h3>        
         <% if current_user.has_facebook? and current_user.current_on_facebook? %>
-          <h5>You have <%= @friends.count %> <%= @friends.count > 1 ? "friends" : "friend" %> using ClosetGroupie!</h5>
+          <h5>You have <%= pluralize(@friends.count, "friend") %> using ClosetGroupie!</h5>
         <% elsif current_user.has_facebook? %>
           <h4>Sorry, your Facebook session has expired. Please login again to find your friends.</h4>
           <%= link_to image_tag("login-with-facebook.png", :alt => "Login with Facebook"), auth_at_provider_path(:provider => :facebook) %>
