@@ -26,10 +26,10 @@ module FriendsHelper
     overlap = REDIS.sinter("fb:#{fb_id}:friends", "fb:users")
 
     #4. Return a list of users on the site
-    users = Array.new
+    users = Set.new
     overlap.each do |fb_id|
       site_id = REDIS.get("fb:#{fb_id}:uid")
-      users.push(User.find site_id)
+      users.add(User.find site_id)
     end
    
     users
