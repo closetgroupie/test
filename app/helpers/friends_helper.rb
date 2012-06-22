@@ -40,11 +40,11 @@ module FriendsHelper
   def recache_friends_if_needed(fb_id)
     # If cache has expired, hit Facebook and recache
     if 0 > REDIS.ttl("fb:#{fb_id}:friends")
+      # Make the actual call to FB, returns an array of hashes
       friends = get_graph.get_connections(fb_id, "friends", :fields=>"name,picture")
-      friend_ids = Array.new
-      friends.each do |friend|
-        friend_ids += [friend['id']]
-      end
+
+      friend_ids = friends.collect { |friend| friend['id'] }
+
       cache_facebook_profiles(friend_ids)
 
       friend_ids.each do |friend_id|
@@ -57,16 +57,15 @@ module FriendsHelper
 
   def recache_users_if_needed
     if 0 > REDIS.ttl("fb:users")
-      facebook_users = Authentication.where "provider = 'facebook'"
+      member_ids = Array.new
 
-      member_facebook_ids = Array.new
-
-      facebook_users.each do |user|
-        REDIS.sadd("fb:users", user.uid)
-        member_facebook_ids += [user.uid]
+      Authentication.where("provider = 'facebook'").find_in_batches(:batch_size => 500) do |batch|
+        member_ids += batch.collect(&:uid)
       end
 
-      cache_facebook_profiles(member_facebook_ids)
+      REDIS.sadd("fb:users", member_ids)
+
+      cache_facebook_profiles(member_ids)
 
       REDIS.expire("fb:users", 30.days.to_i)
     end
