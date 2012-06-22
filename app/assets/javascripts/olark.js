@@ -1,4 +1,3 @@
-<!-- begin olark code -->
 window.olark || (function (c) {
     var f = window,
         d = document,
