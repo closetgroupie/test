@@ -23,7 +23,10 @@
       <% @friends.each do |friend| %>
         <tr>
           <td class="avatar">
-            <%= image_tag(friend.avatar_url(:mini), :alt => friend.name) %>
+            <%= link_to closet_path(friend.id) do %>
+                <%= image_tag(friend.avatar_url(:thumb), :alt => friend.name,
+                    :class => "img-shadow", width: 40, height: 40) %>
+            <% end %>
           </td>
           <td class="name">
             <%= link_to friend.name, friend.closet %>
