@@ -14,9 +14,9 @@ class RelationshipsController < ApplicationController
 
   def create
     target = User.find(params[:id])
-    following = current_user.relationships.first_or_initialize({
+    following = current_user.relationships.where(
       target_id: target.id
-    })
+    ).first_or_initialize()
     if following.save
       redirect_to :back
     end
