@@ -7,6 +7,10 @@ ClosetGroupie.Models.Activity = Backbone.Model.extend({
         return "http://closetgroupie.com" + this.get('entity_url');
     },
 
+    escaped_url: function() {
+        return escape(this.full_entity_url());
+    },
+
     timestamp: function() {
         if (this._timestamp) {
             return this._timestamp;
