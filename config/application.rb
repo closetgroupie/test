@@ -72,5 +72,11 @@ module Closetgroupie
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    # Deal with Koala/Faraday SSL certificate verify failed error
+    # see https://github.com/arsduo/koala/issues/110
+    if Rails.env.development?
+      Koala.http_service.http_options = {:ssl => { :ca_file => '/etc/ssl/certs/ca-certificates.crt'}}
+    end
   end
 end

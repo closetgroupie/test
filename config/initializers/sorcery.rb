@@ -6,6 +6,7 @@ Rails.application.config.sorcery.submodules = [:remember_me, :reset_password, :e
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
+
   # -- core --
   # What controller action to call for non-authenticated users. You can also
   # override the 'not_authenticated' method of course.
@@ -90,9 +91,19 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=twitter"
   # config.twitter.user_info_mapping = {:name => "name"}
   #
+
+
+if Rails.env.development?
+  SITE_LOCATION = "http://localhost:3000"
+  config.facebook.key = "385329781503733"
+  config.facebook.secret = "570f1284fd67717724076bcef408c12d"
+else
+  SITE_LOCATION = "https://closetgroupie.com"
   config.facebook.key = "195906460469934"
   config.facebook.secret = "3c11385cf4f9036acb5acd8274028d80"
-  config.facebook.callback_url = "https://closetgroupie.com/oauth/callback?provider=facebook"
+end
+
+config.facebook.callback_url = "#{SITE_LOCATION}/oauth/callback?provider=facebook"
 
   # config.facebook.key = "385329781503733"
   # config.facebook.secret = "570f1284fd67717724076bcef408c12d"

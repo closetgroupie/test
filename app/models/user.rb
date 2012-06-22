@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   has_many :reviews
 
   has_many :authentications, :dependent => :destroy
+  has_one :facebook_authentication, :class_name => Authentication, :conditions => ["provider = 'facebook'", true]
+
   has_many :conversations
   has_many :favorites
   has_many :items
@@ -79,7 +81,7 @@ class User < ActiveRecord::Base
   end
 
   def has_facebook?
-    @facebook_connection ||= authentications.where(provider: 'facebook').first
+    @facebook_connection ||= facebook_authentication
     @facebook_connection.present?
   end
 
@@ -87,9 +89,10 @@ class User < ActiveRecord::Base
     @facebook_connection.current? if has_facebook?
   end
 
-  def has_twitter?
-    @twitter_connected ||= authentications.where(provider: 'twitter').any?
-  end
+  # Twitter login disabled
+  #def has_twitter?
+    #@twitter_connected ||= authentications.where(provider: 'twitter').any?
+  #end
 
   def number_of_groupies
     groupies.size

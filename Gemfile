@@ -25,13 +25,13 @@ end
 
 gem 'therubyracer'
 
-# group :development do
-#  gem 'sqlite3'
-#  gem 'pry'
-#  gem 'pry-remote'
-#  gem 'letter_opener'
-#  gem 'acts-as-importable', github: "kweightman/acts-as-importable"
-#end
+group :development do
+ #gem 'sqlite3'
+ gem 'pry'
+ #gem 'pry-remote'
+ #gem 'letter_opener'
+ #gem 'acts-as-importable', github: "kweightman/acts-as-importable"
+end
 
 group :test do
 end
@@ -48,6 +48,7 @@ gem 'redis'
 gem 'sorcery'
 gem 'dynamic_form'
 gem 'wicked'
+gem 'faraday'
 
 gem 'activemerchant', :require => 'active_merchant'
 gem 'active_paypal_adaptive_payment'
@@ -75,6 +76,9 @@ group :deployment do
   gem 'capistrano'
   gem 'capistrano-ext'
 end
+
+# Facebook Graph API
+gem 'koala'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
