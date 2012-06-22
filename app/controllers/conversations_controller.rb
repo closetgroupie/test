@@ -5,8 +5,8 @@ class ConversationsController < ApplicationController
   # before_filter :find_or_initialize, :only => [:new, :create]
 
   def new
-    object = get_instance_from(params)
-    @conversation = find_or_initialize_for(object, current_user)
+    @object = get_instance_from(params)
+    @conversation = find_or_initialize_for(@object, current_user)
     respond_to do |format|
       format.js { render :partial => "conversations/ajax_new", :layout => false }
       format.html
