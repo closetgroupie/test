@@ -5,6 +5,8 @@ class Conversation < ActiveRecord::Base
 
   has_many :messages, :order => "created_at desc", :dependent => :destroy
 
+  default_scope order("updated_at DESC")
+
   validates :sender_id, :recipient_id, presence: true
 
   attr_accessible :sender_id, :recipient_id
