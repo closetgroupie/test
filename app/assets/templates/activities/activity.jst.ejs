@@ -1,6 +1,14 @@
 <div class="activity_wrap">
     <div class="action">
         <div class="icon <%= activity.get('classification') %>"></div>
+        <!-- if user -->
+        <div id="share-<%= activity.id %>" class="share">
+            <div id="gpo<%= activity.id %>" class="g-plusone" data-size="medium" data-annotation="none" data-href="<%= activity.full_entity_url() %>"></div>
+            <div id="fbl<%= activity.id %>" class="fb-like" data-href="http://closetgroupie.com<%= activity.full_entity_url() %>" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false"></div>
+            <span>
+                <a class="icon share-twitter" href="https://twitter.com/intent/tweet?text=Love+this!&url=<%= escape(activity.full_entity_url()) %>&via=ClosetGroupie">Share via Twitter</a>
+            </span>
+        </div>
     </div>
     <hr>
     <div class="content">
