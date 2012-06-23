@@ -11,6 +11,10 @@ class Activity < ActiveRecord::Base
   default_scope where("NOT action_type = 'Relationship'").order("created_at DESC")
 
   def self.since(timestamp)
+    where("updated_at > ?", Time.at(timestamp+1).utc)
+  end
+
+  def self.before(timestamp)
     where("updated_at < ?", Time.at(timestamp).utc)
   end
 
