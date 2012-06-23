@@ -3,13 +3,20 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
     id: 'feed-wrapper',
     
     initialize: function(options) {
-        _.bindAll(this, 'renderActivity', 'waypointReached', 'addWaypoint', 'removeWaypoint', 'addActivity');
+        _.bindAll(this, 'renderActivity', 'waypointReached', 'addWaypoint', 'removeWaypoint', 'addActivity', 'showRefresh', 'hideRefresh', 'triggerRefresh');
         this.collection = new ClosetGroupie.Collections.Activities();
         this.collection.reset(options.collection);
-        this.changes = new ClosetGroupie.Collections.ActivityChanges({ collection: this.collection });
+        this.feed = new ClosetGroupie.Collections.ActivityFeed({ collection: this.collection });
+        this.updates = new ClosetGroupie.Collections.ActivityUpdates({ collection: this.collection });
         // Handle a fetch, may need to bind to something else to determine between scroll and "refresh"
-        this.changes.on('reset', this.addActivity);
+        this.feed.on('reset', this.addActivity);
+        this.updates.on('activity', this.showRefresh);
+        this.updates.on('refreshed', this.addActivity);
         this._fetching = false;
+    },
+
+    events: {
+        "click #refresh-btn": "triggerRefresh"
     },
 
     render: function() {
@@ -39,11 +46,26 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
         this.$el.find('#activity_list').append(view.render().el);
     },
 
-    addActivity: function() {
+    triggerRefresh: function() {
+        this.hideRefresh();
+        this.updates.trigger('refresh');
+    },
+
+    showRefresh: function() {
+        this.$el.find('#refresh').removeClass('inactive')
+                .find('#refresh-btn').html('refresh activity <span>' + this.updates.length + '</span>');
+    },
+
+    hideRefresh: function() {
+        this.$el.find('#refresh').addClass('inactive')
+                .find('#refresh-btn').text('refresh activity');
+    },
+
+    addActivity: function(collection) {
         var $activity = this.$el.find('#activity_list'),
             activities = "",
             self = this;
-        this.changes.each(function(activity) {
+        collection.each(function(activity) {
             var view = new ClosetGroupie.Views.Activity({ model: activity });
             // $activity.append(view.render().el);
             // TODO: Replace this with something Firefox friendly
@@ -52,10 +74,18 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
         var $activities = $(activities);
         // this.$el.find('#refresh').after($activity);
         $activities.imagesLoaded(function() {
-            $activity.append($activities).masonry('appended', $activities, false, function() {
-                self._fetching = false;
-                self.addWaypoint();
-            });
+            // TODO: This shouldn't be done this way, but oh well...
+            if (collection.is_prepended) {
+                // Prepend the activities on to the feed
+                $activity.prepend($activities).masonry('reload');
+                // Set the ActivityUpdates collection to empty
+                collection.reset([], {silent: true});
+            } else {
+                $activity.append($activities).masonry('appended', $activities, false, function() {
+                    self._fetching = false;
+                    self.addWaypoint();
+                });
+            }
         });
     },
 
@@ -89,7 +119,7 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
         this.removeWaypoint();
         if (!this._fetching) {
             // Fetch content
-            this.changes.fetchMore();
+            this.feed.fetchMore();
             this._fetching = true;
         }
     },
