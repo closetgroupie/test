@@ -1,3 +1,65 @@
+@import "compass";
+
+// Grays
+// -------------------------
+$black:                 #000 !default;
+$grayDarker:            #222 !default;
+$grayDark:              #333 !default;
+$gray:                  #555 !default;
+$grayLight:             #999 !default;
+$grayLighter:           #eee !default;
+$white:                 #fff !default;
+
+// COMPONENT VARIABLES
+// --------------------------------------------------
+
+// Z-index master list
+// -------------------------
+// Used for a bird's eye view of components dependent on the z-axis
+// Try to avoid customizing these :)
+$zindexDropdown:          1000;
+$zindexPopover:           1010;
+$zindexTooltip:           1020;
+$zindexFixedNavbar:       1030;
+$zindexModalBackdrop:     1040;
+$zindexModal:             1050;
+
+// Popover arrows
+// -------------------------
+// For tipsies and popovers
+@mixin popoverArrowTop($arrowWidth: 5px, $color: $black) {
+  bottom: 0;
+  left: 50%;
+  margin-left: -$arrowWidth;
+  border-left: $arrowWidth solid transparent;
+  border-right: $arrowWidth solid transparent;
+  border-top: $arrowWidth solid $color;
+}
+@mixin popoverArrowLeft($arrowWidth: 5px, $color: $black) {
+  top: 50%;
+  right: 0;
+  margin-top: -$arrowWidth;
+  border-top: $arrowWidth solid transparent;
+  border-bottom: $arrowWidth solid transparent;
+  border-left: $arrowWidth solid $color;
+}
+@mixin popoverArrowBottom($arrowWidth: 5px, $color: $black) {
+  top: 0;
+  left: 50%;
+  margin-left: -$arrowWidth;
+  border-left: $arrowWidth solid transparent;
+  border-right: $arrowWidth solid transparent;
+  border-bottom: $arrowWidth solid $color;
+}
+@mixin popoverArrowRight($arrowWidth: 5px, $color: $black) {
+  top: 50%;
+  left: 0;
+  margin-top: -$arrowWidth;
+  border-top: $arrowWidth solid transparent;
+  border-bottom: $arrowWidth solid transparent;
+  border-right: $arrowWidth solid $color;
+}
+
 .collapse {
   position: relative;
   height: 0;
@@ -12,3 +74,38 @@
 .collapse.in {
   height: auto;
 }
+
+.tooltip {
+  position: absolute;
+  z-index: $zindexTooltip;
+  display: block;
+  visibility: visible;
+  padding: 5px;
+  font-size: 12px;
+  @include opacity(0);
+  &.in     { @include opacity(0.8); }
+  &.top    { margin-top:  -2px; }
+  &.right  { margin-left:  2px; }
+  &.bottom { margin-top:   2px; }
+  &.left   { margin-left: -2px; }
+  &.top .tooltip-arrow    { @include popoverArrowTop(); }
+  &.left .tooltip-arrow   { @include popoverArrowLeft(); }
+  &.bottom .tooltip-arrow { @include popoverArrowBottom(); }
+  &.right .tooltip-arrow  { @include popoverArrowRight(); }
+}
+.tooltip-inner {
+  max-width: 200px;
+  padding: 3px 8px;
+  color: $white;
+  text-align: center;
+  text-decoration: none;
+  background-color: $black;
+  @include border-radius(4px);
+}
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+
