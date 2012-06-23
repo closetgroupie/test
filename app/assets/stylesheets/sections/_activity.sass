@@ -283,29 +283,6 @@ body.activity
                     position: relative
                     top: 1px
                 
-                .add_favorite, .request_access, .favorite, .access
-                    +inline-block
-                    vertical-align: center
-                    position: relative
-                    top: 0px
-                
-                .add_favorite
-                    @include replace-text-with-dimensions('activity/icons/icon-favorite.png')
-                    
-                    &:hover, &.active
-                        background: image-url('activity/icons/icon-favorite_hover.png')
-                
-                .request_access
-                    @include replace-text-with-dimensions('activity/icons/icon-key.png')
-                    
-                    &:hover, &.active
-                        background: image-url('activity/icons/icon-key_hover.png')
-                
-                .favorite
-                    @include replace-text-with-dimensions('activity/icons/icon-favorite_hover.png')
-                
-                .access
-                    @include replace-text-with-dimensions('activity/icons/icon-key_hover.png')
             
             .comments
                 @include border-radius(3px)
@@ -350,6 +327,27 @@ body.activity
                 line-height: 20px
                 position: relative
                 padding-top: 4px
+
+                .add_favorite, .favorite
+                    +inline-block
+                    vertical-align: center
+                    position: absolute
+                    top: 8px
+                    left: 6px
+                    // float: left
+                    // margin: 4px 0 0 5px
+                
+                .add_favorite
+                    @include replace-text-with-dimensions('activity/icons/icon-favorite.png')
+                    
+                    &:hover, &.active
+                        background: image-url('activity/icons/icon-favorite_hover.png')
+                
+                .favorite
+                    @include replace-text-with-dimensions('activity/icons/icon-favorite_hover.png')
+                
+                .access
+                    @include replace-text-with-dimensions('activity/icons/icon-key_hover.png')
                 
                 .comment_add
                     color: $mustard
@@ -364,29 +362,29 @@ body.activity
                     padding-left: 20px
                     position: absolute
                     right: 5px
-    .tooltip
-        @include border-radius(3px)
-        @include box-shadow($drop-45-gray, 0, 1px, 2px)
-        background: $white
-        padding: 3px 10px
-        margin: 5px
-        font-size: 12px
-        z-index: 999
+    // .tooltip
+    //     @include border-radius(3px)
+    //     @include box-shadow($drop-45-gray, 0, 1px, 2px)
+    //     background: $white
+    //     padding: 3px 10px
+    //     margin: 5px
+    //     font-size: 12px
+    //     z-index: 999
         
-    .tooltip:before,
-    .tooltip:after
-        content: ""
-        position: absolute
-        z-index: 1000
-        bottom: -7px
-        left: 50%
-        margin-left: -13px
-        border-top: 8px solid $white
-        border-left: 8px solid transparent
-        border-right: 8px solid transparent
-        border-bottom: 0
+    // .tooltip:before,
+    // .tooltip:after
+    //     content: ""
+    //     position: absolute
+    //     z-index: 1000
+    //     bottom: -7px
+    //     left: 50%
+    //     margin-left: -13px
+    //     border-top: 8px solid $white
+    //     border-left: 8px solid transparent
+    //     border-right: 8px solid transparent
+    //     border-bottom: 0
 
-    .tooltip:before
-        border-top-color: #000
-        @include opacity(.15)
-        bottom: -9px
+    // .tooltip:before
+    //     border-top-color: #000
+    //     @include opacity(.15)
+    //     bottom: -9px

@@ -45,7 +45,7 @@ $(document).ready(function(){
         }
     });
 
-    $('.btn-inactive').tipsy({gravity: 's'});
+    $('.btn-inactive').tooltip();
 
     // $("body:not(.unregistered)").delegate('.toggle-follow', 'click', function(event) {
     //     toggleFollow($(this).attr("id"));

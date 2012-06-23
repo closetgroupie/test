@@ -25,5 +25,8 @@ window.ClosetGroupie = {
     initialize: function(data) {
         new ClosetGroupie.Routers.Activities({ activities: data.activities });
         Backbone.history.start();
+        jQuery('body').tooltip({
+            selector: 'a[rel="tooltip"]'
+        });
     }
 };

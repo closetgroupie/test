@@ -3,6 +3,9 @@ attributes :id, :updated_at
 
 node(:classification) { |activity| activity.classification }
 
+# TODO: Once we cache this, the favorites part needs to be moved elsewhere.
+node(:is_favorite) { |activity| @favorites.include?(activity.entity_id) }
+
 node(:entity_url) do |activity|
     case activity.entity_type
     when "Item" then item_path(activity.entity_id)
