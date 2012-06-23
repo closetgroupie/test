@@ -4,7 +4,14 @@ class ActivitiesController < ApplicationController
   end
 
   def feed
-    @activities = Activity.includes(:user, :entity => [:hero_image]).since(params[:since].to_i).limit(40)
+    if params.has_key?(:since)
+      @activities = Activity.includes(:user, :entity => [:hero_image]).since(params[:since].to_i).limit(40)
+    elsif params.has_key?(:before)
+      @activities = Activity.includes(:user, :entity => [:hero_image]).before(params[:before].to_i).limit(40)
+    else
+      @activities = Activity.includes(:user, :entity => [:hero_image]).limit(40)
+    end
+
     respond_to :json
   end
 
