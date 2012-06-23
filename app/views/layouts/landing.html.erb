@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>ClosetGroupie</title>
+        <meta name="description" content="<%= yield :description %>" />
+        <meta name="keywords" content="<%= yield :keywords %>" />
+        <%= csrf_meta_tags %>
+        <%= render "shared/og_tags" %>
+        <link rel="shortcut icon" type="image/png" href="/favicon.png">
+        <%= stylesheet_link_tag    "landing" %>
+        <script type="text/javascript" src="//use.typekit.com/ppu0ksu.js"></script>
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+        <%= render "shared/analytics/google" %>
+        <%= render "shared/analytics/kissmetrics" %>
+    </head>
+    <body class="landing">
+        <div class="container">
+            <header>
+                <div class="inner">
+                    <a id="logo" href="/">ClosetGroupie</a>
+                    <ul>
+                        <li><a href="">About</a></li>
+                        <li><a href="/login">Login</a></li>
+                    </ul>
+                </div>
+            </header>
+            <section id="content">
+                <div class="inner">
+                    <%= yield %>
+                </div>
+            </section>
+            <footer>
+                <div class="inner">
+                    <h3>Join Us</h3>
+                    <ul id="social">
+                        <li><a href="" id="facebook">Facebook</a></li>
+                        <li><a href="" id="pinterest">Pinterest</a></li>
+                        <li><a href="" id="twitter">Twitter</a></li>
+                    </ul>
+                    <ul id="quick_links">
+                        <li><a href="">about</a></li>
+                        <li><a href="">help</a></li>
+                        <li><a href="">privacy</a></li>
+                        <li><a href="">terms</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+        <%= javascript_include_tag "application" %>
+        <script type="text/javascript">
+            (function(d){
+                var js, id = 'facebook-jssdk'; if (d.getElementById(id)) {return;}
+                js = d.createElement('script'); js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                js.async = true;
+                d.getElementsByTagName('head')[0].appendChild(js);
+            }(document));
+        </script>
+        <%= yield :javascripts %>
+        <noscript><a href="https://www.olark.com/site/4095-115-10-1147/contact" title="Contact us " target="_blank ">Questions? Feedback?</a></noscript>
+    </body>
+</html>
