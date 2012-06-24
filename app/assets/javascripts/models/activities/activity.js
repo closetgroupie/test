@@ -8,11 +8,19 @@ ClosetGroupie.Models.Activity = Backbone.Model.extend({
     },
 
     entity_full_url: function() {
-        return "http://closetgroupie.com" + this.get('entity_url');
+        return this.escaped_full_url(this.get('entity_url'));
     },
 
-    escaped_url: function() {
-        return escape(this.entity_full_url());
+    escaped_hero_image: function() {
+        return this.escaped_full_url(this.get('hero_image'));
+    },
+
+    escaped_full_url: function(url) {
+        return this.escape_url("https://closetgroupie.com" + url);
+    },
+
+    escape_url: function(url) {
+        return escape(url);
     },
 
     is_favorite: function() {

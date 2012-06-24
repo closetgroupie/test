@@ -3,11 +3,13 @@
         <div class="icon <%= activity.get('classification') %>"></div>
         <!-- if user -->
         <div id="share-<%= activity.id %>" class="share">
-            <div id="gpo<%= activity.id %>" class="g-plusone" data-size="medium" data-annotation="none" data-href="<%= activity.entity_full_url() %>"></div>
+            <a href="http://pinterest.com/pin/create/button/?url=<%= activity.entity_full_url() %>&media=<%= activity.escaped_hero_image() %>&description=<%= escape(activity.escape('entity_name')) %>" class="pin-it-button" data-count_layout="none">
+                <img src="//assets.pinterest.com/images/PinExt.png" border="0" title="Pin It">
+            </a>
             <div id="fbl<%= activity.id %>" class="fb-like" data-href="<%= activity.entity_full_url() %>" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false"></div>
             <span>
-                <a class="icon share-twitter" href="https://twitter.com/intent/tweet?text=Love+this!&url=<%= activity.escaped_url() %>&via=ClosetGroupie" target="_blank">Share via Twitter</a>
-                <a class="icon share-facebook" href="https://www.facebook.com/sharer.php?u=<%= activity.escaped_url() %>" onclick="return fbshare('<%= activity.escaped_url() %>', '');" target="_blank">Share via Facebook</a>
+                <a class="icon share-twitter" href="https://twitter.com/intent/tweet?text=Love+this!&url=<%= activity.entity_full_url() %>&via=ClosetGroupie" target="_blank">Share via Twitter</a>
+                <a class="icon share-facebook" href="https://www.facebook.com/sharer.php?u=<%= activity.entity_full_url() %>" onclick="return fbshare('<%= activity.entity_full_url() %>', '');" target="_blank">Share via Facebook</a>
             </span>
         </div>
     </div>
