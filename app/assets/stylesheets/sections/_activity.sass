@@ -50,7 +50,16 @@ body.activity
             height: 42px
             margin: 1em 0
             overflow: hidden
-            
+            width: 960px
+            display: block
+
+            &.inactive > div
+                display: none
+
+            & > div
+                top: 21px !important
+                left: 480px !important
+
         #activity_list
             margin: 25px 0
         
