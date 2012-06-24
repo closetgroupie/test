@@ -3,13 +3,15 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
     id: 'feed-wrapper',
     
     initialize: function(options) {
-        _.bindAll(this, 'renderActivity', 'waypointReached', 'addWaypoint', 'removeWaypoint', 'addActivity', 'showRefresh', 'hideRefresh', 'triggerRefresh');
+        _.bindAll(this, 'renderActivity', 'waypointReached', 'addWaypoint', 'removeWaypoint', 'addActivity', 'showRefresh', 'hideRefresh', 'triggerRefresh', 'fetchStarted', 'fetchCompleted');
         this.collection = new ClosetGroupie.Collections.Activities();
         this.collection.reset(options.collection);
         this.feed = new ClosetGroupie.Collections.ActivityFeed({ collection: this.collection });
         this.updates = new ClosetGroupie.Collections.ActivityUpdates({ collection: this.collection });
         // Handle a fetch, may need to bind to something else to determine between scroll and "refresh"
         this.feed.on('reset', this.addActivity);
+        this.feed.on('fetch:start', this.fetchStarted);
+        this.feed.on('fetch:done', this.fetchCompleted);
         this.updates.on('activity', this.showRefresh);
         this.updates.on('refreshed', this.addActivity);
         this._fetching = false;
@@ -23,8 +25,8 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
         this.renderLayout();
         this.renderActivities();
         this.addWaypoint();
-        // Trigger masonry
         this.initializeMasonry();
+        this.initializeSpinner();
         return this;
     },
 
@@ -44,6 +46,14 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
     renderActivity: function(model) {
         var view = new ClosetGroupie.Views.Activity({ model: model });
         this.$el.find('#activity_list').append(view.render().el);
+    },
+
+    fetchStarted: function() {
+        this.$('#loading').removeClass('inactive');
+    },
+
+    fetchCompleted: function() {
+        this.$('#loading').addClass('inactive');
     },
 
     triggerRefresh: function() {
@@ -84,6 +94,7 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
                 $activity.append($activities).masonry('appended', $activities, false, function() {
                     self._fetching = false;
                     self.addWaypoint();
+                    collection.trigger('fetch:done');
                 });
             }
         });
@@ -98,7 +109,7 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
         });
     },
 
-    loading: function() {
+    initializeSpinner: function() {
         var opts = {
                 lines: 11,
                 length: 5,
@@ -107,7 +118,7 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
                 color: '#444',
                 speed: 1.1
             },
-            target = document.getElementById('loading');
+            target = this.$('#loading')[0];
         this.spinner = new Spinner(opts).spin(target);
     },
 
@@ -119,7 +130,7 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
         this.removeWaypoint();
         if (!this._fetching) {
             // Fetch content
-            this.feed.fetchMore();
+            this.feed.trigger('fetch:start').fetchMore();
             this._fetching = true;
         }
     },
