@@ -55,6 +55,7 @@ module ApplicationHelper
   end
 
   def profile_for(user, options = {})
+    options.merge!({:params => params})
     presenter = present(user, ProfilePresenter, options)
   end
 
