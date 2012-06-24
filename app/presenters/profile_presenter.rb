@@ -7,7 +7,7 @@ class ProfilePresenter < BasePresenter
 
   def closet_name
     # TODO: Refactor
-    if h.current_page?(ITEM_SHOW_PATH)
+    if current_page?(ITEM_SHOW_PATH)
       h.content_tag :h3 do
         h.link_to closet.name, h.closet_path(closet)
       end
@@ -28,7 +28,7 @@ class ProfilePresenter < BasePresenter
 
   def name
     # TODO: Refactor
-    if h.current_page?(ITEM_SHOW_PATH)
+    if current_page?(ITEM_SHOW_PATH)
       h.content_tag :h2, user.name 
     else
       h.content_tag :h1, user.name
@@ -47,6 +47,12 @@ class ProfilePresenter < BasePresenter
   end
   
   private
+
+  # TODO: Explore alternatives. This is probably not the best way to handle this, but it'll do for now.
+  def current_page?(options)
+    params = @options[:params]
+    options.all? { |key, value| params.has_key?(key) and params[key] == value }
+  end
 
   def item_count
     user.items.size

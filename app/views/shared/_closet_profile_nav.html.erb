@@ -1,10 +1,10 @@
 <ul id="nav">
     <%= filter_link "Closet",
         closet_path(closet),
-        {:controller => :closets, :action => :show} %>
+        closet_path(closet) %>
     <%= filter_link "Profile",
         profile_path(user),
-        {:controller => :users, :action => :show } %>
+        profile_path(user) %>
     <%= filter_link "Reviews",
         closet_reviews_path(closet),
         closet_reviews_path(closet) %>
