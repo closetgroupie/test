@@ -13,6 +13,7 @@
 //= require_self
 //
 //= require_directory ../templates/activities
+//= require ./models/user
 //= require_directory ./models/activities
 //= require_directory ./collections/activities
 //= require_directory ./views/activities
@@ -23,7 +24,7 @@ window.ClosetGroupie = {
     Routers: {},
     Views: {},
     initialize: function(data) {
-        new ClosetGroupie.Routers.Activities({ activities: data.activities });
+        new ClosetGroupie.Routers.Activities({ activities: data.activities, user: data.user });
         Backbone.history.start();
         jQuery('body').tooltip({
             selector: 'a[rel="tooltip"]'

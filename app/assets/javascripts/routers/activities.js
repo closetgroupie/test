@@ -2,6 +2,7 @@ ClosetGroupie.Routers.Activities = Backbone.Router.extend({
     initialize: function (options) {
         this.el = $('#content');
         this.collection = options.activities;
+        ClosetGroupie.currentUser = new ClosetGroupie.Models.User(options.user);
     },
 
     routes: {

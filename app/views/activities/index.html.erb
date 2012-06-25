@@ -3,7 +3,10 @@
     <%= javascript_include_tag "activities" %>
     <script type="text/json" id="bootstrap">
     <%# TODO: Maybe we should use something else than to_json for this? %>
-        { "activities": <%== render(template: "activities/bootstrap", formats: "json") %> }
+    {
+        "activities": <%== render(template: "activities/bootstrap", formats: "json") %>,
+        "user": <%== current_user.to_json(:only => [:id]) %>
+    }
     </script>
     <%= javascript_tag do %>
         $(function() {

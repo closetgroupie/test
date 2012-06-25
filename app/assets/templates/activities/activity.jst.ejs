@@ -36,13 +36,13 @@
     </div>
     <hr>
     <div class="comment">
-        <!-- TODO: if current_user -->
-        <% if (activity.is_favorite()) { %>
-        <span class="favorite">Favorite</span>
-        <% } else { %>
-        <a class="add_favorite" rel="tooltip" href="<%= activity.entity_favorite_url() %>" title="Add Favorite" data-item_id="<%= activity.id %>">Add Favorite</a>
+        <% if (ClosetGroupie.currentUser && ClosetGroupie.currentUser.is_authenticated()) { %>
+            <% if (activity.is_favorite()) { %>
+            <span class="favorite">Favorite</span>
+            <% } else { %>
+            <a class="add_favorite" rel="tooltip" href="<%= activity.entity_favorite_url() %>" title="Add Favorite" data-item_id="<%= activity.id %>">Add Favorite</a>
+            <% } %>
         <% } %>
-        <!-- end -->
         <a href="<%= activity.entity_comments_url() %>" class="comment_add">Add comment</a>
         <a href="<%= activity.entity_comments_url() %>" class="comment_count">0</a>
     </div>
