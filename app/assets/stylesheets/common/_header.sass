@@ -275,12 +275,11 @@ $headerheight: 60px
                             padding-left: 20px
                             display: none
 
-
                         .title
                             font-size: 13px
+                            margin-right: 20px
                             font-weight: bold
                             color: #fff
-
 
                         ul
                             margin: 10px 20px 0 0
@@ -315,17 +314,17 @@ $headerheight: 60px
                     #filterset-sizes
                         
                         ul
+                            margin-top: 2px
                             float: none
-                            margin-bottom: -8px
 
                             li
-                                margin: 0 8px 8px 0
+                                margin: 8px 8px 0 0
                                 float: left
                                 border: 0
                                 padding: 0
 
                                 &.last
-                                    margin: 0
+                                    margin-right: 0
 
                                 &.first
                                     clear: both
@@ -336,16 +335,18 @@ $headerheight: 60px
                                         color: #444
 
                                 a
-                                    // display: block
-                                    display: table-cell
+                                    display: block
                                     border: 1px solid $white
                                     padding: 5px
                                     text-align: center
-                                    width: 48px
-                                    height: 32px
-                                    vertical-align: middle
+                                    width: 28px
 
-            
+                                    body.babies &
+                                        display: table-cell
+                                        width: 48px
+                                        height: 32px
+                                        vertical-align: middle
+
                 .filterset-meta
                     float: left
                     position: relative
