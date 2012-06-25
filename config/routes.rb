@@ -118,6 +118,7 @@ Closetgroupie::Application.routes.draw do
 
   # Legacy URLs
   get "item-details/:legacy_id" => "legacy_redirects#item_details"
+  get "closet/:legacy_id"       => "legacy_redirects#closet"
 
   root to: "activities#index"
 end
