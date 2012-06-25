@@ -1,6 +1,5 @@
 <% body_class "item-detail" %>
 <% present @item do |item| %>
-  <h1>Current user: <%= current_user.admin? %></h1>
     <p class="back">
         &lt;&lt; <%= link_to "Back to #{item.closet.name}", closet_path(item.closet) %>
     </p>
