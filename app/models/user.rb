@@ -1,6 +1,6 @@
 KELLY = 3
 TRES = 2265
-JOONAS = 2254
+JOONAS = 157
 
 class User < ActiveRecord::Base
   include Tire::Model::Search

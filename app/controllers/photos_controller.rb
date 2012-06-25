@@ -1,4 +1,6 @@
 class PhotosController < ApplicationController
+  before_filter :require_login, :require_admin
+
   def rotate_clockwise
     @photo = Photo.find(params[:id])
     @photo.rotate!(90)
