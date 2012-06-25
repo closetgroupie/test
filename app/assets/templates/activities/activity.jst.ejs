@@ -3,7 +3,7 @@
         <div class="icon <%= activity.get('classification') %>"></div>
         <!-- if user -->
         <div id="share-<%= activity.id %>" class="share">
-            <a href="http://pinterest.com/pin/create/button/?url=<%= activity.entity_full_url() %>&media=<%= activity.escaped_hero_image() %>&description=<%= escape(activity.escape('entity_name')) %>" class="pin-it-button" data-count_layout="none">
+            <a href="http://pinterest.com/pin/create/button/?url=<%= activity.entity_full_url() %>&media=<%= activity.escaped_hero_image() %>&description=<%= escape(activity.escape('entity_name')) %>" class="pin-it-button" count-layout="none">
                 <img src="//assets.pinterest.com/images/PinExt.png" border="0" title="Pin It">
             </a>
             <div id="fbl<%= activity.id %>" class="fb-like" data-href="<%= activity.entity_full_url() %>" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false"></div>
