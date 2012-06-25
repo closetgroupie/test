@@ -44,10 +44,10 @@
     <div id="main-nav">
         <div id="nav-inner">
             <ul id="shop_by">
-                <li><%= link_to_unless_current "Women", shop_path("women") %></li>
-                <li><%= link_to_unless_current "Girls", shop_path("girls") %></li>
-                <li><%= link_to_unless_current "Boys", shop_path("boys") %></li>
-                <li><%= link_to_unless_current "Babies", shop_path("babies") %></li>
+                <li><%= link_to_unless_current "Women",  {controller: :shop, action: :show, segment: "women"} %></li>
+                <li><%= link_to_unless_current "Girls",  {controller: :shop, action: :show, segment: "girls"} %></li>
+                <li><%= link_to_unless_current "Boys",   {controller: :shop, action: :show, segment: "boys"} %></li>
+                <li><%= link_to_unless_current "Babies", {controller: :shop, action: :show, segment: "babies"} %></li>
             </ul>
             <%= form_tag search_path, id: "search", method: :get do %>
                 <%= text_field_tag :q, nil, id: "search_query" %>
