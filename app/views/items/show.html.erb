@@ -1,14 +1,17 @@
 <% body_class "item-detail" %>
 <% present @item do |item| %>
+  <h1>Current user: <%= current_user.admin? %></h1>
     <p class="back">
         &lt;&lt; <%= link_to "Back to #{item.closet.name}", closet_path(item.closet) %>
     </p>
     <ul id="thumbs">
     <% @item.photos.each do |photo| %>
-        <%# TODO: Use preview/thumbnail image here instead of full image %>
-        <li>
-            <%= link_to image_tag(photo.image_url(:thumbnail), class: "img-shadow"),
-                photo.image_url, rel: "style-gallery" %>
+      <%# TODO: Use preview/thumbnail image here instead of full image %>
+        <li class="photo">
+          <%= link_to 'Rotate Clockwise', { :controller => 'photos', 'action' => 'rotate_clockwise', :id => photo.id }, :class => 'photo_manipulation', :method => :post %>
+          <%= link_to 'Rotate Counterclockwise', { :controller => 'photos', 'action' => 'rotate_counterclockwise', :id => photo.id },  :class => 'photo_manipulation', :method => :post %>
+          <%= link_to image_tag(photo.image_url(:thumbnail), class: "img-shadow"),
+                photo.image_url, rel: "style-gallery", class: 'thumb' %>
         </li>
     <% end %>
     </ul>
@@ -46,5 +49,4 @@
     </section>
 <% end %>
 <% content_for :javascripts do %>
-    <%= javascript_include_tag('item') %>
 <% end %>

@@ -2,10 +2,12 @@ class PhotosController < ApplicationController
   def rotate_clockwise
     @photo = Photo.find(params[:id])
     @photo.rotate!(90)
+    redirect_to :back
   end
 
   def rotate_counterclockwise
     @photo = Photo.find(params[:id])
     @photo.rotate!(-90)
+    redirect_to :back
   end
 end
