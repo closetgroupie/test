@@ -8,27 +8,48 @@ class ShopController < ApplicationController
     @segments = get_segments()
   end
 
+  # def show
+  #   if params[:segment].present?
+  #     @segment = params[:segment].to_s.downcase
+  #     segment_slugs = slugs_for_id(@segment)
+  #     category_slug = params[:category].presence
+  #     sizes = params[:sizes].presence || []
+
+  #     segments = Segment.where(:slug => segment_slugs).pluck(:id)
+
+  #     @categories = Category.includes(:sizes).where(:segment_id => segments)
+  #     @category = @categories.find { |c| c.slug == category_slug }
+  #     # TODO: There has to be a better way...
+  #     @sizes    = @category.sizes.select { |s| sizes.include?(s.id.to_s) } if @category
+  #     @items = Item.includes(:photos, :size, :category).filter_by(segments, @category, sizes).page params[:page]
+  #     # @items = Item.includes(:photos, :size, :category)
+  #     # if @category.present?
+  #     #   @items = @items.by_segments(segments).by_category(@category)
+  #     # else
+  #     #   @items = @items.by_segments(segments)
+  #     # end
+  #     # @items.page params[:page]
+  #   end
+  # end
+
   def show
     if params[:segment].present?
-      @segment = params[:segment].to_s.downcase
-      segment_slugs = slugs_for_id(@segment)
+      segment = params[:segment].to_s.downcase
+
+      segment_slugs = (segment == 'babies') ? ['baby-girls', 'baby-boys'] : segment
       category_slug = params[:category].presence
-      sizes = params[:sizes].presence || []
+      sizes         = params[:sizes].presence || []
 
-      segments = Segment.where(:slug => segment_slugs).pluck(:id)
+      @segments   = Segment.where(:slug => segment_slugs).pluck(:id)
+      categories = Category.includes(:segment, :sizes).where(:segment_id => @segments)
 
-      @categories = Category.includes(:sizes).where(:segment_id => segments)
-      @category = @categories.find { |c| c.slug == category_slug }
-      # TODO: There has to be a better way...
-      @sizes    = @category.sizes.select { |s| sizes.include?(s.id.to_s) } if @category
-      @items = Item.includes(:photos, :size, :category).filter_by(segments, @category, sizes).page params[:page]
-      # @items = Item.includes(:photos, :size, :category)
-      # if @category.present?
-      #   @items = @items.by_segments(segments).by_category(@category)
-      # else
-      #   @items = @items.by_segments(segments)
-      # end
-      # @items.page params[:page]
+      @category  = categories.find { |c| c.slug == category_slug }
+      @sizes     = @category.sizes.select { |s| sizes.include?(s.id.to_s) } if @category
+      @items     = Item.includes(:photos, :size, :category).filter_by(@segments, @category, sizes).page params[:page]
+
+      # Hack around setting segment back to babies even if we're in baby girls or baby boys
+      @segment   = (segment == 'baby-girls' or segment == 'baby-boys') ? 'babies' : segment
+      @categories_by_segment = categories.group_by(&:segment)
     end
   end
 

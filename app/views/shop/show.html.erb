@@ -31,11 +31,24 @@
         <% if @category.nil? %>
         <div id="filterset-categories" class="filterset">
             <h3 class="title">Silhouettes</h3>
-            <ul id="item-categories">
-            <% @categories.each do |category| %>
-                <li class="filter"><%= link_to category.name, shop_by_category_path(@segment, category.slug) %></li>
-            <% end %>
+            <% if @segments.size > 1 %>
+                <% @categories_by_segment.each do |segment, categories| %>
+                    <ul class="item-categories">
+                    <% categories.each do |category| %>
+                        <li class="filter"><%= link_to "#{category.segment.name} #{category.name}", shop_by_category_path(segment.slug, category.slug) %></li>
+                    <% end %>
+                    </ul>
+                <% end %>
+            <% else %>
+                <% @categories_by_segment.each do |segment, categories| %>
+                    <ul class="item-categories">
+                    <% categories.each do |category| %>
+                        <li class="filter"><%= link_to category.name, shop_by_category_path(segment.slug, category.slug) %></li>
+                    <% end %>
+                    </ul>
+                <% end %>
             </ul>
+            <% end %>
         </div>
         <% else %>
         <div id="filterset-sizes" class="filterset">
