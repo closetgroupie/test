@@ -64,6 +64,11 @@ Closetgroupie::Application.routes.draw do
     end
   end
 
+  resources :photos do
+    post 'rotate_clockwise', :on => :member
+    post 'rotate_counterclockwise', :on => :member
+  end
+
   match "oauth/callback" => "oauths#callback"
   match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
