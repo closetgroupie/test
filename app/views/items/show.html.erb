@@ -4,17 +4,25 @@
     <p class="back">
         &lt;&lt; <%= link_to "Back to #{item.closet.name}", closet_path(item.closet) %>
     </p>
-    <ul id="thumbs">
+    <div id="thumbs">
     <% @item.photos.each do |photo| %>
       <%# TODO: Use preview/thumbnail image here instead of full image %>
-        <li class="photo">
-          <%= link_to 'Rotate Clockwise', { :controller => 'photos', 'action' => 'rotate_clockwise', :id => photo.id }, :class => 'photo_manipulation', :method => :post %>
-          <%= link_to 'Rotate Counterclockwise', { :controller => 'photos', 'action' => 'rotate_counterclockwise', :id => photo.id },  :class => 'photo_manipulation', :method => :post %>
-          <%= link_to image_tag(photo.image_url(:thumbnail), class: "img-shadow"),
-                photo.image_url, rel: "style-gallery", class: 'thumb' %>
-        </li>
+      <div class="photo">
+
+        <%# Rotate controls %>
+        <% if current_user.admin? %>
+        <div class="photo_manipulation">
+          <%= link_to image_tag('btn-rotate-right.png'), { :controller => 'photos', 'action' => 'rotate_clockwise', :id => photo.id }, :method => :post %><br/>
+          <%= link_to image_tag('btn-rotate-left.png'), { :controller => 'photos', 'action' => 'rotate_counterclockwise', :id => photo.id }, :method => :post %>
+
+        </div>
+        <% end %>
+
+        <%= link_to image_tag(photo.image_url(:thumbnail), class: "img-shadow"),
+            photo.image_url, rel: "style-gallery", class: 'thumb' %>
+        </div>
     <% end %>
-    </ul>
+    </div>
     <section id="item_details">
         <div class="left">
             <div class="hero-img">
@@ -49,4 +57,5 @@
     </section>
 <% end %>
 <% content_for :javascripts do %>
+  <%= javascript_include_tag('item') %>
 <% end %>
