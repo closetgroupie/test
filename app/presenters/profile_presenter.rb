@@ -51,7 +51,8 @@ class ProfilePresenter < BasePresenter
   # TODO: Explore alternatives. This is probably not the best way to handle this, but it'll do for now.
   def current_page?(options)
     params = @options[:params]
-    options.all? { |key, value| params.has_key?(key) and params[key] == value }
+    truth = options.all? { |key, value| params.has_key?(key.to_s) and params[key.to_s] == value.to_s }
+    truth
   end
 
   def item_count
