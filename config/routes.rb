@@ -115,5 +115,9 @@ Closetgroupie::Application.routes.draw do
   get ":segment"           => "shop#show", constraints: SegmentsRestriction, as: "shop"
   get ":segment/:category" => "shop#show", constraints: SegmentsRestriction, as: "shop_by_category"
   get "/activity/previous/:id" => "activities#previous"
+
+  # Legacy URLs
+  get "item-details/:legacy_id" => "legacy_redirects#item_details"
+
   root to: "activities#index"
 end
