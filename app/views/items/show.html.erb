@@ -9,7 +9,7 @@
       <div class="photo">
 
         <%# Rotate controls %>
-        <% if current_user.admin? %>
+        <% if current_user and current_user.admin? %>
         <div class="photo_manipulation">
           <%= link_to image_tag('btn-rotate-right.png'), { :controller => 'photos', 'action' => 'rotate_clockwise', :id => photo.id }, :method => :post %><br/>
           <%= link_to image_tag('btn-rotate-left.png'), { :controller => 'photos', 'action' => 'rotate_counterclockwise', :id => photo.id }, :method => :post %>
