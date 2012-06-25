@@ -1,4 +1,4 @@
-<% body_class "shop" %>
+<% body_class "shop #{@segment}" %>
     <% if @items.any? %>
     <ul id="item-listing" class="item-list">
         <%= render :partial => "shop/item", collection: @items %>
