@@ -28,6 +28,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_order, :current_cart
   private
 
+    def require_admin
+      unless current_user and current_user.admin?
+        raise ActionController::RoutingError.new('Not Found')
+      end
+    end
+
     def order_from_session
       if current_user.present?
         @current_order = (Order.find_by_id(session[:order_id]) if session[:order_id]) || nil

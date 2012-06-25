@@ -1,3 +1,7 @@
+KELLY = 3
+TRES = 2265
+JOONAS = 157
+
 class User < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
@@ -57,6 +61,7 @@ class User < ActiveRecord::Base
 
   def admin?
     # TODO: This should call administator?
+    [KELLY, JOONAS, TRES].include? id
   end
 
   # TODO: Add this as :if => :should_update_password? to password
