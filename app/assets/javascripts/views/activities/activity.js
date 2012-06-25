@@ -19,18 +19,20 @@ ClosetGroupie.Views.Activity = Backbone.View.extend({
 
     favorite: function(event) {
         event.preventDefault();
-        var url = this.$('.add_favorite').attr('href');
+        var url = this.$('.add_favorite').attr('href'),
+            self = this;
         $.post(url, function(data, textStatus) {
-            console.log('success');
+            // Perhaps we should add a flash message or something here?
+            self.$('.add_favorite').tooltip('hide').replaceWith('<span class="favorite">Favorite</span>');
         });
     },
 
     mouseEnter: function() {
         this.$el.addClass('hover');
         if (!this._parsed) {
-            if (window.gapi) {
-                gapi.plusone.go(this._sid);
-            }
+            // if (window.gapi) {
+            //     gapi.plusone.go(this._sid);
+            // }
             FB.XFBML.parse(document.getElementById(this._sid));
             this._parsed = true;
         }
