@@ -73,16 +73,17 @@ ClosetGroupie.Views.ActivitiesIndex = Backbone.View.extend({
 
     addActivity: function(collection) {
         var $activity = this.$el.find('#activity_list'),
-            activities = "",
-            self = this;
+            els       = [],
+            self      = this,
+            view      = null;
+
         collection.each(function(activity) {
-            var view = new ClosetGroupie.Views.Activity({ model: activity });
-            // $activity.append(view.render().el);
-            // TODO: Replace this with something Firefox friendly
-            activities += view.render().el.outerHTML;
+            view = new ClosetGroupie.Views.Activity({ model: activity });
+            els.push(view.render().el);
         });
-        var $activities = $(activities);
-        // this.$el.find('#refresh').after($activity);
+
+        var $activities = $(els);
+
         $activities.imagesLoaded(function() {
             // TODO: This shouldn't be done this way, but oh well...
             if (collection.is_prepended) {
