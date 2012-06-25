@@ -16,7 +16,7 @@ class FavoritesController < ApplicationController
           redirect_to @item
         end
       end
-      format.js @favorite
+      format.js
     end
   end
 
