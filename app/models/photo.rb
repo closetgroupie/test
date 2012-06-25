@@ -1,6 +1,8 @@
 class Photo < ActiveRecord::Base
   belongs_to :item
-  attr_accessible :image, :item_id, :ordering
+  attr_accessible :image, :item_id, :ordering, :original_name
+  before_create :record_original_name
+ 
 
   mount_uploader :image, ImageUploader
 
@@ -13,4 +15,10 @@ class Photo < ActiveRecord::Base
     save!
     image.recreate_versions!
   end
+
+  private
+  def record_original_name
+    self.original_name = image_identifier
+  end
+
 end

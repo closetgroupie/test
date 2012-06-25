@@ -1,5 +1,6 @@
 KELLY = 3
 TRES = 2285
+TRES_DEV = 2265
 JOONAS = 157
 
 class User < ActiveRecord::Base
@@ -61,7 +62,7 @@ class User < ActiveRecord::Base
 
   def admin?
     # TODO: This should call administator?
-    [KELLY, JOONAS, TRES].include? id
+    [KELLY, JOONAS, TRES, TRES_DEV].include? id
   end
 
   # TODO: Add this as :if => :should_update_password? to password
