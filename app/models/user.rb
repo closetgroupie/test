@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
 
   def admin?
     # TODO: This should call administator?
-    [KELLY, JOONAS, TRES, TRES_DEV].include? id
+    [KELLY, JOONAS, TRES].include? id
   end
 
   # TODO: Add this as :if => :should_update_password? to password
