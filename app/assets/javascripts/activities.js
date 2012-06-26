@@ -10,9 +10,7 @@
 //= require waypoints.min
 //= require spin.min
 //= require scroll-to-top
-//
 //= require_self
-//
 //= require_directory ../templates/activities
 //= require ./models/user
 //= require_directory ./models/activities
