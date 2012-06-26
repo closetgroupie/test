@@ -127,5 +127,6 @@ Closetgroupie::Application.routes.draw do
   get "closet/:legacy_id"       => "legacy_redirects#closet"
   get "legacy/image/:item/:image" => "legacy_redirects#item_image"
 
-  root to: "activities#index"
+  # root to: "activities#index"
+  root to: "landing#index"
 end
