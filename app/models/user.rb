@@ -1,6 +1,5 @@
 KELLY = 3
 TRES = 2285
-TRES_DEV = 2265
 JOONAS = 157
 
 class User < ActiveRecord::Base
