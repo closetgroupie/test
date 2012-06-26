@@ -2,7 +2,8 @@ class Photo < ActiveRecord::Base
   belongs_to :item
   attr_accessible :image, :item_id, :ordering, :original_name
   before_create :record_original_name
- 
+
+  default_scope order("ordering DESC, id ASC")
 
   mount_uploader :image, ImageUploader
 
