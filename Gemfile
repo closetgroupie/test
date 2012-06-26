@@ -29,7 +29,7 @@ group :development do
  #gem 'sqlite3'
  gem 'pry'
  #gem 'pry-remote'
- #gem 'letter_opener'
+ gem 'letter_opener'
  #gem 'acts-as-importable', github: "kweightman/acts-as-importable"
 end
 
@@ -52,7 +52,7 @@ gem 'wicked'
 gem 'faraday'
 
 gem 'activemerchant', :require => 'active_merchant'
-gem 'active_paypal_adaptive_payment'
+gem 'active_paypal_adaptive_payment', :github => 'jpablobr/active_paypal_adaptive_payment'
 
 # gem 'activerecord-postgres-hstore'
 

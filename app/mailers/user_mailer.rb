@@ -22,4 +22,5 @@ class UserMailer < ActionMailer::Base
     mail(to: relationship.target.email,
          subject: "#{@follower.name} is now following your closet")
   end
+
 end

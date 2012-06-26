@@ -1,10 +1,10 @@
 Closetgroupie::Application.configure do
   config.paypal = {
-    :login     => "joonas_1338321438_biz_api1.closetgroupie.com",
-    :password  => "1338321463",
-    :signature => "AM1nJUGwQaq7jopNFOUMd8.hX-JkAZkj2yWQWtTN4LFdRzW7m2sJPokS",
+    :login     => "cg2_1340742354_biz_api1.tspike.com",
+    :password  => "1340742384",
+    :signature => "AxPmYhTdQNX2a3-ZgBsicl6aU8SFA-lhRnrwQ6n0rGff6cZ2voY9Mz7N",
     :appid     => "APP-80W284485P519543T",
-    :email     => "joonas_1338321438_biz@closetgroupie.com"
+    :email     => "cg2_1340742354_biz@tspike.com"
   }
 
   # Settings specified here will take precedence over those in config/application.rb
