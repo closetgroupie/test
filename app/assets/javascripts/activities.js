@@ -1,5 +1,4 @@
 //= require underscore-min
-// require underscore
 // require underscore-mixins
 //= require json2
 //= require backbone-min
@@ -24,9 +23,9 @@ window.ClosetGroupie = {
     Views: {},
     initialize: function(data) {
         new ClosetGroupie.Routers.Activities({ activities: data.activities, user: data.user });
-        Backbone.history.start();
         jQuery('body').tooltip({
             selector: 'a[rel="tooltip"]'
         });
+        Backbone.history.start();
     }
 };
