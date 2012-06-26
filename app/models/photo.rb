@@ -3,7 +3,7 @@ class Photo < ActiveRecord::Base
   attr_accessible :image, :item_id, :ordering, :original_name
   before_create :record_original_name
 
-  default_scope order("ordering DESC, id ASC")
+  default_scope order("photos.ordering DESC, photos.id ASC")
 
   mount_uploader :image, ImageUploader
 
