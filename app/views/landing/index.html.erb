@@ -1,6 +1,6 @@
 <% @items_by_segment.each do |segment, items| %>
 <div class="segment">
-    <h2><%= segment.name %></h2>
+    <h2><%= segment %></h2>
     <ul>
         <%= render :partial => "landing/item", collection: items, locals: { count: items.size-1 } %>
         <%# <li class="last"> %>
