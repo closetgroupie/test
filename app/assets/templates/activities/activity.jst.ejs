@@ -1,9 +1,8 @@
 <div class="activity_wrap">
     <div class="action">
         <div class="icon <%= activity.get('classification') %>"></div>
-        <!-- if user -->
         <div id="share-<%= activity.id %>" class="share">
-            <a href="http://pinterest.com/pin/create/button/?url=<%= activity.entity_full_url() %>&media=<%= activity.escaped_hero_image() %>&description=<%= escape(activity.escape('entity_name')) %>" class="pin-it-button" count-layout="none">
+            <a data-url="https://closetgroupie.com<%= activity.get('entity_url') %>" data-image="http://closetgroupie.com<%= activity.get('hero_image') %>" data-description="<%= activity.escape('entity_name') %>" href="http://pinterest.com/pin/create/button/?url=<%= activity.entity_full_url() %>&media=<%= activity.escaped_hero_image() %>&description=<%= escape(activity.escape('entity_name')) %>" class="pin-it-button">
                 <img src="//assets.pinterest.com/images/PinExt.png" border="0" title="Pin It">
             </a>
             <div id="fbl<%= activity.id %>" class="fb-like" data-href="<%= activity.entity_full_url() %>" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false"></div>

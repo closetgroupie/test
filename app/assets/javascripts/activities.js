@@ -6,6 +6,7 @@
 // require backbone-support
 //= require jquery.imagesloaded
 //= require jquery.masonry
+//= require pinterest-plus-html5.min
 //= require waypoints.min
 //= require spin.min
 //= require scroll-to-top
