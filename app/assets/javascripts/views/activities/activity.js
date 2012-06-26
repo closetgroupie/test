@@ -30,12 +30,7 @@ ClosetGroupie.Views.Activity = Backbone.View.extend({
     mouseEnter: function() {
         this.$el.addClass('hover');
         if (!this._parsed) {
-            // if (window.gapi) {
-            //     gapi.plusone.go(this._sid);
-            // }
-            if (window.PinterestPlus) {
-                PinterestPlus.pinit(this.$('#'+this._sid)[0]);
-            }
+            PinterestPlus.pinit(this.$('#'+this._sid)[0]);
             FB.XFBML.parse(document.getElementById(this._sid));
             this._parsed = true;
         }
