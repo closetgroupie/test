@@ -1,4 +1,6 @@
 Closetgroupie::Application.routes.draw do
+  ActiveAdmin.routes(self)
+
   get "oauths/oauth"
 
   get "oauths/callback"
