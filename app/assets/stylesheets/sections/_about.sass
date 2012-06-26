@@ -1,0 +1,127 @@
+body.static
+    .contain
+        width: 960px
+
+    #content
+        margin: 60px auto
+
+    h1
+        display: block
+        margin-bottom: 1em
+
+    ul.nav
+        float: left
+        width: 150px
+        margin: 0
+        list-style-type: none
+        margin-right: 20px
+
+        li
+            font-size: 18px
+            margin-bottom: 0.5em
+
+            &.active
+                a
+                    color: $mustard
+
+            a
+                text-decoration: none
+                color: #444
+
+                &:hover
+                    color: $gold
+
+    #static
+        width: 720px
+        float: left
+
+body.about
+    h1
+        +replace-text-with-dimensions('about/our-story.png')
+
+    h2
+        padding-left: 15px
+        margin: 1.25em 0 1em
+
+    p
+        padding-left: 15px
+
+    .signed
+        margin: 2em 0
+
+body.team
+    h1
+        +replace-text-with-dimensions('about/nice-to-meet-you.png')
+
+    blockquote
+        padding-left: 15px
+
+        em
+            color: $mustard
+
+    #people
+        margin: 2em 0 0 0
+        list-style: none
+
+        li
+            float: left
+            margin: 0 20px 20px 15px
+            overflow: hidden
+            width: 301px
+            position: relative
+
+            &:hover
+                .steered
+                    display: table
+
+                img
+                    +opacity(0.25)
+
+            .steered
+                width: 271px
+                height: 170px
+                padding: 15px
+                display: none
+                position: absolute
+                top: 0
+                left: 0
+
+                p
+                    font-size: 18px
+                    display: table-cell
+                    vertical-align: middle
+                    text-align: center
+
+            h3
+                margin-top: 1em
+
+            img
+                +border-radius(10px)
+                border: 10px solid none
+
+body.careers
+    h1
+        +replace-text-with-dimensions('about/work-with-us.png')
+
+    .positions-available
+        list-style: none
+        margin: 0
+        
+        .career
+            margin-top: 20px
+
+            .career-position
+                background: whiteSmoke
+                border-bottom: 1px solid #ddd
+                font:
+                    size: 18px
+                    weight: normal
+                padding: 9px 15px
+
+            .career-details
+                padding: 15px
+
+    #shoes
+        +border-radius(10px)
+        border: 10px solid none
+        margin: 15px 0

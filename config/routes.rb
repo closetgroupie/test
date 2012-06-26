@@ -112,6 +112,10 @@ Closetgroupie::Application.routes.draw do
   get "terms"   => "static#terms"
   get "privacy" => "static#privacy"
 
+  get "about"   => "static#about"
+  get "team"    => "static#team"
+  get "careers" => "static#careers"
+
   get ":segment"           => "shop#show", constraints: SegmentsRestriction, as: "shop"
   get ":segment/:category" => "shop#show", constraints: SegmentsRestriction, as: "shop_by_category"
   get "/activity/previous/:id" => "activities#previous"
