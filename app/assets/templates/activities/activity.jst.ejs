@@ -1,0 +1,49 @@
+<div class="activity_wrap">
+    <div class="action">
+        <div class="icon <%= activity.get('classification') %>"></div>
+        <div id="share-<%= activity.id %>" class="share">
+            <a data-url="https://closetgroupie.com<%= activity.get('entity_url') %>" data-image="http://closetgroupie.com<%= activity.get('hero_image') %>" data-description="<%= activity.escape('entity_name') %>" href="http://pinterest.com/pin/create/button/?url=<%= activity.entity_full_url() %>&media=<%= activity.escaped_hero_image() %>&description=<%= escape(activity.escape('entity_name')) %>" class="pin-it-button">
+                <img src="//assets.pinterest.com/images/PinExt.png" border="0" title="Pin It">
+            </a>
+            <div id="fbl<%= activity.id %>" class="fb-like" data-href="<%= activity.entity_full_url() %>" data-send="false" data-layout="button_count" data-width="80" data-show-faces="false"></div>
+            <span>
+                <a class="icon share-twitter" href="https://twitter.com/intent/tweet?text=Love+this!&url=<%= activity.entity_full_url() %>&via=ClosetGroupie" target="_blank">Share via Twitter</a>
+                <a class="icon share-facebook" href="https://www.facebook.com/sharer.php?u=<%= activity.entity_full_url() %>" onclick="return fbshare('<%= activity.entity_full_url() %>', '');" target="_blank">Share via Facebook</a>
+            </span>
+        </div>
+    </div>
+    <hr>
+    <div class="content">
+        <div class="imagery">
+            <a href="<%= activity.get('entity_url') %>">
+                <img src="<%= activity.get('hero_image') %>" class="target">
+            </a>
+        </div>
+        <p class="blurb">
+            <% if (activity.get('is_purchase')) { %>
+            <%= activity.escape('user_name') %>
+            <% } else { %>
+            <a href="<%= activity.get('user_profile_url') %>">
+                <%= activity.escape('user_name') %>
+            </a>
+            <% } %>
+            <%= activity.escape('verb') %>
+            <a href="<%= activity.get('entity_url') %>">
+                <%= activity.escape('entity_name') %>
+            </a>
+        </p>
+    </div>
+    <hr>
+    <div class="comment">
+        <% if (ClosetGroupie.currentUser && ClosetGroupie.currentUser.is_authenticated()) { %>
+            <% if (activity.is_favorite()) { %>
+            <span class="favorite">Favorite</span>
+            <% } else { %>
+            <a class="add_favorite" rel="tooltip" href="<%= activity.entity_favorite_url() %>" title="Add Favorite" data-item_id="<%= activity.id %>">Add Favorite</a>
+            <% } %>
+        <% } %>
+        <a href="<%= activity.entity_comments_url() %>" class="comment_add">Add comment</a>
+        <a href="<%= activity.entity_comments_url() %>" class="comment_count">0</a>
+    </div>
+</div>
+<div class="activity_top"></div>

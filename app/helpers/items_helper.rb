@@ -36,7 +36,7 @@ module ItemsHelper
   
   def pinterest_button(url, image_url, description)
     link_to "http://pinterest.com/pin/create/button/?url=#{u(url)}&media=#{u(url_for_image(image_url))}&description=#{u(description)}",
-      :class => "pin-it-button", :count_layout => "none" do
+      :class => "pin-it-button", :data => { url: url, image: url_for_image(image_url), description: description } do
         image_tag "//assets.pinterest.com/images/PinExt.png", border: 0, title: "Pin It"
     end
   end

@@ -7,10 +7,17 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    current_user.favorites.create({ item_id: @item.id })
-    redirect_to :back
-  rescue ActionController::RedirectBackError
-    redirect_to @item
+    @favorite = current_user.favorites.create({ item_id: @item.id })
+    respond_to do |format|
+      format.html do 
+        begin
+          redirect_to :back
+        rescue ActionController::RedirectBackError
+          redirect_to @item
+        end
+      end
+      format.js
+    end
   end
 
   def destroy
