@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120606080820) do
+ActiveRecord::Schema.define(:version => 20120625220745) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id",                   :null => false
@@ -186,9 +186,10 @@ ActiveRecord::Schema.define(:version => 20120606080820) do
     t.integer  "item_id"
     t.string   "image"
     t.integer  "ordering"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.integer  "legacy_id"
+    t.string   "original_name"
   end
 
   create_table "purchase_shipping_addresses", :force => true do |t|

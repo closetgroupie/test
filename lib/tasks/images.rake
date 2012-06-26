@@ -18,6 +18,7 @@ namespace :photos do
         end
       end
     end
+
     task :dest => :environment do
       puts "Moving photos to destination directory..."
       return
@@ -31,6 +32,14 @@ namespace :photos do
             FileUtils.remove_dir(tmp) if Dir.exists?(dest) and Dir.exists?(tmp)
           end
         end
+      end
+    end
+  end
+
+  task :populate_original_filename => :environment do
+    ::Photo.find_in_batches(:batch_size => 200) do |batch|
+      batch.each do |photo|
+        photo.update_attribute(:original_name, photo.image_identifier) unless photo.original_name.present?
       end
     end
   end

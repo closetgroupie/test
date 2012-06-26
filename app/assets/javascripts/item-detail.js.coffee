@@ -24,7 +24,7 @@ jQuery ($) ->
         jQuery.post '/activity/facebook/comment/remove', data: response
         return
 
-  $("#thumbs a").fancybox
+  $(".thumb").fancybox
     overlayColor: "#fff",
     overlayOpacity: .8
 
