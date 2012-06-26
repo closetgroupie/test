@@ -1,4 +1,7 @@
 body.static
+    .contain
+        width: 960px
+
     #content
         margin-top: 60px
 
@@ -8,7 +11,7 @@ body.static
 
     ul.nav
         float: left
-        width: 220px
+        width: 150px
         margin: 0
         list-style-type: none
         margin-right: 20px
@@ -29,7 +32,7 @@ body.static
                     color: $gold
 
     #static
-        width: 650px
+        width: 720px
         float: left
 
 body.about
@@ -44,7 +47,7 @@ body.about
         padding-left: 15px
 
     .signed
-        margin-top: 2em
+        margin: 2em 0
 
 body.team
     h1
@@ -62,12 +65,39 @@ body.team
 
         li
             float: left
-            margin: 0 80px 20px 15px
+            margin: 0 20px 20px 15px
             overflow: hidden
-            width: 200px
+            width: 301px
+            position: relative
+
+            &:hover
+                .steered
+                    display: table
+
+                img
+                    +opacity(0.25)
+
+            .steered
+                width: 271px
+                height: 170px
+                padding: 15px
+                display: none
+                position: absolute
+                top: 0
+                left: 0
+
+                p
+                    font-size: 18px
+                    display: table-cell
+                    vertical-align: middle
+                    text-align: center
 
             h3
                 margin-top: 1em
+
+            img
+                +border-radius(10px)
+                border: 10px solid none
 
 body.careers
     h1
@@ -90,3 +120,8 @@ body.careers
 
             .career-details
                 padding: 15px
+
+    #shoes
+        +border-radius(10px)
+        border: 10px solid none
+        margin: 15px 0
