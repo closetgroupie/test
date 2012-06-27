@@ -30,6 +30,7 @@
                     </ul>
                     <h1>What's in your closet?</h1>
                 </div>
+                <div id="header-bg"></div>
             </header>
             <section id="content">
                 <div class="inner">
@@ -52,6 +53,13 @@
                     </ul>
                 </div>
             </footer>
+            <div id="tag-container">
+                <div id="tag">
+                    <%= link_to "Connect with facebook", auth_at_provider_path(:provider => :facebook), :id => "facebook-connect" %>
+                    <a href="/signup" id="regular-signup">- Or sign up using your email address -</a>
+                </div>
+                <div id="string-under"></div>
+            </div>
         </div>
         <%= javascript_include_tag "application" %>
         <script type="text/javascript">

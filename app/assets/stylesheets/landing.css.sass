@@ -18,16 +18,67 @@ body.landing
     .container
         background: image-url('landing/header-banner.jpg') top center no-repeat
 
+    #tag-container
+        position: absolute
+        top: 0
+        right: 5%
+
+        #tag
+            background: image-url('landing/tag.png') top center no-repeat
+            width: 227px
+            height: 116px
+            display: block
+            z-index: 5001
+            padding-top: 210px
+            position: relative
+
+            #facebook-connect
+                +replace-text('landing/facebook-connect.png', 0, 0)
+                width: 201px
+                height: 36px
+                display: block
+                margin: 0 auto 5px
+
+                &:hover
+                    background-position: 0 -36px
+
+            #regular-signup
+                color: #dcdcdc
+                font-size: 11px
+                text-align: center
+                display: block
+
+                &:hover
+                    color: $white
+
+        #string-under
+            background: image-url('landing/tag-string-under.png') no-repeat top left
+            position: absolute
+            top: 0
+            left: 48%
+            z-index: 4999
+            width: 11px
+            height: 107px
+            display: block
+
     header
         +clearfix
-        background: image-url('landing/header-bg.png') top left repeat-x
         height: 196px
+
+        #header-bg
+            position: relative
+            z-index: 5000
+            background: image-url('landing/header-bg.png') top left repeat-x
+            width: 100%
+            height: 61px
 
         #logo
             +replace-text-with-dimensions('landing/logo.png')
             display: block
             margin-top: 11px
             float: left
+            position: relative
+            z-index: 5010
 
         ul
             list-style: none
@@ -47,6 +98,8 @@ body.landing
                     font-size: 20px
                     font-weight: bold
                     line-height: 60px
+                    position: relative
+                    z-index: 5010
 
                     &:hover
                         color: $mustard
@@ -192,13 +245,28 @@ body.landing
 
                 a
                     display: block
+                    width: 36px
+                    height: 35px
+                    text-indent: -1000em
+                    background: image-url('landing/icons-social.png') no-repeat 0 0
 
                 #facebook
-                    +replace-text-with-dimensions('landing/icon-facebook.png')
+                    background-position: 0 0
+
+                    &:hover
+                        background-position: 0 -35px
+
                 #pinterest
-                    +replace-text-with-dimensions('landing/icon-pinterest.png')
+                    background-position: -36px 0
+
+                    &:hover
+                        background-position: -36px -35px
+
                 #twitter
-                    +replace-text-with-dimensions('landing/icon-twitter.png')
+                    background-position: -72px 0
+
+                    &:hover
+                        background-position: -72px -35px
 
             #quick_links
                 float: float
