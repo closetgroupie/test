@@ -1,4 +1,5 @@
 Closetgroupie::Application.configure do
+  # TODO TRES revert before merge
   config.paypal = {
     :login     => "cg2_1340742354_biz_api1.tspike.com",
     :password  => "1340742384",

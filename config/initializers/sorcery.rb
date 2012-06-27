@@ -92,7 +92,7 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.user_info_mapping = {:name => "name"}
   #
 
-
+# TODO TRES revert before merge
 if Rails.env.development?
   #SITE_LOCATION = "http://localhost:3000"
   SITE_LOCATION = "http://cgx-dev.showoff.io"

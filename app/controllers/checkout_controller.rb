@@ -44,7 +44,6 @@ class CheckoutController < ApplicationController
         :custom               => uid,
         :fees_payer           => 'EACHRECEIVER'
       )
-      binding.pry
     end
 
     if step == :payment

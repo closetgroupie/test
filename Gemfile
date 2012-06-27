@@ -27,6 +27,7 @@ gem 'therubyracer'
 
 group :development do
  #gem 'sqlite3'
+# TODO TRES comment out before merge
  gem 'pry'
  #gem 'pry-remote'
  gem 'letter_opener'
@@ -52,6 +53,9 @@ gem 'wicked'
 gem 'faraday'
 
 gem 'activemerchant', :require => 'active_merchant'
+
+# We're using the github trunk until they release 0.3.14
+# with the fix for SSLError
 gem 'active_paypal_adaptive_payment', :github => 'jpablobr/active_paypal_adaptive_payment'
 
 # gem 'activerecord-postgres-hstore'
