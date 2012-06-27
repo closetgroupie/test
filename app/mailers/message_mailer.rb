@@ -7,4 +7,5 @@ class MessageMailer < ActionMailer::Base
     mail(to: message.recipient.email,
          subject: "You have received a new message from #{message.sender.name} on ClosetGroupie")
   end
+
 end
