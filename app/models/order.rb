@@ -47,4 +47,10 @@ class Order < ActiveRecord::Base
   def unique_id
     "CG-SO-#{id}-#{created_at.to_i}"
   end
+
+  #TODO TRES remove this, figure out how to use OrderPresenter in purchase_made_email
+  def shipping
+    @shipping ||= cart.shipping_address
+  end
+
 end

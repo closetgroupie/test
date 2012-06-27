@@ -11,10 +11,4 @@ class OrderMailer < ActionMailer::Base
     @order  = order
     mail(to: @seller.email, subject: "You've made a sale on ClosetGroupie")
   end
-
-  def purchase_made_email(order)
-    @buyer = User.find(order.buyer_id)
-    @order = order
-    mail(to: @buyer.email, subject: "Thanks for your purchase from ClosetGroupie!")
-  end
 end

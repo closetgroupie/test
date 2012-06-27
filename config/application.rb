@@ -38,7 +38,8 @@ module Closetgroupie
                                      :item_activity_observer,
                                      # :order_activity_observer,
                                      :relationship_activity_observer,
-                                     :message_observer
+                                     :message_observer,
+                                     :cart_observer
 
     # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
 
