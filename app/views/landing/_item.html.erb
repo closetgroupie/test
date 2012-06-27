@@ -1,6 +1,6 @@
 <li>
     <%= link_to item_path(item) do %>
-        <%= image_tag item.hero_image.image_url(:search) %>
+        <%= image_tag item.hero_image.image_url(:medium) %>
     <% end %>
     <h4><%= truncate(item.title, :length => 25) %></h4>
     <p>Size: <%= item.size %> <span class="prices"><%= number_to_currency item.price %></span></p>
