@@ -93,4 +93,9 @@ class Cart < ActiveRecord::Base
     update_attribute(:unique_id, uid)
     uid
   end
+
+  def to_s
+    "#<Cart: id: #{id}, user: #{user.id}>"
+  end
+
 end

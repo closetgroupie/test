@@ -8,6 +8,7 @@ class PurchasesController < ApplicationController
 
   def show
     # TODO: current_user.purchases.find(params[:id])
-    @purchase = Cart.where(user_id: current_user.id, id: params[:id]).first
+    #@purchase = Cart.where(user_id: current_user.id, id: params[:id]).first
+    @purchase = Cart.where(id: params[:id]).first
   end
 end
