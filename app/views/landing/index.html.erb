@@ -2,13 +2,15 @@
 <div class="segment">
     <h2><%= segment %></h2>
     <ul>
-        <%= render :partial => "landing/item", collection: items, locals: { count: items.size-1 } %>
-        <%# <li class="last"> %>
-        <%#     <a href=""><img src="http://placehold.it/204x199/e6d7c2"></a> %>
-        <%#     <h4>Brand name goes here</h4> %>
-        <%#     <p>Size: XS <span class="prices">$55.00</span></p> %>
-            <%# <a class="more" href=""><span>View All</span></a> %>
-        <%# </li> %>
+    <% items.each do |item| %>
+        <li>
+            <%= link_to item_path(item) do %>
+                <%= image_tag item.hero_image.image_url(:medium) %>
+            <% end %>
+            <h4><%= truncate(item.title, :length => 25) %></h4>
+            <p>Size: <%= item.size %> <span class="prices"><%= number_to_currency item.price %></span></p>
+        </li>
+    <% end %>
     </ul>
     <a class="more" href="/<%= segment.downcase %>">View All <%= segment %></a>
 </div>
