@@ -1,0 +1,12 @@
+<h3>Someone you are following on ClosetGroupie listed a new item</h3>
+<h4><%= @item.user.name %> listed <%= @item.title %></h4>
+<div class="hero-img">
+  <%= image_tag @item.hero_image, class: "img-shadow" %>
+</div>
+<h1><%= @item.title %></h1>
+<ul>
+  <li><strong>Size:</strong> <%= @item.size %></li>
+  <li><strong>Condition:</strong> <%= @item.condition %></li>
+  <li><strong>Brand:</strong> <%= @item.brand %></li>
+  <li><strong>Price:</strong><%= @item.price %></li>
+</ul>
