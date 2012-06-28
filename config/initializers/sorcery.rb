@@ -95,8 +95,10 @@ Rails.application.config.sorcery.configure do |config|
 
 if Rails.env.development?
   SITE_LOCATION = "http://localhost:3000"
-  config.facebook.key = "385329781503733"
-  config.facebook.secret = "570f1284fd67717724076bcef408c12d"
+  # config.facebook.key = "385329781503733"
+  # config.facebook.secret = "570f1284fd67717724076bcef408c12d"
+  config.facebook.key = "241246552660833"
+  config.facebook.secret = "b916fb1ecf5800938015fab4e2fb93e2"
 else
   SITE_LOCATION = "https://closetgroupie.com"
   config.facebook.key = "195906460469934"
