@@ -1,7 +1,7 @@
 class LandingController < ApplicationController
   def index
     ids_by_segment = {
-      "Womens" => [637, 751, 747, 161],
+      "Women" => [637, 751, 747, 161],
       "Girls"  => [620, 375, 376, 540],
       "Boys"   => [550, 392, 429, 364],
       "Babies" => [433, 98, 331, 15]
