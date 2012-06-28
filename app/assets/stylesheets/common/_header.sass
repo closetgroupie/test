@@ -11,7 +11,7 @@ $headerheight: 60px
     left: $y
 
 #header
-    background: white url(/assets/new/header-background.png) 0 0 repeat-x
+    background: white image-url('landing/header-bg.png') 0 0 repeat-x
 
     .caret
         +inline-block
@@ -33,7 +33,7 @@ $headerheight: 60px
             height: 60px
             
             #logo
-                +replace-text-with-dimensions('new/logo.png')
+                +replace-text-with-dimensions('logo.png')
                 +position(10px, 0px)
                 float: left
 

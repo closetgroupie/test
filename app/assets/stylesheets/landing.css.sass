@@ -1,0 +1,283 @@
+@import compass
+@import config/colors
+@import html5bp-reset
+
+$border-gray: #dbdbdb
+
+body.landing
+    background: image-url("body-bg.png") top center repeat #fcfcfd
+    font-family: "Helvetica", "Arial", sans-serif
+
+    a
+        text-decoration: none
+
+    .inner
+        margin: 0 auto
+        width: 960px
+
+    .container
+        background: image-url('landing/header-banner.jpg') top center no-repeat
+
+    #tag-container
+        position: absolute
+        top: 0
+        right: 5%
+
+        #tag
+            background: image-url('landing/tag.png') top center no-repeat
+            width: 227px
+            height: 116px
+            display: block
+            z-index: 5001
+            padding-top: 210px
+            position: relative
+
+            #facebook-connect
+                +replace-text('landing/facebook-connect.png', 0, 0)
+                width: 201px
+                height: 36px
+                display: block
+                margin: 0 auto 5px
+
+                &:hover
+                    background-position: 0 -36px
+
+            #regular-signup
+                color: #dcdcdc
+                font-size: 11px
+                text-align: center
+                display: block
+
+                &:hover
+                    color: $white
+
+        #string-under
+            background: image-url('landing/tag-string-under.png') no-repeat top left
+            position: absolute
+            top: 0
+            left: 48%
+            z-index: 4999
+            width: 11px
+            height: 107px
+            display: block
+
+    header
+        +clearfix
+        height: 196px
+
+        #header-bg
+            position: relative
+            z-index: 5000
+            background: image-url('landing/header-bg.png') top left repeat-x
+            width: 100%
+            height: 61px
+
+        #logo
+            +replace-text-with-dimensions('logo.png')
+            display: block
+            margin-top: 11px
+            float: left
+            position: relative
+            z-index: 5010
+
+        ul
+            list-style: none
+            float: right
+            margin-right: 80px
+
+            li
+                +inline-block
+                margin-left: 20px
+
+                &:first-child
+                    margin-left: 0
+
+                a
+                    +single-text-shadow(#444, 0, 1px, 1px)
+                    color: $white
+                    font-size: 20px
+                    font-weight: bold
+                    line-height: 60px
+                    position: relative
+                    z-index: 5010
+
+                    &:hover
+                        color: $mustard
+
+        h1
+            +replace-text-with-dimensions('landing/whats-in-your-closet.png')
+            clear: both
+            float: left
+            margin-top: 20px
+
+    #content
+        margin-top: -18px
+
+        .inner
+            background: $white
+            padding: 20px
+            border-left: 1px solid $border-gray
+            border-right: 1px solid $border-gray
+            width: 918px
+
+        .segment
+            +clearfix
+            position: relative
+
+            h2
+                color: #363636
+                font:
+                    size: 24px
+                    weight: normal
+                position: absolute
+                background-color: $white
+                padding-right: 15px
+
+            ul
+                border-top: 1px solid $border-gray
+                margin: 19px 0 40px 0
+                padding-top: 20px
+
+                li
+                    +inline-block
+                    margin-left: 22px
+                    position: relative
+                    height: 225px
+
+                    &:first-child
+                        margin-left: 0
+
+                a
+                    display: block
+                    // padding: 2px
+                    // border: 1px solid $border-gray
+
+                h4
+                    padding-top: 10px
+                    font-weight: normal
+                    font-size: 14px
+
+                p
+                    +clearfix
+                    font-size: 14px
+
+                    span
+                        color: $mustard
+                        float: right
+
+                img
+                    display: block
+                    margin: 0
+                    line-height: 1em
+                    padding: 0
+                    width: 210px
+
+                .price
+                    +border-radius(3px)
+                    +single-text-shadow(#fff, 0, 1px, 1px)
+                    +single-box-shadow(rgba(0, 0, 0, 0.12), 0, 1px)
+                    +background(linear-gradient(top left,#f9f9f9, #eaeaea))
+                    background-color: #f5f5f5
+                    border: 1px solid #bbb
+                    bottom: 11px
+                    color: #717171
+                    font:
+                        size: 12px
+                        weight: bold
+                    padding: 5px
+                    position: absolute
+                    right: 12px
+
+                .last
+                    .price
+                        bottom: 81px
+
+            .more
+                float: right
+                color: $lighter-gray
+                display: block
+                font-size: 14px
+                position: relative
+                bottom: 1px
+                margin: 10px 0
+
+                span
+                    display: block
+                    margin: 2px
+                    padding: 12px 0
+                    text-transform: uppercase
+                    text-align: center
+
+                &:hover
+                    color: $mustard
+
+    footer
+        .inner
+            +clearfix
+            background: $white image-url('landing/footer-bg.png') no-repeat bottom left
+            border-left: 1px solid $border-gray
+            border-right: 1px solid $border-gray
+            width: 958px
+            padding-top: 6px
+
+            h3
+                color: $white
+                float: left
+                font-size: 15px
+                text-transform: uppercase
+                font-weight: normal
+                padding-left: 20px
+                line-height: 31px
+
+            ul
+                list-style: none
+                margin: 0
+                float: left
+
+                li
+                    +inline-block
+
+            #social
+                margin: -6px 0 0 18px
+
+                li
+                    margin-right: 11px
+
+                a
+                    display: block
+                    width: 36px
+                    height: 35px
+                    text-indent: -1000em
+                    background: image-url('landing/icons-social.png') no-repeat 0 0
+
+                #facebook
+                    background-position: 0 0
+
+                    &:hover
+                        background-position: 0 -35px
+
+                #pinterest
+                    background-position: -36px 0
+
+                    &:hover
+                        background-position: -36px -35px
+
+                #twitter
+                    background-position: -72px 0
+
+                    &:hover
+                        background-position: -72px -35px
+
+            #quick_links
+                float: float
+                margin: -8px 20px 0 40px
+
+                li
+                    margin-left: 25px
+
+                a
+                    font-size: 18px
+                    color: $black
+
+                    &:hover
+                        color: $mustard
