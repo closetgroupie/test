@@ -1,6 +1,6 @@
 ActiveAdmin.register Item do
   CONDITIONS = ::Item::CONDITIONS.invert
-  actions :index, :destroy, :show
+  actions :index, :show
 
   filter :title
   filter :brand
@@ -26,6 +26,8 @@ ActiveAdmin.register Item do
     end
     column :size
     column :sold
+
+    default_actions
   end
 
   sidebar "Photos", :only => :show do
