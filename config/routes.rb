@@ -108,8 +108,7 @@ Closetgroupie::Application.routes.draw do
     get "notifications" => :notifications
     get "profile"       => :profile
     match "password"    => :password, via: [:get, :put]
-    # put "password"      => :password
-    match "paypal"    => :paypal, via: [:get, :put]
+    match "paypal"      => :paypal, via: [:get, :put]
   end
 
   get "terms"   => "static#terms"
