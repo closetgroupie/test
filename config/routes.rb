@@ -1,4 +1,6 @@
 Closetgroupie::Application.routes.draw do
+  ActiveAdmin.routes(self)
+
   get "oauths/oauth"
 
   get "oauths/callback"
@@ -116,8 +118,9 @@ Closetgroupie::Application.routes.draw do
   get "team"    => "static#team"
   get "careers" => "static#careers"
 
-  get ":segment"           => "shop#show", constraints: SegmentsRestriction, as: "shop"
-  get ":segment/:category" => "shop#show", constraints: SegmentsRestriction, as: "shop_by_category"
+  get ":segment"           => "shop#show", constraints: SegmentConstraint, as: "shop"
+  get ":segment/:category" => "shop#show", constraints: SegmentConstraint, as: "shop_by_category"
+
   get "/activity/previous/:id" => "activities#previous"
   get "activities" => "activities#feed"
 
