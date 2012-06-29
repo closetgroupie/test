@@ -32,6 +32,5 @@ class OrdersController < ApplicationController
                  order
                end
              end
-    render type
   end
 end
