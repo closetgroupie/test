@@ -3,29 +3,25 @@
 </div>
 <div class="contents">
     <%= render "shared/dashboard/settings_navigation" %>
-    <% if current_user.paypal_email.present? %>
-    <h3>Current PayPal Email Address</h3>
-    <p><%= current_user.paypal_email %></p>
+    <% if current_user.errors.any? %>
+        <%= render "shared/paypal/error" %>
+    <% elsif current_user.paypal_email.present? %>
+        <h3>Current PayPal Email Address</h3>
+        <p><%= current_user.paypal_email %></p>
     <% else %>
-    <%= render "shared/paypal/alert" %>
+        <%= render "shared/paypal/alert" %>
     <% end %>
-    <% if false %>
-    <%# TODO: Handle paypal errors %>
-    <%= render "shared/paypal/error" %>
-    <% end %>
-    <%= form_for current_user, :url => settings_path do |f| %>
-    <h3><%= (current_user.paypal_email) ? 'Change' : 'Set' %> your PayPal account email address</h3>
-    <div class="input text">
-        <%= f.text_field :paypal_email %>
-        <p class="hint">Your PayPal e-mail address</p>
-        <%= f.text_field :paypal_first_name %>
-        <p class="hint">First name associated with the account</p>
-        <%= f.text_field :paypal_last_name %>
-        <p class="hint">Last name associated with the account</p>
-    </div>
-    <%# TODO: Do we even need the previous address? %>
-    <%# <%= f.hidden_field :from  %>
-    <%= f.submit "Save PayPal Email Address", :class => "btn", :id => "submit_btn" %>
+    <%= form_for current_user, :url => settings_paypal_path do |f| %>
+        <h3><%= (current_user.paypal_email) ? 'Change' : 'Set' %> your PayPal account email address</h3>
+        <div class="input text">
+            <% if current_user.errors.any? %>
+            <%= f.text_field :paypal_email %>
+            <% else %>
+            <%= f.text_field :paypal_email, :value => "" %>
+            <% end %>
+            <p class="hint">Your PayPal e-mail address</p>
+        </div>
+        <%= f.submit "Save PayPal Email Address", :class => "btn", :id => "submit_btn" %>
     <% end %>
 </div>
 <% content_for :javascripts do %>

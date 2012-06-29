@@ -4,6 +4,7 @@ class ItemsController < ApplicationController
   before_filter :require_login, :except => [:show]
 
   def new
+    redirect_to settings_paypal_url unless current_user.paypal_email.present?
     @item = Item.new
     5.times { @item.photos.build }
     # TODO: Domain models
