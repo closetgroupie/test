@@ -4,16 +4,18 @@
 <div class="contents">
     <%= render "shared/dashboard/settings_navigation" %>
     <h3>Current Email</h3>
-    <p><%= current_user.email %></p>
+    <p><%= current_user.email_changed? ? current_user.email_was : current_user.email %></p>
     <%# TODO: Trigger validateForm() on form submission %>
-    <%= form_for current_user, :url => settings_path, :method => :put do |f| %>
+    <%= form_for current_user, :url => settings_email_path do |f| %>
         <%= f.error_messages %>
         <h3>Change Email</h3>
         <%= hidden_field_tag :action_view, params[:action] %>
-        <%= f.email_field :email %>
-        <p class="hint">New email address</p>
-        <%= f.email_field :email_confirmation %>
-        <p class="hint">Confirm new email</p>
+        <div class="input email">
+            <%= current_user.errors.any? ? f.email_field(:email) : f.email_field(:email, value: "") %>
+            <p class="hint">New email address</p>
+            <%= current_user.errors.any? ? f.email_field(:email_confirmation) : f.email_field(:email_confirmation, value: "")%>
+            <p class="hint">Confirm new email</p>
+        </div>
         <%= f.submit "Save New Email", :class => "btn", :id => "submit_btn" %>
     <% end %>
 </div>

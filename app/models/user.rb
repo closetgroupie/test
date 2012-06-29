@@ -35,8 +35,11 @@ class User < ActiveRecord::Base
   # Validation
   validates :name, :presence => true
   validates :email, :presence => true, :uniqueness => true
+  validates_confirmation_of :email, :message => "should match confirmation", :if => :email
   validates :password, :presence => true, :if => :should_update_password?
   validates_confirmation_of :password, :message => "should match confirmation", :if => :password 
+
+  validates :paypal_email, :valid_paypal_email => true, :if => :paypal_email
 
   attr_accessible :name,
                   :email,

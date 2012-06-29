@@ -102,11 +102,12 @@ Closetgroupie::Application.routes.draw do
     resources :addresses
     # get "address"       => :address
     get "closet"        => :closet
-    get "email"         => :email
+    match "email"       => :email, via: [:get, :put]
     get "notifications" => :notifications
     get "profile"       => :profile
-    get "password"      => :password
-    get "paypal"        => :paypal
+    match "password"    => :password, via: [:get, :put]
+    # put "password"      => :password
+    match "paypal"    => :paypal, via: [:get, :put]
   end
 
   get "terms"   => "static#terms"
