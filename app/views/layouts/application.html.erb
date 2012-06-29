@@ -31,6 +31,15 @@
                 </section>
             </div>
         <%= render "shared/layout/footer" %>
+        <% unless current_user %>
+            <div id="tag-container">
+                <div id="tag">
+                    <%= link_to "Connect with facebook", auth_at_provider_path(:provider => :facebook), :id => "facebook-connect" %>
+                    <a href="/signup" id="regular-signup">- Or sign up using your email address -</a>
+                </div>
+                <div id="string-under"></div>
+            </div>
+        <% end %>
         </div>
         <a id="back-to-top" href="#top" class="off-the-screen">Scroll to top</a>
         <%= javascript_include_tag "application" %>
