@@ -39,7 +39,7 @@ class User < ActiveRecord::Base
   validates :password, :presence => true, :if => :should_update_password?
   validates_confirmation_of :password, :message => "should match confirmation", :if => :password 
 
-  validates :paypal_email, :valid_paypal_email => true, :if => :paypal_email
+  validates :paypal_email, :valid_paypal_email => true, :if => :paypal_email_changed?
 
   attr_accessible :name,
                   :email,
