@@ -32,11 +32,9 @@ module Closetgroupie
     # Activate observers that should always be running.
     # config.active_record.observers = []
     config.active_record.observers = :user_observer,
-                                     :order_observer,
                                      :relationship_observer,
                                      :favorite_activity_observer,
                                      :item_activity_observer,
-                                     # :order_activity_observer,
                                      :relationship_activity_observer,
                                      :message_observer,
                                      :cart_observer

@@ -8,7 +8,11 @@ class PurchasesController < ApplicationController
 
   def show
     # TODO: current_user.purchases.find(params[:id])
-    
-    @purchase = Cart.where(user_id: current_user.id, id: params[:id]).first
+    purchase = Cart.find params[:id]
+    if purchase.user_id != current_user.id
+      raise ActionController::RoutingError.new('Forbidden')
+    else
+      @purchase = purchase
+    end
   end
 end

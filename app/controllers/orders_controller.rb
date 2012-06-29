@@ -16,19 +16,21 @@ class OrdersController < ApplicationController
 
   def show
     type = params.fetch(:type, :purchases)
-    binding.pry
     @order = case type
              when :purchases
-               # TODO TRES restrict to current user before merge
-               #Order.where(id: params[:id]).first
-               o = Order.where(id: params[:id], buyer_id: current_user.id).first
-               binding.pry
+               order = Order.where(id: params[:id]).first
+               if order.buyer_id != current_user.id
+                 raise ActionController::RoutingError.new('Forbidden')
+               else
+                 order
+               end
              when :sales
-               # TODO TRES restrict to current user before merge
-               # TODO: Check permissions, make seller_id instead of buyer_id
-               #Order.where(id: params[:id]).first
-               o = Order.where(id: params[:id], seller_id: current_user.id).first
-               binding.pry
+               order = Order.find params[:id]
+               if current_user.id != order.seller_id
+                 raise ActionController::RoutingError.new('Forbidden')
+               else
+                 order
+               end
              end
     render type
   end

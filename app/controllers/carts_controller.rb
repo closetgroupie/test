@@ -8,10 +8,6 @@ class CartsController < ApplicationController
   def show
     @cart = current_cart
     @closet_grouped_items = current_cart.items_grouped_by(:closet)
-    # @items = @cart.items.includes(:closet).includes(:photos)
-    # @closets = @items.collect(&:closet)
-    # TODO: How about bundled shipping?
-    # @total = @items.inject(0) { |sum, i| sum + i.price + i.shipping_cost }
   end
 
   def paypal_ipn

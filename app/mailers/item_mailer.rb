@@ -1,4 +1,6 @@
 class ItemMailer < ActionMailer::Base
+  helper :application
+
   default from: "ClosetGroupie.com <no-reply@closetgroupie.com>"
   layout "email"
 

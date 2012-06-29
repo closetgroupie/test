@@ -1,7 +1,7 @@
 class ItemPresenter < BasePresenter
   presents :item
   delegate :active_order, :closet, :closet_id, :line_item, :description, :description?, 
-    :belongs_to_any_cart?, :id, :title, :user, :sold?, to: :item
+    :belongs_to_any_cart?, :id, :title, :user, :sold?, :photos, to: :item
 
   def brand
     item.brand.presence || item.brand_suggestion.presence || "N/A"
