@@ -52,10 +52,13 @@ class Cart < ActiveRecord::Base
     # TODO: Move to a separate class, doesn't belong here
     line_items.includes(:item).each do |li|
       # TODO: Do this in memory
-      order = orders.first_or_initialize(buyer_id: user_id, seller_id: li.item.user_id)
+      #order = orders.first_or_initialize(buyer_id: user_id, seller_id: li.item.user_id)
+      order = Order.where(buyer_id: user_id, seller_id: li.item.user_id, purchased_at: purchased_at).
+        first_or_initialize(buyer_id: user_id, seller_id: li.item.user_id)
       order.line_items << li
       li.item.update_attribute(:sold, true)
       order.purchased_at = purchased_at unless order.persisted?
+      orders << order
       order.save
     end
     update_attribute(:purchased_at, purchased_at)

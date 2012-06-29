@@ -27,14 +27,15 @@ class CartsController < ApplicationController
           @cart.convert_to_orders
         else
           logger.error "SEVERE: Paypal IPN successfully received but order did not go through!"
-          logger.error "IPN REQUEST: #{request}.raw_post"
+          logger.error "IPN REQUEST: #{notify}"
           logger.error "Cart: #{@cart}"
         end
       rescue => e
         logger.error "SEVERE: Paypal IPN successfully received but order did not go through!"
-        logger.error "IPN REQUEST: #{request}.raw_post"
+        logger.error "IPN REQUEST: #{notify}"
         logger.error "Cart: #{@cart}"
         logger.error "Exception: #{e}"
+        logger.error "#{$@}"
       ensure
 
       end

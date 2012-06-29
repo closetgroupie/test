@@ -1,7 +1,7 @@
 <h3>Someone you are following on ClosetGroupie listed a new item</h3>
 <h4><%= @item.user.name %> listed <%= @item.title %></h4>
 <div class="hero-img">
-  <%= image_tag @item.hero_image, class: "img-shadow" %>
+  <%= image_tag(@item.photos.first.image_url(:hero), class: "img-shadow") %>
 </div>
 <h1><%= @item.title %></h1>
 <ul>
