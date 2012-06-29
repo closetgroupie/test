@@ -1,6 +1,7 @@
 <h3>Thanks for your ClosetGroupie purchase!</h3>
 <h4>Here is your purchase summary. Orders are separated by the seller you purchased from.</h4>
 <% order = @orders.first -%>
+<% present order do %>
 <table>
   <tr>
     <td><strong>Sold to:</strong></td>
@@ -16,8 +17,9 @@
     </td>
   </tr>
 </table>
-
-<% @orders.each do |o| -%>
+<% end %>
+<% @orders.each do |order| -%>
+<% present order do %>
 <table>
   <tr>
     <td><strong>Order #:</strong></td>
@@ -45,6 +47,7 @@
     <% end %>
   </tr>
 </table>
+<% end %>
 <% end %>
 
 <p><%= link_to "Click to view full purchase details", purchase_url(@cart.id), style: "

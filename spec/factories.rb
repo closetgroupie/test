@@ -22,7 +22,7 @@ FactoryGirl.define do
   end
 
   factory :photo do
-    image { File.open(File.join(Rails.root, 'spec', 'images', "bush#{rand(1...4)}.jpg")) }
+    image { File.open(File.join(Rails.root, 'spec', 'images', "bush#{rand(1..4)}.jpg")) }
   end
 
   factory :closet do

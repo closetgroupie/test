@@ -52,15 +52,12 @@ class Cart < ActiveRecord::Base
     purchased_at = Time.zone.now
     line_items.includes(:item).each do |li|
       # TODO: Do this in memory
-      #order = orders.first_or_initialize(buyer_id: user_id, seller_id: li.item.user_id)
-      order = Order.where(buyer_id: user_id, seller_id: li.item.user_id, purchased_at: purchased_at).
-        first_or_initialize(buyer_id: user_id, seller_id: li.item.user_id)
+      order = Order.where(buyer_id: user_id, seller_id: li.item.user_id, purchased_at: purchased_at) \
+                         .first_or_initialize(buyer_id: user_id, seller_id: li.item.user_id)
       order.line_items << li
       li.item.update_attribute(:sold, true)
       order.purchased_at = purchased_at unless order.persisted?
-      unless orders.include? order
-        orders << order
-      end
+      orders << order unless orders.include? order
       order.save
     end
     orders.each do |order|
