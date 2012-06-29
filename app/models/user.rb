@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   attr_accessible :name,
                   :email,
                   :email_confirmation,
+                  :current_password,
                   :password,
                   :password_confirmation,
                   :legacy_password,
@@ -60,7 +61,7 @@ class User < ActiveRecord::Base
   # Enable CarrierWave
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessor :email_confirmation, :paypal_first_name, :paypal_last_name
+  attr_accessor :email_confirmation, :password_confirmation, :current_password
 
   def admin?
     # TODO: This should call administator?

@@ -52,6 +52,9 @@ class SettingsController < ApplicationController
   end
 
   def password
+    if request.put? and params[:user].present?
+      current_user.update_attributes(params[:user].extract!(:current_password, :password, :password_confirmation))
+    end
   end
 
   def paypal
