@@ -1,18 +1,18 @@
 <h3>Thanks for your ClosetGroupie purchase!</h3>
 <h4>Here is your purchase summary. Orders are separated by the seller you purchased from.</h4>
-<% o = @orders.first -%>
+<% order = @orders.first -%>
 <table>
   <tr>
     <td><strong>Sold to:</strong></td>
-    <td><%= link_to o.buyer.name, profile_url(o.buyer) %></td>
+    <td><%= link_to order.buyer.name, profile_url(o.buyer) %></td>
   </tr>
   <tr>
     <td style="vertical-align: top"><strong>Ship to:</strong></td>
     <td>
-      <%= o.shipping.recipient %><br />
-      <%= o.shipping.primary %> <%= o.shipping.secondary %><br />
-      <%= o.shipping.city %>, <%= o.shipping.state %> <%= o.shipping.zip %><br />
-      <%= o.shipping.country %>
+      <%= order.shipping.recipient %><br />
+      <%= order.shipping.primary %> <%= order.shipping.secondary %><br />
+      <%= order.shipping.city %>, <%= order.shipping.state %> <%= order.shipping.zip %><br />
+      <%= order.shipping.country %>
     </td>
   </tr>
 </table>
@@ -21,19 +21,19 @@
 <table>
   <tr>
     <td><strong>Order #:</strong></td>
-    <td><%= o.unique_id %></td>
+    <td><%= order.unique_id %></td>
   </tr>
   <tr>
     <td><strong>Purchased from:</strong></td>
-    <td><%= link_to o.seller.name, o.seller %></td>
+    <td><%= link_to order.seller.name, order.seller %></td>
   </tr>
   <tr>
     <td><strong>Placed on:</strong></td>
-    <td><%= o.created_at %></td>
+    <td><%= order.created_at %></td>
   </tr>
   <tr>
     <td><strong>Item details:</strong></td>
-    <% o.items.each do |item| %>
+    <% order.items.each do |item| %>
       <tr>
         <td><%= image_tag(item.photos.first.image_url(:thumbnail)) %></td>
         <td>
@@ -47,12 +47,12 @@
 </table>
 <% end %>
 
-<p><%= link_to "Click to view full purchase details", purchase_url(o.id), style: "
+<p><%= link_to "Click to view full purchase details", purchase_url(@cart.id), style: "
     color: #274c61; display: inline-block; padding: 5px 15px;
     text-decoration: none; font-size: 15px; text-shadow: rgba(255,255,255,.55) 0px 1px 1px;
     background: #82afc9; background: -webkit-gradient(linear, left top, left bottom, from(#b9e0f5), to(#82afc9));
     background: -moz-linear-gradient(top, #b9e0f5, #82afc9); background: -o-linear-gradient(top, #b9e0f5, #82afc9);
     border: 1px solid #6f95ab;" %></p>
 <p>Or open to the following URL in your browser:<br />
-<strong><%= link_to purchase_url(o.id), purchase_url(o.id) %></strong></p>
+<strong><%= link_to purchase_url(o.id), purchase_url(@cart.id) %></strong></p>
 <h4>Thanks for your purchase!</h4>
