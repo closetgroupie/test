@@ -1,11 +1,11 @@
 <h3>Thanks for your ClosetGroupie purchase!</h3>
 <h4>Here is your purchase summary. Orders are separated by the seller you purchased from.</h4>
-<% order = @orders.first -%>
-<% present order do %>
+<% o = @orders.first -%>
+<% present o do |order| %>
 <table>
   <tr>
     <td><strong>Sold to:</strong></td>
-    <td><%= link_to order.buyer.name, profile_url(o.buyer) %></td>
+    <td><%= link_to order.buyer.name, profile_url(order.buyer) %></td>
   </tr>
   <tr>
     <td style="vertical-align: top"><strong>Ship to:</strong></td>
@@ -18,8 +18,8 @@
   </tr>
 </table>
 <% end %>
-<% @orders.each do |order| -%>
-<% present order do %>
+<% @orders.each do |o| -%>
+<% present o do |order| %>
 <table>
   <tr>
     <td><strong>Order #:</strong></td>
@@ -57,5 +57,5 @@
     background: -moz-linear-gradient(top, #b9e0f5, #82afc9); background: -o-linear-gradient(top, #b9e0f5, #82afc9);
     border: 1px solid #6f95ab;" %></p>
 <p>Or open to the following URL in your browser:<br />
-<strong><%= link_to purchase_url(o.id), purchase_url(@cart.id) %></strong></p>
+<strong><%= link_to purchase_url(@cart.id), purchase_url(@cart.id) %></strong></p>
 <h4>Thanks for your purchase!</h4>

@@ -1,7 +1,7 @@
 class OrderPresenter < BasePresenter
   presents :order
   delegate :buyer, :buyer_id, :closetgroupie_fee, :id, :items, :unique_id,
-           :total, :total_earned, to: :order
+           :total, :total_earned, :seller, :seller_id, :created_at, to: :order
 
   def shipping
     @shipping ||= order.cart.shipping_address
