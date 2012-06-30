@@ -1,12 +1,19 @@
 Closetgroupie::Application.configure do
-  # TODO TRES revert before merge
   config.paypal = {
-    :login     => "cg2_1340742354_biz_api1.tspike.com",
-    :password  => "1340742384",
-    :signature => "AxPmYhTdQNX2a3-ZgBsicl6aU8SFA-lhRnrwQ6n0rGff6cZ2voY9Mz7N",
+    :login     => "joonas_1338321438_biz_api1.closetgroupie.com",
+    :password  => "1338321463",
+    :signature => "AM1nJUGwQaq7jopNFOUMd8.hX-JkAZkj2yWQWtTN4LFdRzW7m2sJPokS",
     :appid     => "APP-80W284485P519543T",
-    :email     => "cg2_1340742354_biz@tspike.com"
+    :email     => "joonas_1338321438_biz@closetgroupie.com"
   }
+
+  #config.paypal = {
+    #:login     => "cg2_1340742354_biz_api1.tspike.com",
+    #:password  => "1340742384",
+    #:signature => "AxPmYhTdQNX2a3-ZgBsicl6aU8SFA-lhRnrwQ6n0rGff6cZ2voY9Mz7N",
+    #:appid     => "APP-80W284485P519543T",
+    #:email     => "cg2_1340742354_biz@tspike.com"
+  #}
 
   # Settings specified here will take precedence over those in config/application.rb
 
