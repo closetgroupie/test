@@ -52,6 +52,9 @@ gem 'meta_search'
 gem 'hiredis'
 gem 'redis'
 
+# Exception handling, exceptional.io
+gem 'exceptional'
+
 gem 'sorcery'
 gem 'dynamic_form'
 gem 'wicked'
