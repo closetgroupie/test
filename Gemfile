@@ -46,6 +46,9 @@ gem 'rabl'
 gem 'tire'
 gem 'kaminari'
 
+gem 'activeadmin', github: 'joonas/active_admin'
+gem 'meta_search'
+
 gem 'hiredis'
 gem 'redis'
 

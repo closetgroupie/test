@@ -1,4 +1,6 @@
 Closetgroupie::Application.routes.draw do
+  ActiveAdmin.routes(self)
+
   get "oauths/oauth"
 
   get "oauths/callback"
@@ -102,18 +104,23 @@ Closetgroupie::Application.routes.draw do
     resources :addresses
     # get "address"       => :address
     get "closet"        => :closet
-    get "email"         => :email
+    match "email"       => :email, via: [:get, :put]
     get "notifications" => :notifications
     get "profile"       => :profile
-    get "password"      => :password
-    get "paypal"        => :paypal
+    match "password"    => :password, via: [:get, :put]
+    match "paypal"      => :paypal, via: [:get, :put]
   end
 
   get "terms"   => "static#terms"
   get "privacy" => "static#privacy"
 
-  get ":segment"           => "shop#show", constraints: SegmentsRestriction, as: "shop"
-  get ":segment/:category" => "shop#show", constraints: SegmentsRestriction, as: "shop_by_category"
+  get "about"   => "static#about"
+  get "team"    => "static#team"
+  get "careers" => "static#careers"
+
+  get ":segment"           => "shop#show", constraints: SegmentConstraint, as: "shop"
+  get ":segment/:category" => "shop#show", constraints: SegmentConstraint, as: "shop_by_category"
+
   get "/activity/previous/:id" => "activities#previous"
   get "activities" => "activities#feed"
 
@@ -123,5 +130,6 @@ Closetgroupie::Application.routes.draw do
   get "closet/:legacy_id"       => "legacy_redirects#closet"
   get "legacy/image/:item/:image" => "legacy_redirects#item_image"
 
-  root to: "activities#index"
+  root to: "activities#index", constraints: AuthenticatedConstraint
+  root to: "landing#index"
 end

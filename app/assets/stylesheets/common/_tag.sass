@@ -1,0 +1,43 @@
+#tag-container
+    position: absolute
+    top: 0
+    right: 5%
+
+    #tag
+        background: image-url('landing/tag.png') top center no-repeat
+        width: 227px
+        height: 116px
+        display: block
+        z-index: 5001
+        padding-top: 210px
+        position: relative
+
+        #facebook-connect
+            +replace-text('landing/facebook-connect.png', 0, 0)
+            width: 201px
+            height: 36px
+            display: block
+            margin: 0 auto 5px
+
+            &:hover
+                background-position: 0 -36px
+
+        #regular-signup
+            color: #dcdcdc
+            display: block
+            font-size: 11px
+            text-align: center
+            text-decoration: none
+
+            &:hover
+                color: $white
+
+    #string-under
+        background: image-url('landing/tag-string-under.png') no-repeat top left
+        position: absolute
+        top: 0
+        left: 48%
+        z-index: 4999
+        width: 11px
+        height: 107px
+        display: block

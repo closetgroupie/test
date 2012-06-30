@@ -32,14 +32,13 @@
                 </ul>
             </div>
             <% else %>
-            <%# <p>Turn your closet into a boutique. <a target="_blank" href="http://closetgroupie.tumblr.com/post/14817936131/how-closet-groupie-works">See how it works.</a></p> %>
             <ul id="guest">
-                <li class="signin"><%= link_to "Sign In", login_path, :class => "btn btn-signin" %></li>
-                <li> or </li>
-                <li class="join"><%= link_to "Join now", signup_path, :class => "btn btn-join" %></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
             <% end %>
         </div>
+        <div id="header-bg"></div>
     </div><!-- end #title-bar -->
     <div id="main-nav">
         <div id="nav-inner">

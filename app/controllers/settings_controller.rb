@@ -43,16 +43,25 @@ class SettingsController < ApplicationController
   end
 
   def email
-    @user = User.new
+    if request.put? and params[:user].present? and params[:user][:email].present?
+      current_user.update_attributes(params[:user].extract!(:email, :email_confirmation))
+    end
   end
 
   def notifications
   end
 
   def password
+    if request.put? and params[:user].present?
+      current_user.update_attributes(params[:user].extract!(:current_password, :password, :password_confirmation))
+    end
   end
 
   def paypal
+    if request.put? and params[:user].present? and params[:user][:paypal_email].present?
+      paypal_email = params[:user][:paypal_email].to_s.strip
+      current_user.update_attributes({ paypal_email: paypal_email })
+    end
   end
 
   def profile
@@ -69,7 +78,4 @@ class SettingsController < ApplicationController
     @action = params.fetch(:action_view, "update")
   end
 
-  def verify_paypal_address(params)
-    # TODO: Add a method that calls a service for verifying the address, asynchonously maybe?
-  end
 end

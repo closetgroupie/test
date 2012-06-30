@@ -60,7 +60,7 @@ module ApplicationHelper
   end
 
   def subnav_link_for(link_text, url, options = {})
-    options[:class] = "active #{options[:class].to_s}" if current_page?(url)
+    options[:class] = "active #{options[:class].to_s}" if request.path == url
     content_tag :li, options do
       link_to_unless_current link_text, url
     end

@@ -35,12 +35,16 @@ class User < ActiveRecord::Base
   # Validation
   validates :name, :presence => true
   validates :email, :presence => true, :uniqueness => true
+  validates_confirmation_of :email, :message => "should match confirmation", :if => :email
   validates :password, :presence => true, :if => :should_update_password?
   validates_confirmation_of :password, :message => "should match confirmation", :if => :password 
+
+  validates :paypal_email, :valid_paypal_email => true, :if => :paypal_email_changed?
 
   attr_accessible :name,
                   :email,
                   :email_confirmation,
+                  :current_password,
                   :password,
                   :password_confirmation,
                   :legacy_password,
@@ -57,7 +61,7 @@ class User < ActiveRecord::Base
   # Enable CarrierWave
   mount_uploader :avatar, AvatarUploader
 
-  attr_accessor :email_confirmation, :paypal_first_name, :paypal_last_name
+  attr_accessor :email_confirmation, :password_confirmation, :current_password
 
   def admin?
     # TODO: This should call administator?

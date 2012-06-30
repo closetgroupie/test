@@ -6,7 +6,8 @@ ClosetGroupie.Routers.Activities = Backbone.Router.extend({
     },
 
     routes: {
-        "": "index"
+        "":     "index",
+        "_=_": "index",
     },
 
     index: function() {
