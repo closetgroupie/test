@@ -18,10 +18,19 @@ class OrdersController < ApplicationController
     type = params.fetch(:type, :purchases)
     @order = case type
              when :purchases
-               Order.where(id: params[:id], buyer_id: current_user.id).first
+               order = Order.where(id: params[:id]).first
+               if order.buyer_id != current_user.id
+                 raise ActionController::RoutingError.new('Forbidden')
+               else
+                 order
+               end
              when :sales
-               # TODO: Check permissions, make seller_id instead of buyer_id
-               Order.where(id: params[:id], seller_id: current_user.id).first
+               order = Order.find params[:id]
+               if current_user.id != order.seller_id
+                 raise ActionController::RoutingError.new('Forbidden')
+               else
+                 order
+               end
              end
   end
 end

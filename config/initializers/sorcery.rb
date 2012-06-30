@@ -92,7 +92,6 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.user_info_mapping = {:name => "name"}
   #
 
-
 if Rails.env.development?
   SITE_LOCATION = "http://localhost:3000"
   # config.facebook.key = "385329781503733"

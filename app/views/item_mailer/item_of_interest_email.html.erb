@@ -1,0 +1,49 @@
+<h3><%= @item.user.name %> listed a new item for you to admire on ClosetGroupie</h3>
+<style type="text/css">
+  .item td { padding: 10px; }
+  .item tr { margin-top: 10px; }
+</style>
+<h4>You are following <%= @item.user.name %>. Here's the scoop on the new item.</h4>
+<% present @item do |item| %>
+<h1><%= item.title %></h1>
+<table class="item">
+  <tr>
+    <td>
+      <div class="hero-img">
+        <%= image_tag(item.photos.first.image_url(:hero), class: "img-shadow") %>
+      </div>
+    </td>
+    <td>
+      <table>
+        <tr>
+          <td><strong>Size:</strong></td>
+          <td><%= item.size %></td>
+        </tr>
+        <tr>
+          <td><strong>Condition:</strong></td>
+          <td><%= item.condition %></td>
+        </tr>
+        <tr>
+          <td><strong>Brand:</strong></td>
+          <td><%= item.brand %></td>
+        </tr>
+        <tr>
+          <td><strong>Price:</strong></td>
+          <td><%= number_to_currency @item.price %></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" style="text-align: center">
+      <%= link_to "See this item on ClosetGroupie", item_url(@item), style: "
+                   color: #274c61; display: inline-block; padding: 5px 15px;
+                   text-decoration: none; font-size: 15px; text-shadow: rgba(255,255,255,.55) 0px 1px 1px;
+                   background: #82afc9; background: -webkit-gradient(linear, left top, left bottom, from(#b9e0f5), to(#82afc9));
+                   background: -moz-linear-gradient(top, #b9e0f5, #82afc9); background: -o-linear-gradient(top, #b9e0f5, #82afc9);
+                   border: 1px solid #6f95ab;" %>
+     </td>
+  </tr>
+</table>
+
+<% end %>

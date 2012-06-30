@@ -47,18 +47,24 @@ class Cart < ActiveRecord::Base
     line_items.inject(0) { |sum, li| sum + li.price + li.shipping_cost }
   end
 
+  # TODO: Move to a separate class, doesn't belong here
   def convert_to_orders
     purchased_at = Time.zone.now
-    # TODO: Move to a separate class, doesn't belong here
     line_items.includes(:item).each do |li|
       # TODO: Do this in memory
-      order = orders.first_or_initialize(buyer_id: user_id, seller_id: li.item.user_id)
+      order = Order.where(buyer_id: user_id, seller_id: li.item.user_id, purchased_at: purchased_at) \
+                         .first_or_initialize(buyer_id: user_id, seller_id: li.item.user_id)
       order.line_items << li
       li.item.update_attribute(:sold, true)
       order.purchased_at = purchased_at unless order.persisted?
+      orders << order unless orders.include? order
       order.save
     end
+    orders.each do |order|
+      OrderMailer.sale_made_email(order).deliver
+    end
     update_attribute(:purchased_at, purchased_at)
+    save
   end
 
   def items_grouped_by(grouping_by = :user)
@@ -93,4 +99,9 @@ class Cart < ActiveRecord::Base
     update_attribute(:unique_id, uid)
     uid
   end
+
+  def to_s
+    "#<Cart: id: #{id}, user: #{user.id}>"
+  end
+
 end

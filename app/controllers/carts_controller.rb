@@ -1,3 +1,5 @@
+require 'pp'
+
 class CartsController < ApplicationController
   include ActiveMerchant::Billing::Integrations
   before_filter :require_login, only: :show
@@ -5,13 +7,13 @@ class CartsController < ApplicationController
   skip_before_filter :before_login, only: :paypal_ipn
   skip_before_filter :verify_authenticity_token, only: :paypal_ipn
 
+  def paypal_logger
+    @@paypal_logger ||= Logger.new("#{Rails.root}/log/paypal.log")
+  end
+
   def show
     @cart = current_cart
     @closet_grouped_items = current_cart.items_grouped_by(:closet)
-    # @items = @cart.items.includes(:closet).includes(:photos)
-    # @closets = @items.collect(&:closet)
-    # TODO: How about bundled shipping?
-    # @total = @items.inject(0) { |sum, i| sum + i.price + i.shipping_cost }
   end
 
   def paypal_ipn
@@ -24,14 +26,18 @@ class CartsController < ApplicationController
         # TODO: Don't convert to_f, rather do decimals, or something..
         if notify.complete? and @cart.total == BigDecimal.new(amount)
           # Mark cart complete, notify sellers, mark items sold.
-          @cart.convert_to_orders
+          @cart.convert_to_orders unless @cart.purchased_at?
         else
-          # Error.
+          paypal_logger.error "SEVERE: Paypal IPN successfully received but there was an error processing it!"
+          paypal_logger.error "IPN REQUEST: #{PP.pp(notify, "")}" # pretty prints notify into a string, used this way to avoid polluting standard log
+          paypal_logger.error "Cart: #{@cart}"
         end
       rescue => e
-        # Mark cart incomplete (ERROR status?)
-      ensure
-
+        paypal_logger.error "SEVERE: Paypal IPN successfully received but there was an error processing it!"
+        paypal_logger.error "Cart: #{@cart}"
+        paypal_logger.error "Exception: #{e}"
+        paypal_logger.error "IPN REQUEST: #{PP.pp(notify, "")}" # pretty prints notify into a string, used this way to avoid polluting standard log
+        paypal_logger.error "#{$@}"
       end
     end
     render nothing: true

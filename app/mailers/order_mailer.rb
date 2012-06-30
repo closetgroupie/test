@@ -11,7 +11,4 @@ class OrderMailer < ActionMailer::Base
     @order  = order
     mail(to: @seller.email, subject: "You've made a sale on ClosetGroupie")
   end
-
-  def purchase_made_email(cart)
-  end
 end
