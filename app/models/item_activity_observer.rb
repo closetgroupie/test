@@ -5,7 +5,8 @@ class ItemActivityObserver < BaseActivityObserver
     create(model.user, model, model)
 
     model.user.groupies.each do |groupie| # har har
-      ItemMailer.item_of_interest_email(model, groupie).deliver
+      # TODO: Queue
+      ItemMailer.new_item_email(model.id, groupie.id).deliver
     end
   end
   
