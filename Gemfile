@@ -51,6 +51,7 @@ gem 'meta_search'
 
 gem 'hiredis'
 gem 'redis'
+gem 'sidekiq'
 
 # Exception handling, exceptional.io
 gem 'exceptional'

@@ -12,7 +12,7 @@
 development:
   adapter: postgresql
   database: cgx_development
-  pool: 5
+  pool: 20
   username: cgx
   password: development
 
@@ -29,7 +29,7 @@ test:
 production:
   adapter: postgresql
   database: cgx_development
-  pool: 5
+  pool: 20
   username: cgx
   password: development
 
