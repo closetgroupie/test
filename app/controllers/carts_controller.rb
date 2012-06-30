@@ -26,7 +26,7 @@ class CartsController < ApplicationController
         # TODO: Don't convert to_f, rather do decimals, or something..
         if notify.complete? and @cart.total == BigDecimal.new(amount)
           # Mark cart complete, notify sellers, mark items sold.
-          @cart.convert_to_orders
+          @cart.convert_to_orders unless @cart.purchased_at?
         else
           paypal_logger.error "SEVERE: Paypal IPN successfully received but there was an error processing it!"
           paypal_logger.error "IPN REQUEST: #{PP.pp(notify, "")}" # pretty prints notify into a string, used this way to avoid polluting standard log
