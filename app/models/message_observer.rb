@@ -1,5 +1,5 @@
 class MessageObserver < ActiveRecord::Observer
   def after_create(model)
-    MessageMailer.new_message_email(model.id).deliver
+    MessageMailer.delay.new_message_email(model.id)
   end
 end

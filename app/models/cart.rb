@@ -61,7 +61,7 @@ class Cart < ActiveRecord::Base
       order.save
     end
     orders.each do |order|
-      OrderMailer.sale_made_email(order).deliver
+      OrderMailer.delay.sale_made_email(order.id)
     end
     update_attribute(:purchased_at, purchased_at)
     save
