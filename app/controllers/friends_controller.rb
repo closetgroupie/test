@@ -1,5 +1,5 @@
 class FriendsController < ApplicationController
-  include FriendsHelper
+  include FacebookHelper
 
   before_filter :require_login
 

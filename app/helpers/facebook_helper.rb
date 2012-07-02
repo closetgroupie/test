@@ -6,12 +6,12 @@ require 'set'
 # fb:<facebook_uid>:friends
 # fb:users
 
-module FriendsHelper
+module FacebookHelper
 
   # Gets access to the Facebook Graph API with the current user's
   # authentication token
-  def get_graph
-    token = current_user.facebook_authentication.access_token
+  def get_graph(user = current_user)
+    token = user.facebook_authentication.access_token
     @graph ||= Koala::Facebook::API.new token
   end
 
