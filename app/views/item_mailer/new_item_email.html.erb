@@ -3,19 +3,19 @@
 </div>
 <div style="width: 400px; float: left;">
     <h3>
-        <%= link_to @user.name, closet_path(@user), style: "color: #d2af2c;" %>
+        <%= link_to @user.name, closet_url(@user), style: "color: #d2af2c;" %>
     </h3>
     <p>Has just posted a new item for sale on ClosetGroupie:</p>    
 </div>
 <div style="clear: both;">&nbsp;</div>
 <div style="width: 100px; float: left;">
-    <%= link_to item_path(@item) do %>
+    <%= link_to item_url(@item) do %>
         <%= image_tag @item.hero_image(:thumbnail), style: "padding: 1px; background: #fff; border: 1px solid #ccc;" %>
     <% end %>
 </div>
 <div style="width: 400px; float: left;">
     <h3>
-        <%= link_to @item.title, item_path(@item), style: "color: #d2af2c;" %>
+        <%= link_to @item.title, item_url(@item), style: "color: #d2af2c;" %>
     </h3>
     <p>Price: <%= @item.price %></p>
 </div>
