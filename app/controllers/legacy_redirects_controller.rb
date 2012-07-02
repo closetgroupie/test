@@ -28,8 +28,9 @@ class LegacyRedirectsController < ApplicationController
       end
 
       image = "#{name}.#{params[:format]}"
+      item_id = params[:item].to_i
 
-      photo = Photo.includes(:item).where("items.legacy_id = ? AND photos.original_name = ?", params[:item].to_i, image).first
+      photo = Photo.includes(:item).where("items.legacy_id = ? AND photos.original_name = ?", item_id, image).first
 
       if photo.present?
         redirect_to photo.image_url(:thumbnail), :status => 301
