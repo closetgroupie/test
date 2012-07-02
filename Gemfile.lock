@@ -274,7 +274,6 @@ DEPENDENCIES
   dynamic_form
   ejs
   exceptional
-  faraday
   hiredis
   jquery-rails
   kaminari

@@ -59,7 +59,6 @@ gem 'exceptional'
 gem 'sorcery'
 gem 'dynamic_form'
 gem 'wicked'
-gem 'faraday'
 
 gem 'activemerchant', :require => 'active_merchant'
 
