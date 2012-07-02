@@ -11,8 +11,10 @@ module FacebookHelper
   # Gets access to the Facebook Graph API with the current user's
   # authentication token
   def get_graph(user = current_user)
+    # TODO if user is passed in and @graph is set, shouldn't return
+    # the old one
     token = user.facebook_authentication.access_token
-    @graph ||= Koala::Facebook::API.new token
+    @graph ||= Koala::Facebook::API.new(token)
   end
 
   def get_friends_using_site(fb_id)

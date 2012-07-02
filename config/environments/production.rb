@@ -18,7 +18,7 @@ Closetgroupie::Application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.default_url_options = {
-    :host     => "closetgroupie.com",
+    :host     => "#{config.root_url}",
     :protocol => "https"
   }
 
@@ -73,7 +73,7 @@ Closetgroupie::Application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # TODO: This needs to be switched out to the CDN once we have one.
-  config.action_controller.asset_host = "https://closetgroupie.com"
+  config.action_controller.asset_host = config.base_url
   config.action_mailer.asset_host = config.action_controller.asset_host
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)

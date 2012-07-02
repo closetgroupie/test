@@ -1,5 +1,10 @@
-<% body_class "item-detail" %>
 <% present @item do |item| %>
+  <% content_for :og_type, 'closetgroupie-dev:item' %>
+  <% content_for :og_url, current_url %>
+  <% content_for :og_title, item.title %>
+  <% content_for :og_image, @item.photos.first.image_url(:thumbnail) %>
+
+  <% body_class "item-detail" %>
     <p class="back">
         &lt;&lt; <%= link_to "Back to #{item.closet.name}", closet_path(item.closet) %>
     </p>
