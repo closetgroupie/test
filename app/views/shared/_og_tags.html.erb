@@ -1,8 +1,7 @@
-    <meta property="fb:app_id" content="195906460469934"/>
+    <meta property="fb:app_id" content="<%= Rails.application.config.sorcery.facebook.key %>" /> 
+    <meta property="og:type"   content="<%= (og_type = yield :og_type) ? og_type : "" %>" /> 
+    <meta property="og:url"    content="<%= (og_url = yield :og_url) ? og_url : "" %>" /> 
+    <meta property="og:title"  content="<%= (og_title = yield :og_title) ? og_title : "" %>" /> 
+    <meta property="og:image"  content="<%= (og_image = yield :og_image) ? og_image : "" %>" /> 
     <meta property="og:site_name" content="ClosetGroupie" />
     <meta property="og:description" content="Shop in closets you love. Sell from your closet to your friends and fans." />
-    <%# TODO: Make a helper method for this.
-    <?php if (isset($og_tags) && is_array($og_tags)): foreach ($og_tags as $og_tag): ?>
-<meta property="og:<?php echo $og_tag["name"]; ?>" content="<?php echo $og_tag["content"]; ?>" />
-    <?php endforeach; endif; ?>
-    #%>

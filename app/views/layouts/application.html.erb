@@ -19,12 +19,6 @@
         <%= render "shared/analytics/google" %>
         <%= render "shared/analytics/kissmetrics" %>
 
-        <meta property="fb:app_id" content="<%= Rails.application.config.sorcery.facebook.key %>" /> 
-        <meta property="og:type"   content="<%= (og_type = yield :og_type) ? og_type : "" %>" /> 
-        <meta property="og:url"    content="<%= (og_url = yield :og_url) ? og_url : "" %>" /> 
-        <meta property="og:title"  content="<%= (og_title = yield :og_title) ? og_title : "" %>" /> 
-        <meta property="og:image"  content="<%= (og_image = yield :og_image) ? og_image : "" %>" /> 
-        <meta property="og:url"    content="<%= current_url %>" /> 
     </head>
     <body class="<%= yield :body_class %>">
         <div class="container">

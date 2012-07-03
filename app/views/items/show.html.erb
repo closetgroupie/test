@@ -2,7 +2,7 @@
   <% content_for :og_type, 'closetgroupie-dev:item' %>
   <% content_for :og_url, current_url %>
   <% content_for :og_title, item.title %>
-  <% content_for :og_image, @item.photos.first.image_url(:thumbnail) %>
+  <% content_for :og_image, request.protocol + request.host_with_port + @item.photos.first.image_url(:medium) %>
 
   <% body_class "item-detail" %>
     <p class="back">
