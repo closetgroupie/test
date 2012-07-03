@@ -60,6 +60,8 @@ class Cart < ActiveRecord::Base
       orders << order unless orders.include? order
       order.save
     end
+    # TODO this is not a great place for this... this entire method is
+    # getting out of hand. Need a separate domain concept.
     orders.each do |order|
       OrderMailer.delay.sale_made_email(order.id)
       ReminderDeliveryWorker.perform_in(7.days, order.id) # Schedule review reminder

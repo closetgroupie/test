@@ -2,9 +2,9 @@ require 'set'
 
 # REDIS structure is:
 #
-# fb:<facebook_uid>:id
-# fb:<facebook_uid>:friends
-# fb:users
+# fb:<facebook_uid>:id -> ClosetGroupie ID
+# fb:<facebook_uid>:friends -> Set of FB ids of friends
+# fb:users -> Set of FB ids of site users
 
 module FacebookHelper
 
