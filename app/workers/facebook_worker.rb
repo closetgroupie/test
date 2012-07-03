@@ -14,6 +14,8 @@ class FacebookWorker
       sell_item
     when 'item_sold'
       item_sold
+    when 'item_bought'
+      item_bought
     end
   end
 
@@ -32,5 +34,10 @@ class FacebookWorker
     # end time is now, so activity will appear as past tense
     args = {:item => item_url(@item,:host => Rails.application.config.root_url), :end_time => Time.now.to_i}
     @graph.put_connections("me", "closetgroupie-dev:sell", args) if @user.has_facebook?
+  end
+
+  def item_bought
+    args = {:item => item_url(@item,:host => Rails.application.config.root_url) }
+    @graph.put_connections("me", "closetgroupie-dev:buy", args) if @user.has_facebook?
   end
 end
