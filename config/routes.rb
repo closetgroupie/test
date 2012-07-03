@@ -1,4 +1,6 @@
 Closetgroupie::Application.routes.draw do
+  mount Api::Iphone => 'api'
+
   ActiveAdmin.routes(self)
 
   get "oauths/oauth"
