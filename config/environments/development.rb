@@ -9,6 +9,11 @@ Closetgroupie::Application.configure do
     :email     => "joonas_1338321438_biz@closetgroupie.com"
   }
 
+  config.facebook = {
+    :key    => 241246552660833,
+    :secret => "b916fb1ecf5800938015fab4e2fb93e2"
+  }
+
   #config.paypal = {
     #:login     => "cg2_1340742354_biz_api1.tspike.com",
     #:password  => "1340742384",

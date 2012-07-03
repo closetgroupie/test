@@ -9,6 +9,11 @@ Closetgroupie::Application.configure do
     :email     => "kelly@closetgroupie.com"
   }
 
+  config.facebook = {
+    :key    => 195906460469934,
+    :secret => "3c11385cf4f9036acb5acd8274028d80"
+  }
+
   # Settings specified here will take precedence over those in config/application.rb
   config.action_mailer.delivery_method = :smtp
 
