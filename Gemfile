@@ -26,7 +26,7 @@ end
 gem 'therubyracer'
 
 group :development, :test do
-  gem 'pry'
+  #gem 'pry'
   #gem 'pry-remote'
   #gem 'letter_opener'
   #gem 'acts-as-importable', github: "kweightman/acts-as-importable"
@@ -70,7 +70,11 @@ gem 'exceptional'
 # UUID generation
 gem 'uuidtools'
 
-gem 'sorcery'
+# For now, we'll just use sorcery for this, because it's simpler than migrating
+# gem 'omniauth-identity'
+gem 'omniauth-facebook'
+gem 'sorcery', '~> 0.7.12'
+
 gem 'dynamic_form'
 gem 'wicked'
 
