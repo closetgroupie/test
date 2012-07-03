@@ -1,5 +1,5 @@
 <% present @item do |item| %>
-  <% content_for :og_type, 'closetgroupie-dev:item' %>
+  <% content_for :og_type, "#{Rails.application.config.og_namespace}:item" %>
   <% content_for :og_url, current_url %>
   <% content_for :og_title, item.title %>
   <% content_for :og_image, request.protocol + request.host_with_port + @item.photos.first.image_url(:medium) %>

@@ -5,44 +5,75 @@ class FacebookWorker
 
   def perform(action, param)
     @user = User.find param['user']
+    @namespace = Rails.application.config.og_namespace
     if @user and @user.has_facebook?
-      @item = Item.find param['item']
       @graph = get_graph(@user)
-      if @item and @graph
+      if @graph
         case action
         when 'add_favorite'
-          add_favorite
+          if Rails.configuration.publish_favorites
+            add_favorite(param)
+          end
         when 'sell_item'
-          sell_item
+          if Rails.configuration.publish_new_item_listings
+            sell_item(param)
+          end
         when 'item_sold'
-          item_sold
-        when 'item_bought'
-          item_bought
+          if Rails.configuration.publish_sales
+            item_sold(param)
+          end
+        when 'item_purchased'
+          if Rails.configuration.publish_purchases
+            item_purchased(param)
+          end
+        when 'follow'
+          if Rails.configuration.publish_follows
+            follow(param)
+          end
         end
       end
     end
   end
 
-  def add_favorite
-    @graph.put_connections("me", "closetgroupie-dev:favorite", :item => item_url(@item, :host => Rails.application.config.root_url))
+  def add_favorite(param)
+    item = Item.find param['item']
+    if item
+      @graph.put_connections("me", "#{@namespace}:favorite", :item => item_url(item, :host => Rails.application.config.root_url))
+    end
   end
 
-  def sell_item
-    # Setting a distant future end time so Facebook views it
-    # as a currently happening event
-    args = {:item => item_url(@item,:host => Rails.application.config.root_url), :start_time => Time.now.to_i, :end_time => 10.years.from_now.to_i}
-    i = @graph.put_connections("me", "closetgroupie-dev:sell", args)
+  def sell_item(param)
+    item = Item.find param['item']
+    if item
+      # Setting a distant future end time so Facebook views it
+      # as a currently happening event
+      args = {:item => item_url(item,:host => Rails.application.config.root_url), :start_time => Time.now.to_i, :end_time => 10.years.from_now.to_i}
+      i = @graph.put_connections("me", "#{@namespace}:sell", args)
+    end
   end
 
-  def item_sold
-    # end time is now, so activity will appear as past tense
-    args = {:item => item_url(@item,:host => Rails.application.config.root_url), :start_time => Time.now.to_i}
-    i = @graph.put_connections("me", "closetgroupie-dev:sell", args)
-    binding.pry_remote
+  def item_sold(param)
+    item = Item.find param['item']
+    if item
+      # end time is now, so activity will appear as past tense
+      args = {:item => item_url(item,:host => Rails.application.config.root_url), :start_time => Time.now.to_i}
+      i = @graph.put_connections("me", "#{@namespace}:sell", args)
+    end
   end
 
-  def item_bought
-    args = {:item => item_url(@item,:host => Rails.application.config.root_url) }
-    @graph.put_connections("me", "closetgroupie-dev:buy", args)
+  def item_purchased(param)
+    item = Item.find param['item']
+    if item
+      args = {:item => item_url(item, :host => Rails.application.config.root_url) }
+      @graph.put_connections("me", "#{@namespace}:buy", args)
+    end
+  end
+
+  def follow(param)
+    followee = User.find param['followee']
+    if followee
+      args = {:member => closet_url(followee.closet, :host => Rails.application.config.root_url) }
+      @graph.put_connections("me", "#{@namespace}:follow", args)
+    end
   end
 end

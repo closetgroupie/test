@@ -21,6 +21,8 @@ Closetgroupie::Application.configure do
     #:appid     => "APP-80W284485P519543T",
     #:email     => "cg2_1340742354_biz@tspike.com"
   #}
+  #
+  config.og_namespace = 'closetgroupie-dev'
 
   # Settings specified here will take precedence over those in config/application.rb
 

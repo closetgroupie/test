@@ -13,6 +13,7 @@ Closetgroupie::Application.configure do
     :key    => 195906460469934,
     :secret => "3c11385cf4f9036acb5acd8274028d80"
   }
+  config.og_namespace = 'closetgroupie'
 
   # Settings specified here will take precedence over those in config/application.rb
   config.action_mailer.delivery_method = :smtp
