@@ -6,7 +6,7 @@ module Api
       expose :id
 
       expose :avatar_url do | user , options |
-        "http://localhost:3000#{ user.avatar_url }"
+        "https://closetgroupie.com#{ user.avatar_url }"
       end
 
       expose( :api_key ){ "abc123" }
