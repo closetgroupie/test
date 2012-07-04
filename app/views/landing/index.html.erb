@@ -1,6 +1,6 @@
 <% @items_by_segment.each do |segment, items| %>
 <div class="segment">
-    <h2><%= segment %></h2>
+    <h2><%= link_to segment, "/#{segment.downcase}" %></h2>
     <ul>
     <% items.each do |item| %>
         <li>
