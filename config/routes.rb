@@ -116,6 +116,8 @@ Closetgroupie::Application.routes.draw do
   get "terms"   => "static#terms"
   get "privacy" => "static#privacy"
 
+  get "become-a-curator" => "static#become-a-curator"
+
   get "about"   => "static#about"
   get "team"    => "static#team"
   get "careers" => "static#careers"
