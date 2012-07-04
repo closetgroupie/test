@@ -5,9 +5,10 @@ module Api
 
       helpers do
         def authenticate_facebook
-          auth = Authentication
+          auth = ::Authentication
                    .includes( :user )
-                   .find_by( :uid => params[ :uid ] , :provider => :facebook )
+                   .where( :uid => params[ :uid ] , :provider => :facebook )
+                   .first
 
           user = ( auth and auth.user )
           json_error!( "No user with that Facebook `uid`!" , 401 ) if user.blank?
