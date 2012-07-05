@@ -77,7 +77,7 @@ class Cart < ActiveRecord::Base
 
     recipients << {
       :email => Closetgroupie::Application.config.paypal[:email],
-      :amount => total,
+      :amount => total.round(2), # TODO switch to money gem?
       :primary => true
     }
 
@@ -85,7 +85,7 @@ class Cart < ActiveRecord::Base
       # TODO: What about bundled shipping?
       recipients << {
         :email   => user.paypal_email,
-        :amount  => items.sum(&:price_with_shipping),
+        :amount  => items.sum(&:price_with_shipping).round(2), # TODO switch to money gem?
         :primary => false
       }
     end
