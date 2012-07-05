@@ -1,8 +1,10 @@
 require "bundler/capistrano"
-require "rvm/capistrano"
 require "sidekiq/capistrano"
 
-server "69.55.55.82", :web, :app, :db, primary: true
+# Multistage deployment
+set :stages, %w(production staging)
+set :default_stage, "staging"
+require "capistrano/ext/multistage"
 
 set :rvm_type, :system
 set :application, "closetgroupie"
