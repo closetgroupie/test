@@ -13,8 +13,13 @@ ActiveAdmin.register_page "Dashboard" do
     # Here is an example of a simple dashboard with columns and panels.
 
     # Seller stats:
-    current_seller_count = Item.pluck(:user_id).uniq.size
-    new_items_uploaded   = Item.where(created_at: (Time.now.utc - (Time.now.utc.midnight - 1.week.ago)).midnight..Time.now.utc.end_of_day).size
+    # current_seller_count = Item.pluck(:user_id).uniq.size
+    # new_items_uploaded   = Item.where(created_at: (Time.now.utc - (Time.now.utc.midnight - 1.week.ago)).midnight..Time.now.utc.end_of_day).size
+
+    total_sellers_count    = Item.pluck(:user_id).uniq.size
+    total_items_bought     = Item.where(:sold => true).count
+    total_items_uploaded   = Item.count
+    total_registered_users = User.count
 
     new_registrations    = User.where(created_at: (Time.now.utc - (Time.now.utc.midnight - 1.week.ago)).midnight..Time.now.utc.end_of_day).size
 
@@ -22,17 +27,10 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Key Metrics" do
           ul do
-            li "# of sellers: #{current_seller_count}"
-            li "# of items uploaded: #{new_items_uploaded}"
-            li "# of sellers w/ sales"
-            li "revenue per seller"
-          end
-
-          ul do
-            # li "# of monthly (weekly) uniques"
-            li "# of monthly (weekly) registered: #{new_registrations}"
-            li "# of items bought"
-            li "# of items viewed per seller"
+            li "Total # of sellers: #{total_sellers_count}"
+            li "Total # of registered users: #{total_registered_users}"
+            li "Total # of items uploaded: #{total_items_uploaded}"
+            li "Total # of items bought: #{total_items_bought}"
           end
         end
         # panel "Recent Items" do
