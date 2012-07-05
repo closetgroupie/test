@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120626092548) do
+ActiveRecord::Schema.define(:version => 20120705040205) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -282,6 +282,7 @@ ActiveRecord::Schema.define(:version => 20120626092548) do
     t.string   "paypal_email"
     t.string   "legacy_password",                 :limit => 40
     t.integer  "legacy_id",                       :limit => 2
+    t.string   "api_key",                         :limit => 40
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

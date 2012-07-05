@@ -1,3 +1,5 @@
+require 'uuidtools'
+
 KELLY = 3
 TRES = 2285
 JOONAS = 157
@@ -11,6 +13,10 @@ class User < ActiveRecord::Base
   authenticates_with_sorcery! do
     config.authentication_class = Authentication
   end
+
+  # TODO: Once we have better criteria for sellers, this needs to be based on that
+  # or we need to generate it elsewhere
+  after_create :generate_api_key
 
   has_one :closet, :dependent => :destroy
 
@@ -63,6 +69,10 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   attr_accessor :email_confirmation, :password_confirmation, :current_password
+
+  def generate_api_key
+    update_attribute(:api_key, UUIDTools::UUID.random_create.to_s)
+  end
 
   def admin?
     # TODO: This should call administator?

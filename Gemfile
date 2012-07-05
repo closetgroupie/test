@@ -57,6 +57,9 @@ gem 'sidekiq'
 # Exception handling, exceptional.io
 gem 'exceptional'
 
+# UUID generation
+gem 'uuidtools'
+
 gem 'sorcery'
 gem 'dynamic_form'
 gem 'wicked'

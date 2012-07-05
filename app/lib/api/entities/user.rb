@@ -9,7 +9,7 @@ module Api
         base = Rails.env.production? ? 'https://closetgroupie.com' : 'http://localhost:3000'
         "#{base}#{user.avatar_url}"
       end
-      expose( :api_key ){ "abc123" }
+      expose :api_key
     end
   end
 end
