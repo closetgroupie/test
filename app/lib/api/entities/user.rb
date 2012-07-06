@@ -5,8 +5,7 @@ module Api
       expose :email
       expose :id
       expose :avatar_url do | user , options |
-        # TODO: Come up with a better implementation.
-        base = Rails.env.production? ? 'https://closetgroupie.com' : 'http://localhost:3000'
+        base = Closetgroupie::Application.config.base_url
         "#{base}#{user.avatar_url}"
       end
       expose :api_key

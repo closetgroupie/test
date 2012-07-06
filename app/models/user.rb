@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   # TODO: Once we have better criteria for sellers, this needs to be based on that
   # or we need to generate it elsewhere
-  after_create :generate_api_key
+  before_validation :generate_api_key , :on => :create
 
   has_one :closet, :dependent => :destroy
 
@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
   attr_accessor :email_confirmation, :password_confirmation, :current_password
 
   def generate_api_key
-    update_attribute(:api_key, UUIDTools::UUID.random_create.to_s)
+    self.api_key = UUIDTools::UUID.random_create.to_s
   end
 
   def admin?
