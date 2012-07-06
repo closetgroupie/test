@@ -1,6 +1,6 @@
 module Api
   module Entities
-    class Item < Grape::Entity
+    class DetailedItem < Grape::Entity
       CONDITIONS = ::Item::CONDITIONS.invert
 
       expose( :brand ) do | item , options |
