@@ -11,13 +11,13 @@ module Api
       before { authenticate! }
 
       get :items do
-        present @current_user.items , :with => Entities::Item
+        present @current_user.items , :with => Entities::ListItem
       end
 
       get 'items/:id' do
         item = @current_user.items.where( :id => params[ :id ] ).first
         json_error!( 'No item with given `id`!' , 404 ) unless item
-        present item , :with => Entities::Item
+        present item , :with => Entities::DetailedItem
       end
     end
   end
