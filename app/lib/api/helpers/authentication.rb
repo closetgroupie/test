@@ -3,8 +3,9 @@ module Api
     module Authentication
       # Authorization: CGX my-api-key
       def api_key
+        json_error!( 'Invalid `Authorization` scheme!' , 401 ) unless raw_api_key
         parts = raw_api_key.split ' '
-        json_error!( 'Invalid `Authorization` scheme!' , 401 ) unless parts[ 0 ] == 'CGX'
+        json_error!( 'Invalid `Authorization` scheme!' , 401 ) unless parts[ 0 ] == 'CGX' and parts.size == 2
         parts[ 1 ]
       end
 
