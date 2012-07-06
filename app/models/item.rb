@@ -53,6 +53,10 @@ class Item < ActiveRecord::Base
     "Terrible"  => 5
   }
 
+  def brand_name
+    brand.try(:name) || try(:brand_suggestion) || "N/A"
+  end
+
   def must_have_at_least_one_photo
     errors.add(:photos, "At least one photo is required.") if no_photos?
   end

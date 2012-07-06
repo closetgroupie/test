@@ -1,11 +1,7 @@
 module Api
   module Entities
     class ListItem < Grape::Entity
-      expose( :brand ) do | item , options |
-        item.brand.presence ||
-        item.brand_suggestion.presence ||
-        "N/A"
-      end
+      expose( :brand ) { | item , options |  item.brand_name }
       expose :id
       expose( :image_url ) do | item , options |
         base = Closetgroupie::Application.config.base_url
