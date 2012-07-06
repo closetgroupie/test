@@ -1,9 +1,10 @@
 class SessionsController < ApplicationController
+  before_filter :allow_only_unauthorized, only: [:new, :create]
+
   def new
   end
 
   def create
-    # redirect_to :back, :alert => "Log in has been disabled for right now, while we work out some bugs on the site. We will be back as soon as possible. We are sorry for the inconvenience. Thanks, Joonas & Kelly"
     if user = legacy_login(params[:email], params[:password])
       user.update_attributes({
         password: params[:password],
@@ -24,5 +25,11 @@ class SessionsController < ApplicationController
   def destroy
     logout
     redirect_to root_url#, :notice => "Logged out!"
+  end
+
+private
+
+  def allow_only_unauthorized
+    return redirect_to root_url if current_user
   end
 end
