@@ -19,26 +19,26 @@
       <h1>These friends use ClosetGroupie</h1>
     </div>
     <div class="contents">
-      <table>
-      <% @friends.each do |friend| %>
-        <tr>
-          <td class="avatar">
-            <%= link_to closet_path(friend.id) do %>
-                <%= image_tag(friend.avatar_url(:thumb), :alt => friend.name,
-                    :class => "img-shadow", width: 40, height: 40) %>
-            <% end %>
-          </td>
-          <td class="name">
-            <%= link_to friend.name, friend.closet %>
-          </td>
-          <td class="since">
-            <strong>Member since</strong> <%= friend.created_at.strftime('%B %d, %Y') %>
-          </td>
-          <td class="follow">
-            <%= toggle_follow_button_for friend %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+        <table>
+         <% @friends.each do |friend| %>
+            <tr>
+                <td class="avatar">
+                <%= link_to closet_path(friend.id) do %>
+                    <%= image_tag(friend.avatar_url(:thumb), :alt => friend.name,
+                        :class => "img-shadow", width: 40, height: 40) %>
+                <% end %>
+                </td>
+                <td class="name">
+                    <%= link_to friend.name, friend.closet %>
+                </td>
+                <td class="since">
+                    <strong>Member since</strong> <%= friend.created_at.strftime('%B %d, %Y') %>
+                </td>
+                <td class="follow">
+                    <%= toggle_follow_button_for friend %>
+                </td>
+            </tr>
+        <% end if @friends.present? %>
+        </table>
+    </div>
 </div>
