@@ -1,6 +1,6 @@
 ActiveAdmin.register Item do
   CONDITIONS = ::Item::CONDITIONS.invert
-  actions :index, :show, :edit, :delete
+  actions :index, :show, :edit, :destroy
 
   filter :title
   filter :brand
