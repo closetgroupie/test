@@ -5,7 +5,7 @@ class ItemActivityObserver < BaseActivityObserver
     create(model.user, model, model)
 
     model.user.groupies.each do |groupie| # har har
-      ItemMailer.delay.new_item_email(model.id, groupie.id)
+      ItemMailer.delay.item_of_interest_email(model.id, groupie.id)
     end
   end
   
