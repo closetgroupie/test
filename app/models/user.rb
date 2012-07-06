@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
   has_many :favorites
   has_many :items
   has_many :orders, :foreign_key => :buyer_id
+  has_many :purchases, :class_name => "Cart"
   has_many :sales,  :class_name => "Order", :foreign_key => :seller_id
   # TODO: Another orders relation from seller side
   has_many :addresses
