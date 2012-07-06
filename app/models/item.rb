@@ -45,6 +45,22 @@ class Item < ActiveRecord::Base
                   :shipping_notes,
                   :photos_attributes
 
+  ATTRS_SAFE_FOR_UPDATE = %w(
+    brand_id
+    brand_suggestion
+    category_id
+    condition
+    description
+    price
+    segment_id
+    shipping_cost
+    shipping_cost_bundled
+    shipping_from
+    shipping_notes
+    size_id
+    title
+  )
+
   CONDITIONS = {
     "Brand New" => 1,
     "Worn Once" => 2,
@@ -134,5 +150,12 @@ class Item < ActiveRecord::Base
       price: price,
       size: size.to_s
     }.to_json if photos.any?
+  end
+
+  def safe_update(params)
+    ATTRS_SAFE_FOR_UPDATE.each do | field |
+      value = params[ field ]
+      send("#{ field }=".to_sym, value ) unless value.nil?
+    end
   end
 end
