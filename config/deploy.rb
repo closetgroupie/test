@@ -12,7 +12,6 @@ set :application, "closetgroupie"
 set :scm, :git
 # set :repository,  "git@bitbucket.org:joonas/cgx.git"
 set :repository,  "git@github.com:closetgroupie/ClosetGroupie.git"
-set :branch, "master"
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 set :deploy_to, "/srv/www/#{application}"
