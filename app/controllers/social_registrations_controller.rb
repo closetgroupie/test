@@ -60,6 +60,7 @@ class SocialRegistrationsController < ApplicationController
 
     if @user.valid?
       auto_login(@user) if @user.save
+      FacebookAvatarWorker.perform_async(@user.id)
       redirect_to root_url
     else
       render :new
