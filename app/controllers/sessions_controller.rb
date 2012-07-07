@@ -35,6 +35,9 @@ class SessionsController < ApplicationController
     redirect_to root_url#, :notice => "Logged out!"
   end
 
+  def failure
+  end
+
 private
 
   def allow_only_unauthorized

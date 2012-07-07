@@ -3,6 +3,7 @@ Closetgroupie::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
+  match "/connect/failure" => "sessions#failure"
   match "/connect/:provider" => "ApplicationController#error_404", as: "connect"
   match "/connect/:provider/callback" => "sessions#create",        as: "callback"
 
