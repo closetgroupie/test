@@ -1,5 +1,5 @@
 Closetgroupie::Application.configure do
-  config.base_url = "http://localhost:3000"
+  config.base_url = "http://staging.closetgroupie.com"
 
   config.paypal = {
     :login     => "joonas_1338321438_biz_api1.closetgroupie.com",
@@ -9,13 +9,10 @@ Closetgroupie::Application.configure do
     :email     => "joonas_1338321438_biz@closetgroupie.com"
   }
 
-  #config.paypal = {
-    #:login     => "cg2_1340742354_biz_api1.tspike.com",
-    #:password  => "1340742384",
-    #:signature => "AxPmYhTdQNX2a3-ZgBsicl6aU8SFA-lhRnrwQ6n0rGff6cZ2voY9Mz7N",
-    #:appid     => "APP-80W284485P519543T",
-    #:email     => "cg2_1340742354_biz@tspike.com"
-  #}
+  config.facebook = {
+    :key    => 318393408253850,
+    :secret => "cd845298813252ac18cd6e22f5bdbb92"
+  }
 
   # Settings specified here will take precedence over those in config/application.rb
 
