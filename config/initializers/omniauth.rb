@@ -11,5 +11,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
   #          SessionsController.action(:new).call(env)
   # } # :fields => [:email]
   provider :facebook, facebook_key, facebook_secret, :display => 'page',
-           :scope => 'email,publish_actions', :image_size => 'large'
+           :scope => 'email', :image_size => 'large'
 end
