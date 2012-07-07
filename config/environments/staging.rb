@@ -67,6 +67,12 @@ Closetgroupie::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+  config.assets.precompile += %w( search.js activity.js shop.js item.js add-items.js infinite-scroll.js filters.js closets.js activities.js landing.css active_admin.css active_admin.js )
+
+  config.action_controller.asset_host = "https://closetgroupie.com"
+  config.action_mailer.asset_host = config.action_controller.asset_host
+  config.action_mailer.default_url_options = { host: "closetgroupie.com" }
+
   # Do not compress assets
   # config.assets.compress = false
 
