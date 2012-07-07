@@ -6,8 +6,8 @@ class PurchaseMailer < ActionMailer::Base
 
   def purchase_made_email(cart_id)
     @cart = Cart.find(cart_id)
-    @buyer = User.find(cart.user_id)
-    @orders = cart.orders
+    @buyer = User.find(@cart.user_id)
+    @orders = @cart.orders
     mail(to: @buyer.email, subject: "Thanks for your purchase from ClosetGroupie!")
   end
 end

@@ -3,12 +3,14 @@ Closetgroupie::Application.routes.draw do
 
   ActiveAdmin.routes(self)
 
-  get "oauths/oauth"
-
-  get "oauths/callback"
+  match "/connect/failure" => "sessions#failure"
+  match "/connect/:provider" => "ApplicationController#error_404", as: "connect"
+  match "/connect/:provider/callback" => "sessions#create",        as: "callback"
 
   get "signup" => "users#new", :as => "signup"
   post "signup" => "users#create", :as => "signup"
+  get "signup/facebook" => "social_registrations#new", :as => "social_signup"
+  post "signup/facebook" => "social_registrations#create", :as => "social_signup"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login"  => "sessions#new", :as => "login"
 
@@ -72,9 +74,6 @@ Closetgroupie::Application.routes.draw do
     post 'rotate_clockwise', :on => :member
     post 'rotate_counterclockwise', :on => :member
   end
-
-  match "oauth/callback" => "oauths#callback"
-  match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
 
   # cart has many items
   # upon "checkout" cart items are transferred to order(?)

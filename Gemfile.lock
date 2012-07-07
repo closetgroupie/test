@@ -83,7 +83,6 @@ GEM
       activesupport (>= 3.2.0)
     celluloid (0.11.0)
     chunky_png (1.2.5)
-    coderay (1.0.7)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -110,6 +109,7 @@ GEM
     faraday (0.8.1)
       multipart-post (~> 1.1)
     fastercsv (1.5.5)
+    ffaker (1.15.0)
     formtastic (2.1.1)
       actionpack (~> 3.0)
     fssm (0.2.9)
@@ -153,7 +153,6 @@ GEM
       activesupport (~> 3.1)
       polyamorous (~> 0.5.0)
     metaclass (0.0.1)
-    method_source (0.7.1)
     mime-types (1.19)
     mini_magick (3.4)
       subexec (~> 0.2.1)
@@ -178,14 +177,18 @@ GEM
     oauth2 (0.5.2)
       faraday (~> 0.7)
       multi_json (~> 1.0)
+    omniauth (1.1.0)
+      hashie (~> 1.2)
+      rack
+    omniauth-facebook (1.2.0)
+      omniauth-oauth2 (~> 1.0.0)
+    omniauth-oauth2 (1.0.0)
+      oauth2 (~> 0.5.0)
+      omniauth (~> 1.0)
     pg (0.14.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
-    pry (0.9.9.6)
-      coderay (~> 1.0.5)
-      method_source (~> 0.7.1)
-      slop (>= 2.4.4, < 3)
     rabl (0.6.14)
       activesupport (>= 2.3.14)
       multi_json (~> 1.0)
@@ -237,7 +240,6 @@ GEM
       multi_json (~> 1)
       redis (~> 3)
       redis-namespace
-    slop (2.4.4)
     sorcery (0.7.12)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
@@ -291,6 +293,7 @@ DEPENDENCIES
   dynamic_form
   ejs
   exceptional
+  ffaker
   grape
   hiredis
   jquery-rails
@@ -299,15 +302,15 @@ DEPENDENCIES
   meta_search
   mini_magick
   newrelic_rpm
+  omniauth-facebook
   pg
-  pry
   rabl
   rails (= 3.2.6)
   redis
   rvm-capistrano
   sass-rails (~> 3.2.3)
   sidekiq
-  sorcery
+  sorcery (~> 0.7.12)
   therubyracer
   tire
   uglifier (>= 1.0.3)

@@ -1,0 +1,22 @@
+<% body_class "default basic signup social-signup unregistered" %>
+<div class="intro">
+    <h3 id="create_header"><%= "Hi #{@me.try(:fetch, "first_name", "there")}, you are almost done!" %></h3>
+</div>
+<%= image_tag @avatar_url,
+    :class => "img-shadow", :id => "social-photo" %>
+<%= form_for @user, :url => social_signup_path do |f| %>
+    <div class="input required text">
+        <%# <%= f.label :name, "Full Name or Brand Name" %1> %>
+        <%= f.text_field :name, :placeholder => "Full Name or Brand Name"%>
+    </div>
+    <div class="input required text">
+        <%# <%= f.label :email, "Your Email Address" %1> %>
+        <%= f.text_field :email, :placeholder => "Email Address" %>
+    </div>
+    <div class="input password required">
+        <%# <%= f.label :password, "Create a Password" %1> %>
+        <%= f.password_field :password, :placeholder => "Password" %>
+    </div>
+    <%= f.hidden_field :gender %>
+    <%= f.submit "Submit", :id => "submit_btn" %>
+<% end %>

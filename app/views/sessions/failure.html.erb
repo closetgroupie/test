@@ -1,0 +1,7 @@
+<% body_class "" %>
+<div id="connect-failure">
+    <p>It would appear that there was a problem communicating with Facebook, please try again.</p>
+    <p class="facebook" style="margin-top: 62px;">
+        <%= link_to image_tag("login-with-facebook.png", :alt => "Login with Facebook"), connect_path(:provider => :facebook) %>
+    </p>
+</div>

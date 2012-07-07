@@ -1,5 +1,5 @@
 Closetgroupie::Application.configure do
-  config.base_url = "http://localhost:3000"
+  config.base_url = "http://staging.closetgroupie.com"
 
   config.paypal = {
     :login     => "joonas_1338321438_biz_api1.closetgroupie.com",
@@ -10,17 +10,9 @@ Closetgroupie::Application.configure do
   }
 
   config.facebook = {
-    :key    => 241246552660833,
-    :secret => "b916fb1ecf5800938015fab4e2fb93e2"
+    :key    => 318393408253850,
+    :secret => "cd845298813252ac18cd6e22f5bdbb92"
   }
-
-  #config.paypal = {
-    #:login     => "cg2_1340742354_biz_api1.tspike.com",
-    #:password  => "1340742384",
-    #:signature => "AxPmYhTdQNX2a3-ZgBsicl6aU8SFA-lhRnrwQ6n0rGff6cZ2voY9Mz7N",
-    #:appid     => "APP-80W284485P519543T",
-    #:email     => "cg2_1340742354_biz@tspike.com"
-  #}
 
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -62,11 +54,27 @@ Closetgroupie::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   config.active_record.auto_explain_threshold_in_seconds = 0.5
 
+  config.serve_static_assets = false
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = true
+
+  # Compress JavaScripts and CSS
+  config.assets.compress = true
+
+  # Generate digests for assets URLs
+  config.assets.digest = true
+
+  config.assets.precompile += %w( search.js activity.js shop.js item.js add-items.js infinite-scroll.js filters.js closets.js activities.js landing.css active_admin.css active_admin.js )
+
+  config.action_controller.asset_host = "http://staging.closetgroupie.com"
+  config.action_mailer.asset_host = config.action_controller.asset_host
+  config.action_mailer.default_url_options = { host: "staging.closetgroupie.com" }
+
   # Do not compress assets
-  config.assets.compress = false
+  # config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  # config.assets.debug = true
 end
 
 ActiveMerchant::Billing::Base.mode = :test

@@ -21,11 +21,18 @@ class ApplicationController < ActionController::Base
     @current_order ||= order_from_session
   end
 
+  helper_method :current_order, :current_cart
+
   def urls
     Rails.application.routes.url_helpers
   end
 
-  helper_method :current_order, :current_cart
+  # This route exists so that we can generate a named route for OmniAuth's
+  # request phase for each provider that doesn't respond to it with a form
+  def error_404
+    raise ActionController::RoutingError
+  end
+
   private
 
     def require_admin
