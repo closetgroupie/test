@@ -75,6 +75,11 @@ class User < ActiveRecord::Base
     self.api_key = UUIDTools::UUID.random_create.to_s
   end
 
+  def self.from_omniauth(auth_hash)
+    auth = Authentication.where(auth_hash.slice(:provider, :uid)).first
+    find(auth.user_id) if auth.present?
+  end
+
   def admin?
     # TODO: This should call administator?
     [KELLY, JOONAS, TRES].include? id

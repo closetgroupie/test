@@ -71,7 +71,8 @@ Rails.application.config.sorcery.configure do |config|
   # What providers are supported by this app, i.e. [:twitter, :facebook, :github, :google, :liveid] .
   # Default: `[]`
   #
-  config.external_providers = [:facebook]
+  # config.external_providers = [:facebook]
+  config.external_providers = []
 
   # You can change it by your local ca_file. i.e. '/etc/pki/tls/certs/ca-bundle.crt'
   # Path to ca_file. By default use a internal ca-bundle.crt.
@@ -92,30 +93,22 @@ Rails.application.config.sorcery.configure do |config|
   # config.twitter.user_info_mapping = {:name => "name"}
   #
 
-if Rails.env.development?
-  SITE_LOCATION = "http://localhost:3000"
-  # config.facebook.key = "385329781503733"
-  # config.facebook.secret = "570f1284fd67717724076bcef408c12d"
-  config.facebook.key = "241246552660833"
-  config.facebook.secret = "b916fb1ecf5800938015fab4e2fb93e2"
-else
-  SITE_LOCATION = "https://closetgroupie.com"
-  config.facebook.key = "195906460469934"
-  config.facebook.secret = "3c11385cf4f9036acb5acd8274028d80"
-end
+  # if Rails.env.development?
+  #   SITE_LOCATION = "http://localhost:3000"
+  #   # config.facebook.key = "385329781503733"
+  #   # config.facebook.secret = "570f1284fd67717724076bcef408c12d"
+  #   config.facebook.key = "241246552660833"
+  #   config.facebook.secret = "b916fb1ecf5800938015fab4e2fb93e2"
+  # else
+  #   SITE_LOCATION = "https://closetgroupie.com"
+  #   config.facebook.key = "195906460469934"
+  #   config.facebook.secret = "3c11385cf4f9036acb5acd8274028d80"
+  # end
 
-config.facebook.callback_url = "#{SITE_LOCATION}/oauth/callback?provider=facebook"
+  # config.facebook.callback_url = "#{SITE_LOCATION}/oauth/callback?provider=facebook"
 
-  # config.facebook.key = "385329781503733"
-  # config.facebook.secret = "570f1284fd67717724076bcef408c12d"
-  # config.facebook.key = "195906460469934"
-  # config.facebook.secret = "3c11385cf4f9036acb5acd8274028d80"
-  # # config.facebook.key = "114341ffcbd5480f214775161813bda4"
-  # config.facebook.secret = "3c11385cf4f9036acb5acd8274028d80"
-  # config.facebook.callback_url = "http://localhost:3000/oauth/callback?provider=facebook"
-
-  config.facebook.user_info_mapping = {:email => "email", :name => "name"}
-  config.facebook.scope = "email,user_location,user_photos"
+  # config.facebook.user_info_mapping = {:email => "email", :name => "name"}
+  # config.facebook.scope = "email,user_location,user_photos"
   #
   # config.github.key = ""
   # config.github.secret = ""
