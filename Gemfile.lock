@@ -110,6 +110,7 @@ GEM
     faraday (0.8.1)
       multipart-post (~> 1.1)
     fastercsv (1.5.5)
+    ffaker (1.15.0)
     formtastic (2.1.1)
       actionpack (~> 3.0)
     fssm (0.2.9)
@@ -291,6 +292,7 @@ DEPENDENCIES
   dynamic_form
   ejs
   exceptional
+  ffaker
   grape
   hiredis
   jquery-rails

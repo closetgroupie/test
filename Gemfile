@@ -39,6 +39,16 @@ group :development, :test do
   #gem 'capybara-webkit'
 end
 
+group :development, :test, :staging do
+  # Seed data generation
+  gem 'ffaker'
+end
+
+group :staging do
+  gem 'compass'
+  gem 'compass-rails'
+end
+
 gem 'jquery-rails'
 gem 'ejs'
 gem 'grape'
