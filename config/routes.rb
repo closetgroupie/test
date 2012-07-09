@@ -1,5 +1,7 @@
 Closetgroupie::Application.routes.draw do
-  mount Api::Iphone => 'api'
+  constraints NotInProductionConstraint do
+    mount Api::Iphone => 'api'
+  end
 
   constraints ActiveAdminConstraint do
     ActiveAdmin.routes(self)
