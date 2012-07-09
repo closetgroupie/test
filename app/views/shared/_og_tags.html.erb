@@ -1,4 +1,4 @@
-    <meta property="fb:app_id" content="<%= Rails.application.config.sorcery.facebook.key %>" /> 
+    <meta property="fb:app_id" content="<%= Rails.application.config.facebook[:key] %>" />
     <meta property="og:type"   content="<%= (og_type = yield :og_type) ? og_type : "" %>" /> 
     <meta property="og:url"    content="<%= (og_url = yield :og_url) ? og_url : "" %>" /> 
     <meta property="og:title"  content="<%= (og_title = yield :og_title) ? og_title : "" %>" /> 
