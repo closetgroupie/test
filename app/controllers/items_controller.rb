@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   layout "dashboard", except: [:show]
 
   before_filter :require_login, :except => [:show]
+  before_filter :require_curator, only: [:new, :create]
 
   def new
     redirect_to settings_paypal_url unless current_user.paypal_email.present?
@@ -65,5 +66,11 @@ class ItemsController < ApplicationController
 
   def sold
     @items = current_user.items.sold
+  end
+
+private
+
+  def require_curator
+    redirect_to become_a_curator_url unless current_user && current_user.is_curator?
   end
 end

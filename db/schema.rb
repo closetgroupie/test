@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120705185500) do
+ActiveRecord::Schema.define(:version => 20120709024337) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -267,8 +267,8 @@ ActiveRecord::Schema.define(:version => 20120705185500) do
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at",                                    :null => false
-    t.datetime "updated_at",                                    :null => false
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_token"
@@ -284,6 +284,7 @@ ActiveRecord::Schema.define(:version => 20120705185500) do
     t.string   "legacy_password",                 :limit => 40
     t.integer  "legacy_id",                       :limit => 2
     t.string   "api_key",                         :limit => 40
+    t.boolean  "is_curator",                                    :default => false
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

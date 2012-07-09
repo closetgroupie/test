@@ -3,7 +3,9 @@ Closetgroupie::Application.routes.draw do
     mount Api::Iphone => 'api'
   end
 
-  ActiveAdmin.routes(self)
+  constraints ActiveAdminConstraint do
+    ActiveAdmin.routes(self)
+  end
 
   match "/connect/failure" => "sessions#failure"
   match "/connect/:provider" => "ApplicationController#error_404", as: "connect"
@@ -117,7 +119,7 @@ Closetgroupie::Application.routes.draw do
   get "terms"   => "static#terms"
   get "privacy" => "static#privacy"
 
-  get "become-a-curator" => "static#become-a-curator"
+  get "become-a-curator" => "static#become-a-curator", as: "become_a_curator"
 
   get "about"   => "static#about"
   get "team"    => "static#team"

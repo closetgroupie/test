@@ -1,13 +1,9 @@
 module Api
   module Entities
-    class Item < Grape::Entity
+    class DetailedItem < Grape::Entity
       CONDITIONS = ::Item::CONDITIONS.invert
 
-      expose( :brand ) do | item , options |
-        item.brand.presence ||
-        item.brand_suggestion.presence ||
-        "N/A"
-      end
+      expose( :brand ) { | item , options | item.brand_name }
       expose( :condition ) { | item , options | CONDITIONS[item.condition] }
       expose :description
       expose :id
