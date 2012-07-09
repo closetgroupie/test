@@ -1,7 +1,9 @@
 Closetgroupie::Application.routes.draw do
   mount Api::Iphone => 'api'
 
-  ActiveAdmin.routes(self)
+  constraints ActiveAdminConstraint do
+    ActiveAdmin.routes(self)
+  end
 
   match "/connect/failure" => "sessions#failure"
   match "/connect/:provider" => "ApplicationController#error_404", as: "connect"

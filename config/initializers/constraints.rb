@@ -1,3 +1,9 @@
+class ActiveAdminConstraint
+  def self.matches?(request)
+    Rails.env.development? || Rails.env.production?
+  end
+end
+
 class AdminConstraint
   def self.matches?(request)
     # TODO: Is this good/secure enough, or should we go all out here?
