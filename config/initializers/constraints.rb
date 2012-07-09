@@ -22,6 +22,12 @@ class AuthenticatedConstraint
   end
 end
 
+class NotInProductionConstraint
+  def self.matches?(request)
+    return !Rails.env.production?
+  end
+end
+
 class SegmentConstraint
   def self.matches?(request)
     SHOPPING_SEGMENTS.include?(request.params[:segment].downcase)
