@@ -4,7 +4,11 @@
             <a href="/" id="logo"></a>
             <% if current_user %>
             <div id="user-actions">
-                <%= link_to "Sell your items", new_item_path, id: "sell-button" %>
+                <% if current_user.is_curator? %>
+                <%= link_to "Add Item", new_item_path, id: "add-item" %>
+                <% else %>
+                <%= link_to "Become a Curator", become_a_curator_path, id: "become-a-curator" %>
+                <% end %>
                 <div class="divider"></div>
                 <%= link_to "Favorites", favorites_path, :class => "status-icon", id: "favorite" %>
                 <div class="divider"></div>
