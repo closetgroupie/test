@@ -26,14 +26,14 @@ end
 gem 'therubyracer'
 
 group :development, :test do
-  #gem 'pry'
-  #gem 'pry-remote'
-  #gem 'letter_opener'
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'letter_opener'
   #gem 'acts-as-importable', github: "kweightman/acts-as-importable"
   #gem 'capybara'
   #gem 'rspec-rails'
-  #gem 'launchy'
-  #gem 'factory_girl_rails', :require => false
+  gem 'launchy'
+  gem 'factory_girl_rails', :require => false
   #gem 'guard-rspec'
   #gem 'spork'
   #gem 'capybara-webkit'
