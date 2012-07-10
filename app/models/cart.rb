@@ -62,7 +62,7 @@ class Cart < ActiveRecord::Base
     end
     orders.each do |order|
       OrderMailer.delay.sale_made_email(order.id)
-      ReminderDeliveryWorker.perform_in(7.days, order.id) # Schedule review reminder
+      ReminderDeliveryWorker.perform_in(7.seconds, order.id) # Schedule review reminder
     end
     update_attribute(:purchased_at, purchased_at)
     save
