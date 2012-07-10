@@ -23,7 +23,7 @@ class Closet < ActiveRecord::Base
   def can_be_reviewed_by_user?(reviewer)
     # TODO: Refactor, move to a PORO
     orders_between_users = Order.between(reviewer, user)
-    reviews_by_user = Review.made_by(reviewer)
+    reviews_by_user = Review.made_by(reviewer.id)
 
     orders_between_users.size > reviews_by_user.size
   end
