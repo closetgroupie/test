@@ -4,8 +4,15 @@
         <li><%= toggle_favorite_button_for item %></li>
         <%= render partial: "items/ask_a_question", object: item, as: :item %>
     <% end %>
-    <%= item.edit_action %>
-    <%= item.delete_action %>
+    <% if current_user and current_user == item.user %>
+    <li><%= link_to "Edit This Item", edit_item_path(@item),
+            :class => "btn btn-edit-item" %></li>
+    <li><%= button_to "Delete", item_path(@item), method: :delete,
+            :class => "btn btn-img btn-delete-item-small", title: "Delete This Item",
+            :confirm => "Are you sure you want to delete this item?" %></li>
+    <% elsif current_user and current_user.admin? %>
+    <li><%= link_to "Admin", admin_item_path(@item) %></li>
+    <% end %>
     <hr class="stitched">
     <li>
         <h3 id="share_this">Share this item</h3>
