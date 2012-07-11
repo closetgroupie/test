@@ -10,5 +10,4 @@ class PurchaseMailer < ActionMailer::Base
     @orders = @cart.orders
     mail(to: @buyer.email, subject: "Thanks for your purchase from ClosetGroupie!")
   end
-
 end
