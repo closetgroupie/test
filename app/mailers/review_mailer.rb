@@ -8,6 +8,6 @@ class ReviewMailer < ActionMailer::Base
     @buyer = User.find(buyer_id)
     @seller = Closet.find(closet_id).user
     @orders = Order.where(:buyer_id => buyer_id, :seller_id => @seller.id)
-    mail(to: @buyer.email, subject: "Leave feedback for #{@seller.name} on ClosetGroupie")
+    mail(to: @buyer.email, subject: "#{@buyer.name}, please leave feedback for #{@seller.name} on ClosetGroupie")
   end
 end
