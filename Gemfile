@@ -111,5 +111,7 @@ end
 # Facebook Graph API
 gem 'koala'
 
+gem 'whenever', :require => false
+
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
