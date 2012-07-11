@@ -1,0 +1,5 @@
+<div style="width: 400px; float: left;">
+  <h3>Hi <%= @buyer.name %></h3>
+  <p>You recently purchased <%= link_to @orders.last.items.last.title, @orders.last.items.last %> from <%= @seller.name %> on ClosetGroupie. Please take a moment to <%= link_to 'leave a review.', new_closet_review_path(:closet_id => @seller.closet.id) %></p>
+</div>
+<div style="clear: both;">&nbsp;</div>
