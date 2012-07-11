@@ -65,7 +65,6 @@ GEM
     activesupport (3.2.6)
       i18n (~> 0.6)
       multi_json (~> 1.0)
-    addressable (2.2.8)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     bourbon (2.1.1)
@@ -85,7 +84,7 @@ GEM
     celluloid (0.11.0)
     chronic (0.6.7)
     chunky_png (1.2.5)
-    coderay (1.0.7)
+    client_side_validations (3.1.4)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -109,11 +108,6 @@ GEM
       rack
     execjs (1.4.0)
       multi_json (~> 1.0)
-    factory_girl (3.5.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (3.5.0)
-      factory_girl (~> 3.5.0)
-      railties (>= 3.0.0)
     faraday (0.8.1)
       multipart-post (~> 1.1)
     fastercsv (1.5.5)
@@ -150,11 +144,6 @@ GEM
     koala (1.5.0)
       faraday (~> 0.7)
       multi_json (~> 1.3)
-    launchy (2.1.0)
-      addressable (~> 2.2.6)
-    letter_opener (0.0.2)
-      launchy
-    libv8 (3.3.10.4)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -165,7 +154,6 @@ GEM
       activesupport (~> 3.1)
       polyamorous (~> 0.5.0)
     metaclass (0.0.1)
-    method_source (0.7.1)
     mime-types (1.19)
     mini_magick (3.4)
       subexec (~> 0.2.1)
@@ -202,13 +190,6 @@ GEM
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
-    pry (0.9.9.6)
-      coderay (~> 1.0.5)
-      method_source (~> 0.7.1)
-      slop (>= 2.4.4, < 3)
-    pry-remote (0.1.5)
-      pry (~> 0.9.9)
-      slop (~> 2.1)
     rabl (0.6.14)
       activesupport (>= 2.3.14)
       multi_json (~> 1.0)
@@ -260,7 +241,6 @@ GEM
       multi_json (~> 1)
       redis (~> 3)
       redis-namespace
-    slop (2.4.4)
     sorcery (0.7.12)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
@@ -270,8 +250,6 @@ GEM
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
     subexec (0.2.2)
-    therubyracer (0.10.1)
-      libv8 (~> 3.3.10)
     thor (0.15.4)
     tilt (1.3.3)
     tire (0.4.2)
@@ -310,6 +288,7 @@ DEPENDENCIES
   capistrano
   capistrano-ext
   carrierwave
+  client_side_validations
   coffee-rails (~> 3.2.1)
   compass
   compass-rails
@@ -317,22 +296,17 @@ DEPENDENCIES
   dynamic_form
   ejs
   exceptional
-  factory_girl_rails
   ffaker
   grape
   hiredis
   jquery-rails
   kaminari
   koala
-  launchy
-  letter_opener
   meta_search
   mini_magick
   newrelic_rpm
   omniauth-facebook
   pg
-  pry
-  pry-remote
   rabl
   rails (= 3.2.6)
   redis
@@ -340,7 +314,6 @@ DEPENDENCIES
   sass-rails (~> 3.2.3)
   sidekiq
   sorcery (~> 0.7.12)
-  therubyracer
   tire
   uglifier (>= 1.0.3)
   unicorn

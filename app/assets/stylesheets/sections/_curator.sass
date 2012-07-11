@@ -1,0 +1,78 @@
+body.curators
+    
+    h1
+        +replace-text-with-dimensions('become-a-curator/application-header.png')
+
+    #content
+        width: 960px
+
+    #new_curator_application
+        float: left
+        background: url('become-a-curator/application-form-bg.png') no-repeat
+        width: 440px
+        padding: 48px 25px 48px 48px
+        margin-bottom: 2em
+        overflow: hidden
+
+        input, textarea
+            +background(linear-gradient(#f1f1f1, #ffffff))
+            +border-radius(3px)
+            +inline-block
+            margin: 0 20px 15px 0
+            padding: 10px
+            border: 1px solid
+            border-top-color: #8d8d8d
+            border-left-color: #a5a5a5
+            border-right-color: #a5a5a5
+            border-bottom-color: #c6c6c6
+            font-size: 14px
+            width: 388px
+
+        #curator_application_first_name, #curator_application_last_name
+            width: 172px
+
+        #curator_application_email
+            width: 210px
+
+        #curator_application_phone
+            width: 133px
+
+        #curator_application_city
+            width: 145px
+
+        #curator_application_state
+            width: 97px
+
+        #curator_application_zip
+            width: 55px
+
+        #curator_application_about
+            height: 100px
+
+        #submit_application
+            +replace-text-with-dimensions('become-a-curator/application-submit.png')
+            border: none
+            margin: 0
+
+    #becoming-a-curator
+        // TODO: User font-face Future (and Futura Heavy for strong tag) once it's setup in typekit
+        background: image-url('become-a-curator/application-dots.png') no-repeat top left
+        color: #969696
+        float: right
+        padding: 6px 0 0 46px
+
+        h2
+            +replace-text-with-dimensions('become-a-curator/application-text.png')
+            margin: 30px 0 15px
+
+        strong
+            font-size: 15px
+
+    .field_with_errors
+        +inline-block
+
+        input
+            border-color: red !important
+
+        .message
+            display: none

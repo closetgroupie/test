@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120709024337) do
+ActiveRecord::Schema.define(:version => 20120711013112) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -45,15 +45,16 @@ ActiveRecord::Schema.define(:version => 20120709024337) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "user_id"
-    t.string   "country",    :limit => 2,   :null => false
-    t.string   "recipient",  :limit => 120, :null => false
-    t.string   "primary",    :limit => 120, :null => false
-    t.string   "secondary",  :limit => 120
-    t.string   "city",       :limit => 80,  :null => false
-    t.string   "state",      :limit => 80
-    t.string   "zip",        :limit => 12
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.string   "country",            :limit => 2,   :null => false
+    t.string   "recipient",          :limit => 120, :null => false
+    t.string   "primary",            :limit => 120, :null => false
+    t.string   "secondary",          :limit => 120
+    t.string   "city",               :limit => 80,  :null => false
+    t.string   "state",              :limit => 80
+    t.string   "zip",                :limit => 12
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+    t.integer  "payment_profile_id"
   end
 
   create_table "authentications", :force => true do |t|
@@ -120,6 +121,15 @@ ActiveRecord::Schema.define(:version => 20120709024337) do
     t.integer  "legacy_id",  :limit => 2
   end
 
+  create_table "consigners", :force => true do |t|
+    t.string   "given_name"
+    t.string   "surname"
+    t.string   "email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "user_id"
+  end
+
   create_table "conversations", :force => true do |t|
     t.integer  "conversable_id"
     t.string   "conversable_type"
@@ -128,6 +138,22 @@ ActiveRecord::Schema.define(:version => 20120709024337) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.integer  "legacy_id",        :limit => 2
+  end
+
+  create_table "curator_applications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "primary"
+    t.string   "secondary"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.text     "about"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "favorites", :force => true do |t|
@@ -159,6 +185,7 @@ ActiveRecord::Schema.define(:version => 20120709024337) do
     t.datetime "updated_at",                                                                            :null => false
     t.boolean  "sold",                                                               :default => false
     t.integer  "legacy_id"
+    t.integer  "consigner_id"
   end
 
   add_index "items", ["category_id"], :name => "index_items_on_category_id"
@@ -196,6 +223,16 @@ ActiveRecord::Schema.define(:version => 20120709024337) do
     t.integer  "legacy_id"
     t.integer  "legacy_uid"
   end
+
+  create_table "payment_profiles", :force => true do |t|
+    t.string   "payment_preference"
+    t.string   "paypal_email"
+    t.integer  "consigner_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  add_index "payment_profiles", ["consigner_id"], :name => "index_payment_profiles_on_consigner_id"
 
   create_table "photos", :force => true do |t|
     t.integer  "item_id"
