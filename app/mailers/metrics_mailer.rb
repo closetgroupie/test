@@ -14,18 +14,18 @@ class MetricsMailer < ActionMailer::Base
     @item_count = Count.new(Item)
   end
 
-  def daily_metrics_email
+  def daily_metrics_email(email_address)
     set_count_variables
-    mail(to: User.find(3).email, subject: "ClosetGroupie Daily Metrics")
+    mail(to: email_address, subject: "ClosetGroupie Daily Metrics")
   end
 
-  def weekly_metrics_email
+  def weekly_metrics_email(email_address)
     set_count_variables
-    mail(to: User.find(3).email, subject: "ClosetGroupie Weekly Metrics")
+    mail(to: email_address, subject: "ClosetGroupie Weekly Metrics")
   end
 
-  def monthly_metrics_email
+  def monthly_metrics_email(email_address)
     set_count_variables
-    mail(to: User.find(3).email, subject: "ClosetGroupie Monthly Metrics")
+    mail(to: email_address, subject: "ClosetGroupie Monthly Metrics")
   end
 end
