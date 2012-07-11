@@ -1,0 +1,21 @@
+<div style="width: 500px; float: left;">
+  <h3>Report data for last week</h3>
+  <table>
+    <tr>
+      <td>New orders</td>
+      <td><%= @order_count.between(7.days.ago.at_midnight, Date.today.beginning_of_day) %></td>
+    </tr>
+    <tr>
+      <td>New users</td>
+      <td><%= @user_count.between(7.days.ago.at_midnight, Date.today.beginning_of_day) %></td>
+    </tr>
+    <tr>
+      <td>New curators</td>
+      <td><%= @curator_count.between(7.days.ago.at_midnight, Date.today.beginning_of_day) %></td>
+    </tr>
+    <tr>
+      <td>New items</td>
+      <td><%= @item_count.between(7.days.ago.at_midnight, Date.today.beginning_of_day) %></td>
+    </tr>
+  </table>
+</div>
