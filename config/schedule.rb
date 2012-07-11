@@ -1,10 +1,14 @@
-set :output, "/path/to/my/cron_log.log"
+set :output, "/log/metrics_cron_log.log"
 # TODO capistrano integration
 
-every 1.day do
-  runner "MyModel.some_method"
+every 1.day, :at => '3am' do
+  runner "MetricsMailer.daily_metrics_email.deliver"
 end
 
-every 4.days do
-  runner "AnotherModel.prune_old_records"
+every :monday, :at => '3am' do
+  runner "MetricsMailer.weekly_metrics_email.deliver"
+end
+
+every '0 3 1 * *' do # every first of the month at 3am
+  runner "MetricsMailer.daily_metrics_email.deliver"
 end
