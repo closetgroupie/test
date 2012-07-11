@@ -18,6 +18,8 @@ Closetgroupie::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   get "login"  => "sessions#new", :as => "login"
 
+  resource :curator_applications, only: [:new, :create], :path => "apply", :path_names => { :new => "" }
+
   # controller :users, :path => "/signup" do
   #   get  "" => :new, :as => "signup"
   #   post "" => :create, :as => "users"

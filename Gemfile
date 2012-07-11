@@ -23,8 +23,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'therubyracer'
-
 group :development, :test do
   #gem 'pry'
   #gem 'pry-remote'
@@ -48,6 +46,8 @@ group :staging do
   gem 'compass'
   gem 'compass-rails'
 end
+
+gem 'client_side_validations'
 
 gem 'jquery-rails'
 gem 'ejs'
