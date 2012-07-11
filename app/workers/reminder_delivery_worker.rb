@@ -6,7 +6,7 @@ class ReminderDeliveryWorker
 
   def perform(order_id)
     o = Order.find(order_id)
-    closet_id = Order.items.last.closet_id
+    closet_id = o.items.last.closet_id
     if Review.made_by_buyer_for_closet(o.buyer_id, closet_id).count == 0
       ReviewMailer.review_reminder_email(closet_id, o.buyer_id).deliver
     end
