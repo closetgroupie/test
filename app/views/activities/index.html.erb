@@ -4,7 +4,7 @@
     <script type="text/json" id="bootstrap">
     <%# TODO: Maybe we should use something else than to_json for this? %>
     {
-        "activities": <%== render :template => "activities/bootstrap.rabl" %>,
+        "activities": <%== render :template => "activities/bootstrap.json.rabl" %>,
         "user": <%== current_user.to_json(:only => [:id]) %>
     }
     </script>
