@@ -1,0 +1,21 @@
+<% body_class "curators apply" %>
+<h1>Closet Curator Application</h1>
+<%= form_for @application, :validate => true do |f| %>
+    <% @application.text_fields.each do |key| %>
+        <%= f.text_field key, :placeholder => @application.placeholder_text(key) %>
+    <% end %>
+    <%= f.text_area :about,
+        :placeholder => "Tell us about your style and the brands you love!" %>
+        <%= f.submit "Submit Application", :id => "submit_application" %>
+<% end %>
+<section id="becoming-a-curator">
+    <%= image_tag "become-a-curator/application-kelly.jpg" %>
+    <h2>Does this sound like you?</h2>
+    <p>"I love fashion"<br />
+    "My friends come to me for fashion advice."<br />
+    "I would love a job that's flexible."<br />
+    <strong>If so, learn more about <a href="/become-a-curator">becoming a curator</a></strong></p>
+</section>
+<%= content_for :javascripts do %>
+    <%= javascript_include_tag "become-a-curator" %>
+<% end %>
