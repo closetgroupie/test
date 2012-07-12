@@ -4,7 +4,7 @@ class CuratorApplicationMailer < ActionMailer::Base
 
   def new_curator_signup(application_id)
     @application = CuratorApplication.find(application_id)
-    mail(to: "kelly@closetgroupie.com",
+    mail(to: "curators@closetgroupie.com",
          subject: "New curator signup received! [closetgroupie]")
   end
 end
