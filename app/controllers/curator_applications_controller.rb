@@ -7,8 +7,9 @@ class CuratorApplicationsController < ApplicationController
 
   def create
     @application = CuratorApplication.new(params[:curator_application])
-    if @application.valid?
-
+    @application.user_id = current_user.id if current_user
+    if @application.save
+      redirect_to root_url, :notice => "Thank you for your submission, we will get in touch with you soon."
     else
       render :new
     end
