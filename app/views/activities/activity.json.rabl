@@ -22,7 +22,7 @@ end
 
 node(:hero_image) do |activity|
     case activity.entity_type
-    when "Item" then activity.entity.hero_image.image_url(:activity)
+    when "Item" then activity.entity.try(:hero_image).try(:image_url, :activity)
     when "User" then activity.entity.avatar_url(:search)
     end
 end
