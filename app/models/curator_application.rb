@@ -12,6 +12,10 @@ class CuratorApplication < ActiveRecord::Base
 
   validates :about, *TEXT_FIELD_ATTRS.reject { |key| key == :secondary }, :presence => true
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def text_fields
     TEXT_FIELD_ATTRS
   end
