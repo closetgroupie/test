@@ -33,18 +33,15 @@ ActiveAdmin.register_page "Dashboard" do
             li "Total # of items bought: #{total_items_bought}"
           end
         end
-        # panel "Recent Items" do
-        #   ul do
-        #     Item.recent(5).map do |item|
-        #       li link_to(item.title, admin_item_path(item))
-        #     end
-        #   end
-        # end
       end
 
       column do
-        panel "Info" do
-          para "Welcome to ActiveAdmin."
+        panel "Recent Curator Applications" do
+          table_for CuratorApplication.limit(10) do
+            column("Name") { |application| application.full_name }
+            column("E-mail") { |application| application.email }
+            column("") { |application| link_to "View", admin_curator_application_path(application) }
+          end
         end
       end
     end
