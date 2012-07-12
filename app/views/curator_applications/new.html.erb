@@ -2,7 +2,7 @@
 <h1>Closet Curator Application</h1>
 <%= form_for @application, :validate => true do |f| %>
     <% @application.text_fields.each do |key| %>
-    <%= f.text_field key, :placeholder => @application.placeholder_text(key) %> 
+        <%= f.text_field key, :placeholder => @application.placeholder_text(key) %>
     <% end %>
     <%= f.text_area :about,
         :placeholder => "Tell us about your style and the brands you love!" %>
