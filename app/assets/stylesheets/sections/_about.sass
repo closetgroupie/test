@@ -127,28 +127,71 @@ body.careers
         margin: 15px 0
 
 body.become-a-curator
-    h1
-        +replace-text-with-dimensions('about/become-a-curator.png')
-        margin-left: 232px
+
+    #content
+        header
+            position: relative
+
+            h1
+                +replace-text-with-dimensions('become-a-curator/become-a-curator.png')
+                position: absolute
+                top: -69px
+                left: -17px
+
+            img
+                background: url('become-a-curator/header-shadow.png') no-repeat bottom left
+                padding-bottom: 16px
+                margin-bottom: 45px
 
     #static
         width: 960px
+        background: image-url('become-a-curator/dots.png') no-repeat 32px 365px
+
+        aside
+            background: image-url('become-a-curator/meet-megan.jpg')
+            width: 418px
+            height: 416px
+            margin-top: -30px
+            float: right
+
+            h2
+                +replace-text-with-dimensions('become-a-curator/meet-megan-no-quote.png')
+                margin-left: -16px
+                margin-top: -13px
 
         section
             +clearfix
-            margin-top: 2em
+            padding-left: 95px
+            height: 229px
+            color: #969696
+            font-size: 16px
 
-    img
-        +border-radius(10px)
-        width: 200px
-        float: left
-        margin-right: 2em
-        border: 1px solid none
+            h2
+                margin: 8px 0 20px
+                font-size: 20px
 
-    h2
-        margin-bottom: 0.5em
-        font-size: 20px
+            p
+                width: 800px
 
-    p
-        float: left
-        width: 700px
+        #what-is-a-closet-curator h2
+            +replace-text-with-dimensions('become-a-curator/what-is-a-closet-curator.png')
+
+        #earning-potential h2
+            +replace-text-with-dimensions('become-a-curator/earning-potential.png')
+
+        #meet-a-curator
+            float: left
+            height: 320px
+            width: 445px
+
+            p
+                width: 400px
+
+            h2
+                +replace-text-with-dimensions('become-a-curator/meet-a-curator.png')
+
+        #apply-now
+            +replace-text-with-dimensions('become-a-curator/apply-now.png')
+            clear: left
+            display: block
+            margin: 40px auto 0
