@@ -77,7 +77,8 @@ class User < ActiveRecord::Base
 
   def self.from_omniauth(auth_hash)
     auth = Authentication.where(auth_hash.slice(:provider, :uid)).first
-    find(auth.user_id) if auth.present?
+    # Include the facebook_authentication so we can update it with the new access token
+    self.includes(:facebook_authentication).find(auth.user_id) if auth.present?
   end
 
   def admin?

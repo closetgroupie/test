@@ -8,6 +8,8 @@ class SessionsController < ApplicationController
     if auth_hash.present?
       user = User.from_omniauth(auth_hash)
       if user.present?
+        # Update the authentication with the latest (non-expired) token
+        user.facebook_authentication.update_attribute(:access_token, auth_hash.credentials.token) unless auth_hash.credentials.expired?
         session[:user_id] = user.id
       else
         return redirect_to social_signup_path
