@@ -1,5 +1,6 @@
 Closetgroupie::Application.configure do
   config.base_url = "https://closetgroupie.com"
+  config.root_url = "closetgroupie.com"
 
   config.paypal = {
     :login     => "kelly_api1.closetgroupie.com",
