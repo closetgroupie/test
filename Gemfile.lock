@@ -85,6 +85,7 @@ GEM
     chronic (0.6.7)
     chunky_png (1.2.5)
     client_side_validations (3.1.4)
+    coderay (1.0.7)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -154,6 +155,7 @@ GEM
       activesupport (~> 3.1)
       polyamorous (~> 0.5.0)
     metaclass (0.0.1)
+    method_source (0.7.1)
     mime-types (1.19)
     mini_magick (3.4)
       subexec (~> 0.2.1)
@@ -190,6 +192,10 @@ GEM
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
+    pry (0.9.9.6)
+      coderay (~> 1.0.5)
+      method_source (~> 0.7.1)
+      slop (>= 2.4.4, < 3)
     rabl (0.6.14)
       activesupport (>= 2.3.14)
       multi_json (~> 1.0)
@@ -241,6 +247,7 @@ GEM
       multi_json (~> 1)
       redis (~> 3)
       redis-namespace
+    slop (2.4.4)
     sorcery (0.7.12)
       bcrypt-ruby (~> 3.0.0)
       oauth (~> 0.4.4)
@@ -307,6 +314,7 @@ DEPENDENCIES
   newrelic_rpm
   omniauth-facebook
   pg
+  pry
   rabl
   rails (= 3.2.6)
   redis

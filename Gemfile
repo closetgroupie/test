@@ -24,7 +24,7 @@ group :assets do
 end
 
 group :development, :test do
-  #gem 'pry'
+  gem 'pry'
   #gem 'pry-remote'
   #gem 'letter_opener'
   #gem 'acts-as-importable', github: "kweightman/acts-as-importable"
