@@ -14,6 +14,8 @@ Closetgroupie::Application.configure do
     :secret => "cd845298813252ac18cd6e22f5bdbb92"
   }
 
+  config.og_namespace = 'closetgroupie-stagin'
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
