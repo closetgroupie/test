@@ -1,6 +1,6 @@
 Closetgroupie::Application.configure do
   config.base_url = "https://closetgroupie.com"
-  config.root_url = "closetgroupie.com"
+  config.root_uri = "closetgroupie.com"
 
   config.paypal = {
     :login     => "kelly_api1.closetgroupie.com",
@@ -20,7 +20,7 @@ Closetgroupie::Application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.default_url_options = {
-    :host     => "#{config.root_url}",
+    :host     => config.root_uri,
     :protocol => "https"
   }
 

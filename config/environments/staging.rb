@@ -1,6 +1,6 @@
 Closetgroupie::Application.configure do
   config.base_url = "http://staging.closetgroupie.com"
-  config.root_url = "staging.closetgroupie.com"
+  config.root_uri = "staging.closetgroupie.com"
 
   config.paypal = {
     :login     => "joonas_1338321438_biz_api1.closetgroupie.com",
@@ -36,6 +36,9 @@ Closetgroupie::Application.configure do
 
   config.action_mailer.asset_host = "http://staging.closetgroupie.com"
   config.action_controller.asset_host = "http://staging.closetgroupie.com"
+  config.action_controller.default_url_options = {
+    :host => "staging.closetgroupie.com"
+  }
 
   # So emails can be viewed locally
   config.action_mailer.delivery_method = :file

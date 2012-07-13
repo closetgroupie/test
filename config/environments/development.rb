@@ -1,6 +1,6 @@
 Closetgroupie::Application.configure do
   config.base_url = "http://localhost:3000"
-  config.root_url = "localhost:3000"
+  config.root_uri = "localhost:3000"
 
   config.paypal = {
     :login     => "joonas_1338321438_biz_api1.closetgroupie.com",

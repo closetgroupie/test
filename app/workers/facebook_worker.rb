@@ -40,7 +40,7 @@ class FacebookWorker
   def add_favorite(param)
     item = Item.find param['item']
     if item
-      @graph.put_connections("me", "#{@namespace}:favorite", :item => item_url(item, :host => Rails.application.config.root_url))
+      @graph.put_connections("me", "#{@namespace}:favorite", :item => item_url(item, :host => Rails.application.config.root_uri))
     end
   end
 
@@ -49,7 +49,7 @@ class FacebookWorker
     if item
       # Setting a distant future end time so Facebook views it
       # as a currently happening event
-      args = {:item => item_url(item,:host => Rails.application.config.root_url), :start_time => Time.now.to_i, :end_time => 10.years.from_now.to_i}
+      args = {:item => item_url(item, :host => Rails.application.config.root_uri), :start_time => Time.now.to_i, :end_time => 10.years.from_now.to_i}
       i = @graph.put_connections("me", "#{@namespace}:sell", args)
     end
   end
@@ -58,7 +58,7 @@ class FacebookWorker
     item = Item.find param['item']
     if item
       # end time is now, so activity will appear as past tense
-      args = {:item => item_url(item,:host => Rails.application.config.root_url), :start_time => Time.now.to_i}
+      args = {:item => item_url(item, :host => Rails.application.config.root_uri), :start_time => Time.now.to_i}
       i = @graph.put_connections("me", "#{@namespace}:sell", args)
     end
   end
@@ -66,7 +66,7 @@ class FacebookWorker
   def item_purchased(param)
     item = Item.find param['item']
     if item
-      args = {:item => item_url(item, :host => Rails.application.config.root_url) }
+      args = {:item => item_url(item, :host => Rails.application.config.root_uri) }
       @graph.put_connections("me", "#{@namespace}:buy", args)
     end
   end
@@ -74,7 +74,7 @@ class FacebookWorker
   def follow(param)
     followee = User.find param['followee']
     if followee
-      args = {:member => closet_url(followee.closet, :host => Rails.application.config.root_url) }
+      args = {:member => closet_url(followee.closet, :host => Rails.application.config.root_uri) }
       @graph.put_connections("me", "#{@namespace}:follow", args)
     end
   end
