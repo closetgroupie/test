@@ -34,15 +34,14 @@ Closetgroupie::Application.configure do
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.default_url_options = { host: "localhost:3000" }
-  config.action_mailer.asset_host = "http://localhost:3000"
-  config.action_controller.asset_host = "http://localhost:3000"
+  config.action_mailer.asset_host = "http://staging.closetgroupie.com"
+  config.action_controller.asset_host = "http://staging.closetgroupie.com"
 
   # So emails can be viewed locally
   config.action_mailer.delivery_method = :file
   config.action_mailer.file_settings = { :location => Rails.root.join('tmp/mail') }
   config.action_mailer.default_url_options = {
-    :host => "localhost:3000"
+    :host => "staging.closetgroupie.com"
   }
 
   # Print deprecation notices to the Rails logger
@@ -69,10 +68,6 @@ Closetgroupie::Application.configure do
   config.assets.digest = true
 
   config.assets.precompile += %w( search.js activity.js shop.js item.js add-items.js infinite-scroll.js filters.js closets.js activities.js landing.css active_admin.css active_admin.js )
-
-  config.action_controller.asset_host = "http://staging.closetgroupie.com"
-  config.action_mailer.asset_host = config.action_controller.asset_host
-  config.action_mailer.default_url_options = { host: "staging.closetgroupie.com" }
 
   # Do not compress assets
   # config.assets.compress = false
