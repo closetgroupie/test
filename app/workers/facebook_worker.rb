@@ -2,6 +2,8 @@ class FacebookWorker
   include Sidekiq::Worker
   include FacebookHelper
   include Rails.application.routes.url_helpers
+  # Don't retry
+  sidekiq_options :retry => false
 
   def perform(action, param)
     @user = User.find param['user']
