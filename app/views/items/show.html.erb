@@ -2,7 +2,7 @@
   <% content_for :og_type, "#{Rails.application.config.og_namespace}:item" %>
   <% content_for :og_url, current_url %>
   <% content_for :og_title, item.title %>
-  <% content_for :og_image, request.protocol + request.host_with_port + @item.photos.first.image_url(:medium) %>
+  <% content_for :og_image, url_for_image(@item.photos.first.image_url(:medium)) %>
 
   <% body_class "item-detail" %>
     <p class="back">
