@@ -8,6 +8,7 @@ class FacebookWorker
   def perform(action, param)
     @user = User.find param['user']
     @namespace = Rails.application.config.og_namespace
+    # TODO: Check to see if user has allowed posting to facebook once permissions are implemented
     if @user and @user.has_facebook?
       @graph = get_graph(@user)
       if @graph
