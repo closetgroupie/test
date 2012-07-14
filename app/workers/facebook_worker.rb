@@ -85,7 +85,7 @@ private
   def url_options
     {
       :host => Rails.application.config.root_uri,
-      :protocol => Rails.env.production? "https" : "http"
+      :protocol => Rails.env.production? ? "https" : "http"
     }
   end
 end
