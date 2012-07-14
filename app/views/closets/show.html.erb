@@ -1,3 +1,8 @@
+<% content_for :og_type, "#{Rails.application.config.og_namespace}:member" %>
+<% content_for :og_url, current_url %>
+<% content_for :og_title, @closet.name %>
+<% content_for :og_image, url_for_image(@closet.user.avatar_url(:medium)) %>
+
 <% body_class "closet-details" %>
 <section id="owner">
     <%= profile_for(@closet.user) %>

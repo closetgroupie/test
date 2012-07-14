@@ -110,7 +110,7 @@ module ApplicationHelper
   end
 
   def url_for_image(source)
-    "#{root_url}#{image_path(source)}"
+    "#{image_path(source)}"
   end
 
   def user_favorites_link

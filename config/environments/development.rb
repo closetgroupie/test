@@ -1,5 +1,6 @@
 Closetgroupie::Application.configure do
   config.base_url = "http://localhost:3000"
+  config.root_uri = "localhost:3000"
 
   config.paypal = {
     :login     => "joonas_1338321438_biz_api1.closetgroupie.com",
@@ -21,6 +22,8 @@ Closetgroupie::Application.configure do
     #:appid     => "APP-80W284485P519543T",
     #:email     => "cg2_1340742354_biz@tspike.com"
   #}
+  #
+  config.og_namespace = 'closetgroupie-dev'
 
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -40,14 +43,11 @@ Closetgroupie::Application.configure do
   config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.default_url_options = { host: "localhost:3000" }
-  config.action_mailer.asset_host = "http://localhost:3000"
-  config.action_controller.asset_host = "http://localhost:3000"
+  config.action_mailer.asset_host = config.base_url
+  config.action_controller.asset_host = config.base_url
 
   # So emails can be viewed locally
   config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.default_url_options = {
-    :host => "localhost:3000"
-  }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log

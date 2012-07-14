@@ -59,6 +59,6 @@ class ConversationListPresenter < BasePresenter
     end
   
     def other_party
-      other ||= (conversation.recipient == h.current_user) ? conversation.sender : conversation.recipient
+      @other ||= (conversation.recipient == h.current_user) ? conversation.sender : conversation.recipient
     end
 end

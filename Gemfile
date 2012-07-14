@@ -27,6 +27,7 @@ group :development, :test do
   gem 'pry'
   #gem 'pry-remote'
   #gem 'letter_opener'
+  #gem 'irbtools'
   #gem 'acts-as-importable', github: "kweightman/acts-as-importable"
   #gem 'capybara'
   #gem 'rspec-rails'

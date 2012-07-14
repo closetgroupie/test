@@ -1,5 +1,6 @@
 Closetgroupie::Application.configure do
   config.base_url = "https://closetgroupie.com"
+  config.root_uri = "closetgroupie.com"
 
   config.paypal = {
     :login     => "kelly_api1.closetgroupie.com",
@@ -13,12 +14,13 @@ Closetgroupie::Application.configure do
     :key    => 195906460469934,
     :secret => "3c11385cf4f9036acb5acd8274028d80"
   }
+  config.og_namespace = 'closetgroupie'
 
   # Settings specified here will take precedence over those in config/application.rb
   config.action_mailer.delivery_method = :smtp
 
   config.action_mailer.default_url_options = {
-    :host     => "closetgroupie.com",
+    :host     => config.root_uri,
     :protocol => "https"
   }
 
@@ -73,7 +75,7 @@ Closetgroupie::Application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # TODO: This needs to be switched out to the CDN once we have one.
-  config.action_controller.asset_host = "https://closetgroupie.com"
+  config.action_controller.asset_host = config.base_url
   config.action_mailer.asset_host = config.action_controller.asset_host
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)

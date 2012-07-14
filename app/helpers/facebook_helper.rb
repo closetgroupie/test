@@ -2,17 +2,19 @@ require 'set'
 
 # REDIS structure is:
 #
-# fb:<facebook_uid>:id
-# fb:<facebook_uid>:friends
-# fb:users
+# fb:<facebook_uid>:id -> ClosetGroupie ID
+# fb:<facebook_uid>:friends -> Set of FB ids of friends
+# fb:users -> Set of FB ids of site users
 
-module FriendsHelper
+module FacebookHelper
 
   # Gets access to the Facebook Graph API with the current user's
   # authentication token
-  def get_graph
-    token = current_user.facebook_authentication.access_token
-    @graph ||= Koala::Facebook::API.new token
+  def get_graph(user = current_user)
+    # TODO if user is passed in and @graph is set, shouldn't return
+    # the old one
+    token = user.facebook_authentication.access_token
+    @graph ||= Koala::Facebook::API.new(token)
   end
 
   def get_friends_using_site(fb_id)
