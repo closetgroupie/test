@@ -1,0 +1,55 @@
+@import compass
+@import config/colors
+
+body
+    background: #eee image-url('error/body-bg.png') repeat-x 0 109px
+    color: #6f6f6f
+    margin: 0
+    padding: 0
+
+    .error
+        background: image-url('error/content-bg.png') no-repeat 0 0
+        width: 807px
+        height: 515px
+        margin: 43px auto 0
+        position: relative
+
+        img
+            position: absolute
+            top: 21px
+            left: 220px
+
+        h1
+            position: absolute
+            left: 470px
+            top: 25px
+        
+        p
+            position: absolute
+            left: 470px
+            top: 150px
+            font-size: 18px
+            
+            a
+                color: $gold
+                text-decoration: none
+
+                &:hover
+                    color: $mustard
+
+    #main-nav
+        background-color: $white !important
+
+        #shop_by
+            padding-left: 0 !important
+
+    #error404 h1
+        +replace-text-with-dimensions('error/heading-404.png')
+    #error500 h1
+        +replace-text-with-dimensions('error/heading-500.png')
+
+@import common/header
+@import common/footer
+
+footer .inner h3
+    margin: 0
