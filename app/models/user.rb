@@ -3,6 +3,7 @@ require 'uuidtools'
 KELLY = 3
 TRES = 2285
 JOONAS = 157
+EUGENE = 2216
 
 class User < ActiveRecord::Base
   include Tire::Model::Search
