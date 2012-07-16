@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
+    <title>ClosetGroupie</title>
+    <link rel="stylesheet" href="/assets/error.css" type="text/css" media="all"></link>
+    <script type="text/javascript" src="//use.typekit.com/ppu0ksu.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </head>
 
 <body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
+    <div class="container">
+        <header id="header">
+            <div id="title-bar">
+                <div id="title-bar-inner">
+                    <a href="/" id="logo">ClosetGroupie</a>
+                </div>
+                <div id="header-bg"></div>
+            </div>
+            <div id="main-nav">
+                <div id="nav-inner">
+                    <ul id="shop_by">
+                        <li><a href="/women">Women</a></li>
+                        <li><a href="/girls">Girls</a></li>
+                        <li><a href="/boys">Boys</a></li>
+                        <li><a href="/babies">Babies</a></li>
+                    </ul>
+                    <form accept-charset="UTF-8" action="/search" id="search" method="get">
+                        <div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="✓"></div>
+                        <input id="search_query" name="q" type="text">
+                        <input id="search_submit" name="commit" type="submit" value="Search">
+                    </form>
+                </div>
+            </div>
+        </header>
+        <section>
+            <div id="error404" class="error">
+                <img src="/assets/error/error-404.png" alt="404">
+                <h1>Looks like something is missing...</h1>
+                <p>The page you're looking for can't be found.<br />
+                <a href="/">Go back</a></p>
+            </div>
+        </section>
+        <footer>
+            <div class="inner">
+                <h3>Join Us</h3>
+                <ul id="social">
+                    <li><a href="http://www.facebook.com/ClosetGroupie" id="facebook" target="_blank">Facebook</a></li>
+                    <li><a href="http://pinterest.com/ClosetGroupie/" id="pinterest" target="_blank">Pinterest</a></li>
+                    <li><a href="http://www.twitter.com/closetgroupie" id="twitter" target="_blank">Twitter</a></li>
+                    <li><a href="http://closetgroupie.tumblr.com" id="tumblr" target="_blank">Tumblr</a></li>
+                </ul>
+                <ul id="quick_links">
+                    <li><a href="/about">about</a></li>
+                    <li><a href="/become-a-curator">become a curator</a></li>
+                    <li><a href="http://closetgroupie.tumblr.com/FAQ" target="_blank">help</a></li>
+                    <li><a href="/privacy">privacy</a></li>
+                    <li><a href="/terms">terms</a></li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+    <script type="text/javascript" src="/assets/olark.js"></script>
+    <noscript><a href="https://www.olark.com/site/4095-115-10-1147/contact" title="Contact us " target="_blank ">Questions? Feedback?</a></noscript>
 </body>
 </html>
