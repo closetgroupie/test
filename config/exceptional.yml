@@ -1,1 +1,8 @@
-api-key: b7e8e17e4657edb464ad344c9e6e21f06d219a9d
+staging:
+  enabled: true
+  api-key: 8679154b3013cb15dccc7f8355560dafae5a77d7
+
+production:
+  enabled: true
+  api-key: b7e8e17e4657edb464ad344c9e6e21f06d219a9d
+
