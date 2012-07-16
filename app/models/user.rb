@@ -7,7 +7,9 @@ EUGENE = 2216
 
 class User < ActiveRecord::Base
   include Tire::Model::Search
-  include Tire::Model::Callbacks
+
+  after_destroy :update_index
+  after_save :update_index, :if => :indexed_attributes_changed?
 
   paginates_per 50
 
@@ -85,6 +87,10 @@ class User < ActiveRecord::Base
   def admin?
     # TODO: This should call administator?
     [KELLY, JOONAS, TRES, EUGENE].include? id
+  end
+
+  def indexed_attributes_changed?
+    self.name_changed? || self.avatar_changed?
   end
 
   # TODO: Add this as :if => :should_update_password? to password
