@@ -24,12 +24,22 @@ Closetgroupie::Application.configure do
     :protocol => "https"
   }
 
+  # config.action_mailer.smtp_settings = {
+  #   :address              => "in.mailjet.com",
+  #   :port                 => 587,
+  #   :authentication       => :plain,
+  #   :user_name            => "6efee03e1cb2ac9a6ffa0e21f55aec74",
+  #   :password             => "e31a8afe66db1d72a0ce0a293d5812ef",
+  #   :enable_starttls_auto => true
+  # }
+
   config.action_mailer.smtp_settings = {
-    :address              => "in.mailjet.com",
+    :address              => "smtp.sendgrid.net",
     :port                 => 587,
     :authentication       => :plain,
-    :user_name            => "6efee03e1cb2ac9a6ffa0e21f55aec74",
-    :password             => "e31a8afe66db1d72a0ce0a293d5812ef",
+    :user_name            => "closetgroupie",
+    :password             => "HdYL72bNouEmYseiGRUG",
+    :domain               => "closetgroupie.com",
     :enable_starttls_auto => true
   }
 
