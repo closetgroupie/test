@@ -9,6 +9,7 @@ class CuratorApplicationsController < ApplicationController
     @application = CuratorApplication.new(params[:curator_application])
     @application.user_id = current_user.id if current_user
     if @application.save
+      CuratorApplicationMailer.delay.new_curator_signup(@application.id)
       redirect_to root_url, :notice => "Thank you for your submission, we will get in touch with you soon."
     else
       render :new
