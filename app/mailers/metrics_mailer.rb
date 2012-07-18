@@ -16,16 +16,19 @@ class MetricsMailer < ActionMailer::Base
 
   def daily_metrics_email(email_address)
     set_count_variables
+    headers["X-SMTPAPI"] = '{"category": "metrics:daily"}'
     mail(to: email_address, subject: "ClosetGroupie Daily Metrics")
   end
 
   def weekly_metrics_email(email_address)
     set_count_variables
+    headers["X-SMTPAPI"] = '{"category": "metrics:weekly"}'
     mail(to: email_address, subject: "ClosetGroupie Weekly Metrics")
   end
 
   def monthly_metrics_email(email_address)
     set_count_variables
+    headers["X-SMTPAPI"] = '{"category": "metrics:monthly"}'
     mail(to: email_address, subject: "ClosetGroupie Monthly Metrics")
   end
 end

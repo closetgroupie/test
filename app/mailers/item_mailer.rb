@@ -7,6 +7,7 @@ class ItemMailer < ActionMailer::Base
   def item_of_interest_email(item_id, groupie_id)
     @item = Item.find(item_id)
     @groupie = User.find(groupie_id)
+    # header["X-SMTPAPI"] = '{"category": "new_item"}'
     mail(to: @groupie.email,
          subject: "#{@item.user.name} listed #{@item.title} on ClosetGroupie!")
   end
