@@ -2,7 +2,7 @@ module ShopHelper
   def classes_for_item(item)
     # TODO: Caching or something else
     classes = []
-    classes << item.category.slug.downcase
+    classes << item.try(:category).try(:slug).try(:downcase)
     classes << "sold-item" if item.sold?
     classes.join(" ")
   end
